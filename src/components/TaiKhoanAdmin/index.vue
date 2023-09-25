@@ -224,7 +224,7 @@ export default {
     methods: {
         getListQuyen() {
             baseRequest
-                .get('quyen/data')
+                .get('phan-quyen/data')
                 .then((res) => {
                     this.list_quyen = res.data.data;
                 })
