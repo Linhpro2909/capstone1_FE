@@ -22,7 +22,16 @@ const routes = [
         path : '/admin/ma-giam-gia',
         component: ()=>import('../components/MaGiamGia/index.vue')
     },
-    
+
+    {
+        path : '/admin/san-pham',
+        component: ()=>import('../components/SanPham/index.vue')
+    },
+
+    {
+        path : '/admin/tai-khoan',
+        component: ()=>import('../components/TaiKhoanAdmin/index.vue')
+    },
 ]
 
 const router = createRouter({
