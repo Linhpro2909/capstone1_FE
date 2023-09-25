@@ -67,7 +67,7 @@
                                         <th class="text-center align-middle">{{ k + 1}}</th>
                                         <td class="align-middle">{{ v.ten_quyen}}</td>
                                         <td class="text-center align-middle">
-                                            <button v-if="v.tinh_trang == 1" style="width:100px" class="btn btn-success">Hoạt Động</button>
+                                            <button v-if="v.trang_thai == 1" style="width:100px" class="btn btn-success">Hoạt Động</button>
                                             <button v-else style="width:100px" class="btn btn-danger">Tạm Tắt</button>
                                         </td>
                                         <td class="text-center align-middle">
@@ -168,6 +168,7 @@ export default {
                 .then((res) => {
                     functionBasic.displaySuccess(res);
                     this.getListQuyen();
+                    this.them_moi = {};
                 });
         },
         getListQuyen() {

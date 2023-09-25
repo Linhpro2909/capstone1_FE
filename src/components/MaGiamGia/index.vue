@@ -150,6 +150,7 @@ export default {
                 .then((res) => {
                     functionBasic.displaySuccess(res);
                     this.loadMaGiamGia();
+                    this.them_moi = {};
                 });
         },
         loadMaGiamGia() {

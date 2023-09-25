@@ -1,4 +1,4 @@
-<template>
+<template lang="">
     <div class="row">
         <div class="text-end mb-2">
             <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#themmoiModal">Thêm Mới</button>
@@ -11,25 +11,42 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="row">
+                        <div class="row mt-2">
                             <div class="col-md-6">
                                 <label>Tên Sản Phẩm</label>
                                 <input type="text" class="form-control">
                             </div>
-
                             <div class="col-md-6">
                                 <label>Hình Ảnh</label>
                                 <input type="text" class="form-control">
                             </div>
                         </div>
                         <div class="row mt-2">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label>Giá Bán</label>
                                 <input type="number" class="form-control">
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label>Giá Gốc</label>
                                 <input type="number" class="form-control">
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-4">
+                                <label>Chuyên Mục</label>
+                                <select class="form-control">
+                                    <template v-for="(v, k) in data_chuyen_muc" >
+                                        <option v-if="v.tinh_trang == 1" v-bind:value="v.id">{{ v.ten_chuyen_muc }}</option>
+                                    </template>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label>Thương Hiệu</label>
+                                <select class="form-control">
+                                    <template v-for="(v, k) in data_thuong_hieu" >
+                                        <option v-if="v.tinh_trang == 1" v-bind:value="v.id">{{ v.ten_thuong_hieu }}</option>
+                                    </template>
+                                </select>
                             </div>
                             <div class="col-md-4">
                                 <label>Tình Trạng</label>
@@ -40,35 +57,17 @@
                             </div>
                         </div>
                         <div class="row mt-2">
-                            <div class="col-md-4">
+                            <div class="col-md-12">
                                 <label>Mô Tả</label>
                                 <textarea class="form-control" cols="30" rows="3"></textarea>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-12 mt-2">
                                 <label>Nội Dung</label>
                                 <textarea class="form-control" cols="30" rows="3"></textarea>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-12 mt-2">
                                 <label>Thông Tin Thêm</label>
                                 <textarea class="form-control" cols="30" rows="3"></textarea>
-                            </div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-md-4">
-                                <label>Chuyên Mục</label>
-                                <select class="form-control">
-                                    <template v-for="(v, k) in data_chuyen_muc">
-                                        <option v-bind:value="v.id">{{ v.ten_chuyen_muc }}</option>
-                                    </template>
-                                </select>
-                            </div>
-                            <div class="col-md-4">
-                                <label>Thương Hiệu</label>
-                                <select class="form-control">
-                                    <template v-for="(v, k) in data_thuong_hieu">
-                                        <option v-bind:value="v.id">{{ v.ten_thuong_hieu }}</option>
-                                    </template>
-                                </select>
                             </div>
                         </div>
                     </div>
@@ -98,6 +97,7 @@
                                     <th class="text-center align-middle text-nowrap">Số Lượng</th>
                                     <th class="text-center align-middle text-nowrap">Nội Dung</th>
                                     <th class="text-center align-middle text-nowrap">Thông Tin Thêm</th>
+                                    <th class="text-center align-middle text-nowrap">Tình Trạng</th>
                                     <th class="text-center align-middle text-nowrap">Action</th>
                                 </tr>
                             </thead>
@@ -111,10 +111,13 @@
                                     </td>
                                     <td class="text-nowrap align-middle">40.000.000đ</td>
                                     <td class="text-nowrap align-middle">50.000.000đ</td>
-                                    <td class="text-nowrap align-middle">Iphone 15</td>
+                                    <td class="text-nowrap align-middle">Iphone 15 mô tả</td>
                                     <td class="text-nowrap align-middle text-center">100</td>
-                                    <td class="text-nowrap align-middle">Iphone 15 tuyệt vời</td>
+                                    <td class="text-nowrap align-middle">Iphone 15 nội dung</td>
                                     <td class="text-nowrap align-middle">Iphone 15 thông tin</td>
+                                    <td class="text-nowrap align-middle text-center">
+                                        <button class="btn btn-success">Hiển Thị</button>
+                                    </td>
                                     <td class="text-nowrap align-middle text-center">
                                         <button class="btn btn-primary" style="margin-right: 5px;" data-bs-toggle="modal"
                                             data-bs-target="#capnhatModal">Cập Nhật</button>
@@ -135,25 +138,42 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <div class="row">
+                                    <div class="row mt-2">
                                         <div class="col-md-6">
                                             <label>Tên Sản Phẩm</label>
                                             <input type="text" class="form-control">
                                         </div>
-
                                         <div class="col-md-6">
                                             <label>Hình Ảnh</label>
                                             <input type="text" class="form-control">
                                         </div>
                                     </div>
                                     <div class="row mt-2">
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <label>Giá Bán</label>
                                             <input type="number" class="form-control">
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-6">
                                             <label>Giá Gốc</label>
                                             <input type="number" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-2">
+                                        <div class="col-md-4">
+                                            <label>Chuyên Mục</label>
+                                            <select class="form-control">
+                                                <template v-for="(v, k) in data_chuyen_muc" >
+                                                    <option v-if="v.tinh_trang == 1" v-bind:value="v.id">{{ v.ten_chuyen_muc }}</option>
+                                                </template>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label>Thương Hiệu</label>
+                                            <select class="form-control">
+                                                <template v-for="(v, k) in data_thuong_hieu" >
+                                                    <option v-if="v.tinh_trang == 1" v-bind:value="v.id">{{ v.ten_thuong_hieu }}</option>
+                                                </template>
+                                            </select>
                                         </div>
                                         <div class="col-md-4">
                                             <label>Tình Trạng</label>
@@ -164,37 +184,19 @@
                                         </div>
                                     </div>
                                     <div class="row mt-2">
-                                        <div class="col-md-4">
+                                        <div class="col-md-12">
                                             <label>Mô Tả</label>
                                             <textarea class="form-control" cols="30" rows="3"></textarea>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-12 mt-2">
                                             <label>Nội Dung</label>
                                             <textarea class="form-control" cols="30" rows="3"></textarea>
                                         </div>
-                                        <div class="col-md-4">
+                                        <div class="col-md-12 mt-2">
                                             <label>Thông Tin Thêm</label>
                                             <textarea class="form-control" cols="30" rows="3"></textarea>
                                         </div>
-                                    </div>
-                                    <div class="row mt-2">
-                                        <div class="col-md-4">
-                                            <label>Chuyên Mục</label>
-                                            <select class="form-control">
-                                                <template v-for="(v, k) in data_chuyen_muc">
-                                                    <option v-bind:value="v.id">{{ v.ten_chuyen_muc }}</option>
-                                                </template>
-                                            </select>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <label>Thương Hiệu</label>
-                                            <select class="form-control">
-                                                <template v-for="(v, k) in data_thuong_hieu">
-                                                    <option v-bind:value="v.id">{{ v.ten_thuong_hieu }}</option>
-                                                </template>
-                                            </select>
-                                        </div>
-                                    </div>
+                                    </div>      
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
@@ -251,16 +253,18 @@ export default {
                 .then((res) => {
                     if (res.data.status) {
                         this.data_thuong_hieu = res.data.data;
+                        console.log(this.data_thuong_hieu);
                     }
                 });
+
             baseRequest
                 .get("chuyen-muc/data")
                 .then((res) => {
-                    if (res.data.status) {
-                        this.data_chuyen_muc = res.data.data;
-                    }
-                });
-        }
+                    this.data_chuyen_muc = res.data.data;
+                    console.log(this.data_chuyen_muc);
+                });    
+           
+        },
     },
 }
 </script>

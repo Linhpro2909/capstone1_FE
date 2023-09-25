@@ -76,7 +76,7 @@
                                         <td class="align-middle text-nowrap">
                                             {{v.url_chuyen_muc}}
                                         </td>
-                                        <td v-if="v.tinh_trang"
+                                        <td v-if="v.tinh_trang == 1"
                                             class="text-center align-middle text-nowrap">
                                             <button class="btn btn-success" style="width: 100px;">Hiển
                                                 Thị</button>
@@ -208,6 +208,7 @@ export default {
                 .then((res) => {
                     functionBasic.displaySuccess(res);
                     this.loadListChuyenMuc();
+                    this.chuyen_muc = {};
                 });
         },
         loadListChuyenMuc() {
