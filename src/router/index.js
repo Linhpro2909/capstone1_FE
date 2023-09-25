@@ -6,6 +6,14 @@ const routes = [
         component: ()=>import('../layout/wrapper/index.vue')
     },
     {
+        path : '/admin/chuyen-muc',
+        component: ()=>import('../components/ChuyenMuc/index.vue')
+    },
+    {
+        path : '/admin/phan-quyen',
+        component: ()=>import('../components/PhanQuyen/index.vue')
+    },
+    {
         path : '/admin/thuong-hieu',
         component: ()=>import('../components/ThuongHieu/index.vue')
     },
@@ -14,6 +22,7 @@ const routes = [
         path : '/admin/ma-giam-gia',
         component: ()=>import('../components/MaGiamGia/index.vue')
     },
+    
 ]
 
 const router = createRouter({
