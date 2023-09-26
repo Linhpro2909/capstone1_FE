@@ -28,7 +28,7 @@
 					<router-link to="/admin/san-pham">
 						<a class="nav-link">
 							<div class="parent-icon">
-								<i class="fa-solid fa-building"></i>
+								<i class="fa-brands fa-product-hunt"></i>
 							</div>
 							<div class="menu-title">Sản Phẩm</div>
 						</a>
@@ -38,7 +38,7 @@
 					<router-link to="/admin/tai-khoan">
 						<a class="nav-link">
 							<div class="parent-icon">
-								<i class="fa-solid fa-building"></i>
+								<i class="fa-solid fa-lock"></i>
 							</div>
 							<div class="menu-title">Tài Khoản Admin</div>
 						</a>
@@ -78,7 +78,7 @@
 					<router-link to="/admin/ma-giam-gia">
 						<a class="nav-link">
 							<div class="parent-icon">
-								<i class="fa-solid fa-copyright"></i>
+								<i class="fa-brands fa-codepen"></i>
 							</div>
 							<div class="menu-title">Mã Giảm Giá</div>
 						</a>
