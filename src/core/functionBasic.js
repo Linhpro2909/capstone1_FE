@@ -1,6 +1,6 @@
 import { createToaster } from '@meforma/vue-toaster'
 const toastr =  createToaster({
-    position: 'bottom-right'
+    position: 'top-right'
 })
 export default {
     date_format(now) {
