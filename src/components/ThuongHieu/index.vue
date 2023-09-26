@@ -148,6 +148,7 @@ export default {
                 .then((res) => {
                     functionBasic.displaySuccess(res);
                     this.loadThuongHieu();
+                    this.thuong_hieu_add = {};
                 });
         },
         loadThuongHieu() {

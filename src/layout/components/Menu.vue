@@ -25,12 +25,64 @@
 					</ul>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">
-						<div class="parent-icon">
-							<i class="bx bx-cart"></i>
-						</div>
-						<div class="menu-title">eCommerce</div>
-					</a>
+					<router-link to="/admin/san-pham">
+						<a class="nav-link">
+							<div class="parent-icon">
+								<i class="fa-solid fa-building"></i>
+							</div>
+							<div class="menu-title">Sản Phẩm</div>
+						</a>
+					</router-link>
+				</li>
+				<li class="nav-item">
+					<router-link to="/admin/tai-khoan">
+						<a class="nav-link">
+							<div class="parent-icon">
+								<i class="fa-solid fa-building"></i>
+							</div>
+							<div class="menu-title">Tài Khoản Admin</div>
+						</a>
+					</router-link>
+				</li>
+				<li class="nav-item">
+					<router-link to="/admin/phan-quyen">
+						<a class="nav-link">
+							<div class="parent-icon">
+								<i class="fa-solid fa-person-circle-plus"></i>
+							</div>
+							<div class="menu-title">Phân Quyền</div>
+						</a>
+					</router-link>
+				</li>
+				<li class="nav-item">
+					<router-link to="/admin/chuyen-muc">
+						<a class="nav-link">
+							<div class="parent-icon">
+								<i class="fa-solid fa-list"></i>
+							</div>
+							<div class="menu-title">Chuyên Mục</div>
+						</a>
+					</router-link>
+				</li>
+				<li class="nav-item">
+					<router-link to="/admin/thuong-hieu">
+						<a class="nav-link">
+							<div class="parent-icon">
+								<i class="fa-solid fa-copyright"></i>
+							</div>
+							<div class="menu-title">Thương Hiệu</div>
+						</a>
+					</router-link>
+				</li>
+				<li class="nav-item">
+					<router-link to="/admin/ma-giam-gia">
+						<a class="nav-link">
+							<div class="parent-icon">
+								<i class="fa-solid fa-copyright"></i>
+							</div>
+							<div class="menu-title">Mã Giảm Giá</div>
+						</a>
+					</router-link>
 				</li>
 				
 			</ul>

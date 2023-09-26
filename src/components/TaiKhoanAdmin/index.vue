@@ -47,8 +47,11 @@
                         </div>
                         <div class="row mb-2">
                             <div class="col-6">
-                                <label class="form-label">Địa chỉ</label>
-                                <textarea class="form-control" placeholder="Nhập địa chỉ" cols="30" rows="10"></textarea>
+                                <label class="form-label">Trạng Thái</label>
+                                <select class="form-select">
+                                        <option value="1">Hiển Thị</option>
+                                        <option value="0">Tạm Tắt</option>
+                                </select>
                             </div>
                             <div class="col-6">
                                 <label class="form-label">Quyền</label>
@@ -59,10 +62,16 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label class="form-label">Địa chỉ</label>
+                                <textarea class="form-control" placeholder="Nhập địa chỉ" cols="30" rows="5"></textarea>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary"
-                            data-bs-dismiss="modal">Close</button>
+                            data-bs-dismiss="modal">Đóng</button>
                         <button type="button" class="btn btn-primary">Thêm Mới</button>
                     </div>
                 </div>
@@ -86,6 +95,7 @@
                                     <th class="text-center align-middle text-nowrap">Ngày Sinh</th>
                                     <th class="text-center align-middle text-nowrap">Địa chỉ</th>
                                     <th class="text-center align-middle text-nowrap">Quyền</th>
+                                    <th class="text-center align-middle text-nowrap">Tình Trạng</th>
                                     <th class="text-center align-middle text-nowrap">Action</th>
                                 </tr>
                             </thead>
@@ -99,6 +109,9 @@
                                     <td class="align-middle text-nowrap">00/00/0000</td>
                                     <td class="align-middle text-nowrap">32 Xuân Diệu, Đà Nẵng</td>
                                     <td class="text-center align-middle text-nowrap">Admin</td>
+                                    <td class="text-center align-middle text-nowrap">
+                                        <button class="btn btn-success">Hiển Thị</button>
+                                    </td>
                                     <td class="text-center align-middle text-nowrap">
                                         <button class="btn btn-info me-2" data-bs-toggle="modal"
                                             data-bs-target="#capNhatModal">Cập Nhật</button>
@@ -151,8 +164,11 @@
                                     </div>
                                     <div class="row mb-2">
                                         <div class="col-6">
-                                            <label class="form-label">Địa chỉ</label>
-                                            <textarea class="form-control" placeholder="Nhập địa chỉ" cols="30" rows="10"></textarea>
+                                            <label class="form-label">Trạng Thái</label>
+                                            <select class="form-select">
+                                                    <option value="1">Hiển Thị</option>
+                                                    <option value="0">Tạm Tắt</option>
+                                            </select>
                                         </div>
                                         <div class="col-6">
                                             <label class="form-label">Quyền</label>
@@ -163,10 +179,16 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <label class="form-label">Địa chỉ</label>
+                                            <textarea class="form-control" placeholder="Nhập địa chỉ" cols="30" rows="5"></textarea>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
+                                        data-bs-dismiss="modal">Đóng</button>
                                     <button type="button" class="btn btn-primary">Cập Nhật</button>
                                 </div>
                             </div>
@@ -215,7 +237,7 @@ import functionBasic from '../../core/functionBasic';
 export default {
     data() {
         return {
-            list_quyen      : [],
+            list_quyen: [],
         }
     },
     mounted() {
