@@ -56,12 +56,12 @@
                                     <td class="align-middle text-nowrap text-end">{{ value.so_tien_giam }}</td>
                                     <td class="align-middle text-nowrap text-center">{{ value.phan_tram_giam }}%</td>
                                     <td class="align-middle text-center text-nowrap">
-                                        <button v-if="value.tinh_trang == 1" class="btn btn-success">Chưa Sử Dụng</button>
-                                        <button v-else class="btn btn-danger">Đã Sử Dụng</button>
+                                        <button @:click="trang_thai(value)" v-if="value.tinh_trang == 1" class="btn btn-success">Chưa Sử Dụng</button>
+                                        <button @:click="trang_thai(value)" v-else class="btn btn-danger">Đã Sử Dụng</button>
                                     </td>
                                     <td class="align-middle text-center text-nowrap">
-                                        <button class="btn btn-primary" style="margin-right: 3px;" data-bs-toggle="modal" data-bs-target="#updateModal">Cập Nhật</button>
-                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#xoaModal">Xóa</button>
+                                        <button @:click="ma_giam_gia_update = Object.assign({}, value)" class="btn btn-primary" style="margin-right: 3px;" data-bs-toggle="modal" data-bs-target="#updateModal">Cập Nhật</button>
+                                        <button @:click="ma_giam_gia_del = Object.assign({}, value)" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#xoaModal">Xóa</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -76,27 +76,27 @@
                                 <div class="modal-body">
                                     <div class="mt-2">
                                         <label>Mã giảm giá</label>
-                                        <input type="text" class="form-control mt-1">
+                                        <input type="text" v-model="ma_giam_gia_update.code_giam_gia" class="form-control mt-1">
                                     </div>
                                     <div class="mt-2">
                                         <label>Số tiền giảm</label>
-                                        <input type="number" class="form-control mt-1">
+                                        <input  type="number" v-model="ma_giam_gia_update.so_tien_giam" class="form-control mt-1">
                                     </div>
                                     <div class="mt-2">
                                         <label>Phần trăm giảm</label>
-                                        <input type="number" class="form-control mt-1">
+                                        <input type="number" v-model="ma_giam_gia_update.phan_tram_giam" class="form-control mt-1">
                                     </div>
                                     <div class="mt-2">
                                         <label>Tình Trạng</label>
-                                        <select class="form-control mt-1">
-                                            <option value="1">Hiển Thị</option>
-                                            <option value="0">Tạm Tắt</option>
+                                        <select class="form-control mt-1" v-model="ma_giam_gia_update.tinh_trang">
+                                            <option value="1">Chưa Sử Dụng</option>
+                                            <option value="0">Đã Sử Dụng</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                    <button type="button" class="btn btn-primary">Lưu</button>
+                                    <button @:click="cap_nhat()" type="button" class="btn btn-primary">Lưu</button>
                                 </div>
                                 </div>
                             </div>
@@ -110,11 +110,20 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    Xóa mã giảm giá: xxx
+                                    <div class="alert alert-warning border-0 bg-warning fade show py-2">
+                                        <div class="d-flex align-items-center">
+                                            <div class="font-35 text-dark"><i class='bx bx-info-circle'></i>
+                                            </div>
+                                            <div class="ms-3">
+                                                <h6 class="mb-0 text-dark">Warning</h6>
+                                                <div class="text-dark text-wrap">Bạn có chắc chắn muốn xóa mã giảm giá <b class="text-danger">{{ ma_giam_gia_del.code_giam_gia }}</b> này không!</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                    <button type="button" class="btn btn-primary">Đồng Ý</button>
+                                    <button @:click="huy_bo()" type="button" class="btn btn-primary">Đồng Ý</button>
                                 </div>
                                 </div>
                             </div>
@@ -138,6 +147,8 @@ export default {
                 "code_giam_gia"         :   "",
             },
             list_ma_giam_gia            : [],
+            ma_giam_gia_del: {},
+            ma_giam_gia_update: {},
         }
     },
     mounted() {
@@ -160,6 +171,30 @@ export default {
                     this.list_ma_giam_gia = res.data.data;
                 });
         }, 
+        huy_bo() {
+            baseRequest
+                .post("ma-giam-gia/delete", this.ma_giam_gia_del)
+                .then((res) => {
+                    functionBasic.displaySuccess(res);
+                    this.loadMaGiamGia();
+                });
+        },
+        cap_nhat() {
+            baseRequest
+                .post("ma-giam-gia/update", this.ma_giam_gia_update)
+                .then((res) => {
+                    functionBasic.displaySuccess(res);
+                    this.loadMaGiamGia();
+                });
+        },
+        trang_thai(value) {
+            baseRequest
+                .post("ma-giam-gia/status", value)
+                .then((res) => {
+                    functionBasic.displaySuccess(res);
+                    this.loadMaGiamGia();
+                });
+        },
     }
 }
 </script>
