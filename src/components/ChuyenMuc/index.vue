@@ -78,18 +78,18 @@
                                         </td>
                                         <td v-if="v.tinh_trang == 1"
                                             class="text-center align-middle text-nowrap">
-                                            <button class="btn btn-success" style="width: 100px;">Hiển
+                                            <button @:click="trang_thai(v)" class="btn btn-success" style="width: 100px;">Hiển
                                                 Thị</button>
                                         </td>
                                         <td v-else class="text-center align-middle text-nowrap">
-                                            <button class="btn btn-danger" style="width: 100px;">Tạm
+                                            <button @:click="trang_thai(v)" class="btn btn-danger" style="width: 100px;">Tạm
                                                 Tắt</button>
                                         </td>
                                         <td class="text-center align-middle text-nowrap">
-                                            <button class="btn btn-info m-1" style="width: 100px;"
+                                            <button @:click="chuyen_muc_update = Object.assign({}, v)" class="btn btn-info m-1" style="width: 100px;"
                                                 data-bs-toggle="modal" data-bs-target="#capNhatModal">Cập
                                                 Nhật</button>
-                                            <button class="btn btn-danger" style="width: 100px;"
+                                            <button @:click="chuyen_muc_del = Object.assign({}, v)" class="btn btn-danger" style="width: 100px;"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#xoaModal">Xóa</button>
                                         </td>
@@ -112,22 +112,22 @@
                                     <div class="row">
                                         <div class="col-12">
                                             <label class="form-label">Tên chuyên Mục</label>
-                                            <input type="text" class="form-control"
+                                            <input v-model="chuyen_muc_update.ten_chuyen_muc" type="text" class="form-control"
                                                 placeholder="Nhập tên chuyên mục">
                                         </div>
                                         <div class="col-12">
                                             <label class="form-label mt-3">Icon chuyên Mục</label>
-                                            <input type="text" class="form-control"
+                                            <input v-model="chuyen_muc_update.icon_chuyen_muc" type="text" class="form-control"
                                                 placeholder="Nhập slug chuyên mục">
                                         </div>
                                         <div class="col-12">
                                             <label class="form-label mt-3">URL chuyên Mục</label>
-                                            <input type="text" class="form-control"
+                                            <input v-model="chuyen_muc_update.url_chuyen_muc" type="text" class="form-control"
                                                 placeholder="Nhập slug chuyên mục">
                                         </div>
                                         <div class="col-12">
                                             <label class="form-label mt-3">Tình Trạng</label>
-                                            <select class="form-control">
+                                            <select v-model="chuyen_muc_update.tinh_trang" class="form-control">
                                                 <option value="1">Hiển Thị</option>
                                                 <option value="0">Tạm Tắt</option>
                                             </select>
@@ -137,7 +137,7 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
-                                    <button data-bs-dismiss="modal" type="button" class="btn btn-primary">Cập Nhật</button>
+                                    <button @:click="cap_nhat()" data-bs-dismiss="modal" type="button" class="btn btn-primary">Cập Nhật</button>
                                 </div>
                             </div>
                         </div>
@@ -160,7 +160,9 @@
                                             <div class="ms-3">
                                                 <h6 class="mb-0 text-dark">Warning</h6>
                                                 <div class="text-dark">
-                                                    <p>Bạn có muốn xóa Chuyên mục này không?
+                                                    <p>Bạn có muốn xóa Chuyên mục 
+                                                        <b class="text-danger">{{ chuyen_muc_del.ten_chuyen_muc }}</b>
+                                                        này không?
                                                     </p>
                                                     <p>
                                                         <b>Lưu ý:</b> Điều này không thể hoàn tác!
@@ -173,7 +175,7 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Xóa</button>
+                                    <button @:click="huy_bo()" type="button" class="btn btn-danger" data-bs-dismiss="modal">Xác Nhận Xóa</button>
                                 </div>
                             </div>
                         </div>
@@ -184,6 +186,7 @@
     </div>
 </template>
 <script>
+import Toaster from '@meforma/vue-toaster';
 import baseRequest from '../../core/baseRequest';
 import functionBasic from '../../core/functionBasic';
 export default {
@@ -196,6 +199,10 @@ export default {
                 'url_chuyen_muc '  : '',
                 'tinh_trang'    : 1,
             },
+            chuyen_muc_del     :    {
+                'ten_chuyen_muc'   : 'ABC-XYZ'  
+            },
+            chuyen_muc_update  :    {},
         }
     },
     mounted() {
@@ -218,6 +225,30 @@ export default {
                     this.list_chuyen_muc = res.data.data;
                 });
         },
+        huy_bo() {
+            baseRequest
+                .post("chuyen-muc/delete", this.chuyen_muc_del)
+                .then((res) => {
+                    functionBasic.displaySuccess(res);
+                    this.loadListChuyenMuc();
+                });
+        },
+        cap_nhat() {
+            baseRequest
+                .post("chuyen-muc/update", this.chuyen_muc_update)
+                .then((res) => {
+                    functionBasic.displaySuccess(res);
+                    this.loadListChuyenMuc();
+                });
+        },
+        trang_thai(value) {
+            baseRequest
+                .post("chuyen-muc/status", value)
+                .then((res) => {
+                    functionBasic.displaySuccess(res);
+                    this.loadListChuyenMuc();
+                });
+        }, 
     },
 }
 </script>

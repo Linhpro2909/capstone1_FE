@@ -67,15 +67,15 @@
                                         <th class="text-center align-middle">{{ k + 1}}</th>
                                         <td class="align-middle">{{ v.ten_quyen}}</td>
                                         <td class="text-center align-middle">
-                                            <button v-if="v.trang_thai == 1" style="width:100px" class="btn btn-success">Hoạt Động</button>
-                                            <button v-else style="width:100px" class="btn btn-danger">Tạm Tắt</button>
+                                            <button  @:click="trang_thai(v)" v-if="v.trang_thai == 1" style="width:100px" class="btn btn-success">Hoạt Động</button>
+                                            <button  @:click="trang_thai(v)" v-else style="width:100px" class="btn btn-danger">Tạm Tắt</button>
                                         </td>
                                         <td class="text-center align-middle">
                                             <button  class="btn btn-info">Cấp Quyền</button>
-                                            <button  class="btn btn-primary ms-2" data-bs-toggle="modal"
+                                            <button @:click="phan_quyen_update = Object.assign({}, v)" class="btn btn-primary ms-2" data-bs-toggle="modal"
                                                 data-bs-target="#editModal"><i class="fa-solid fa-pen-to-square"
                                                     style="margin-left: 4px"></i></button>
-                                            <button  class="btn btn-danger ms-2" data-bs-toggle="modal"
+                                            <button @:click="phan_quyen_del = Object.assign({}, v)" class="btn btn-danger ms-2" data-bs-toggle="modal"
                                                 data-bs-target="#deleteModal"><i class="fa-solid fa-trash"
                                                     style="margin-left: 4px"></i></button>
                                         </td>
@@ -93,12 +93,29 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-
+                                <div class="alert alert-warning border-0 bg-warning alert-dismissible fade show py-2">
+                                    <div class="d-flex align-items-center">
+                                        <div class="font-35 text-dark"><i class="bx bx-info-circle"></i>
+                                        </div>
+                                        <div class="ms-3">
+                                            <h6 class="mb-0 text-dark">Warning</h6>
+                                            <div class="text-dark">
+                                                <p>Bạn có muốn xóa quyền 
+                                                    <b class="text-danger">{{ phan_quyen_del.ten_quyen }}</b>
+                                                    này không?
+                                                </p>
+                                                <p>
+                                                    <b>Lưu ý:</b> Điều này không thể hoàn tác!
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
                                     data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-danger"
+                                <button @:click="huy_bo()" type="button" data-bs-dismiss="modal" class="btn btn-danger"
                                     data-bs-dismiss="modal">Xác Nhận</button>
                             </div>
                         </div>
@@ -114,12 +131,27 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                
+                                <form id="formdata">
+                                    <div class="card-body">
+                                        <div class="col-md-12 mb-2">
+                                            <label class="form-label">Tên Quyền</label>
+                                            <input v-model="phan_quyen_update.ten_quyen" type="text" class="form-control">
+                                        </div>
+                                        <div class="col-md-12 mb-2">
+                                            <label class="form-label">Trạng Thái</label>
+                                            <select v-model="phan_quyen_update.trang_thai" class="form-control">
+                                                <option value="1">Hoạt Động</option>
+                                                <option value="0">Tạm Tắt</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </form>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
                                     data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Xác Nhận</button>
+                                <button @:click="cap_nhat()" type="button" data-bs-dismiss="modal" class="btn btn-primary">Xác Nhận</button>
                             </div>
                         </div>
                     </div>
@@ -153,8 +185,10 @@ import functionBasic from '../../core/functionBasic';
 export default {
     data() {
         return {
-            list_quyen      : [],
-            them_moi        : {'trang_thai' : 1},
+            list_quyen: [],
+            them_moi: { 'trang_thai': 1 },
+            phan_quyen_del: {},
+            phan_quyen_update: {},
         }
     },
     mounted() {
@@ -177,6 +211,30 @@ export default {
                 .then((res) => {
                     this.list_quyen = res.data.data;
                     console.log(this.list_quyen);
+                });
+        },
+        huy_bo() {
+            baseRequest
+                .post("phan-quyen/delete", this.phan_quyen_del)
+                .then((res) => {
+                    functionBasic.displaySuccess(res);
+                    this.getListQuyen();
+                });
+        },
+        cap_nhat() {
+            baseRequest
+                .post("phan-quyen/update", this.phan_quyen_update)
+                .then((res) => {
+                    functionBasic.displaySuccess(res);
+                    this.getListQuyen();
+                });
+        },
+        trang_thai(value) {
+            baseRequest
+                .post("phan-quyen/status", value)
+                .then((res) => {
+                    functionBasic.displaySuccess(res);
+                    this.getListQuyen();
                 });
         },
     },

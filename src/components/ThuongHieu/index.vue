@@ -53,12 +53,12 @@
                                         {{ v.url_thuong_hieu }}
                                     </td>
                                     <td class="text-center align-middle text-nowrap">
-                                        <button v-if="v.tinh_trang" class="btn btn-primary">Hiển Thị</button>
-                                        <button v-else class="btn btn-warning">Tạm Tắt</button>
+                                        <button @:click="trang_thai(v)" v-if="v.tinh_trang" class="btn btn-primary">Hiển Thị</button>
+                                        <button @:click="trang_thai(v)" v-else class="btn btn-warning">Tạm Tắt</button>
                                     </td>
                                     <td class="text-center align-middle text-nowrap">
-                                        <button class="btn btn-info me-1" data-bs-toggle="modal" data-bs-target="#capNhatModal">Cập Nhật</button>
-                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#xoaModal">Xóa</button>
+                                        <button @:click="thuong_hieu_update = Object.assign({}, v)" class="btn btn-info me-1" data-bs-toggle="modal" data-bs-target="#capNhatModal">Cập Nhật</button>
+                                        <button @:click="thuong_hieu_del = Object.assign({}, v)" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#xoaModal">Xóa</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -73,20 +73,20 @@
                             </div>
                             <div class="modal-body">
                                 <label class="form-label">Tên Thương Hiệu</label>
-                                <input type="text" class="form-control" placeholder="Nhập tên thương hiệu">
+                                <input v-model="thuong_hieu_update.ten_thuong_hieu" type="text" class="form-control" placeholder="Nhập tên thương hiệu">
                                 <label class="form-label mt-3">Url Thương Hiệu</label>
-                                <input type="text" class="form-control" placeholder="Nhập url thương hiệu">
+                                <input v-model="thuong_hieu_update.url_thuong_hieu" type="text" class="form-control" placeholder="Nhập url thương hiệu">
                                 <label class="form-label mt-3">Icon Thương Hiệu</label>
-                                <input type="text" class="form-control" placeholder="Nhập icon thương hiệu">
+                                <input v-model="thuong_hieu_update.icon_thuong_hieu" type="text" class="form-control" placeholder="Nhập icon thương hiệu">
                                 <label class="form-label mt-3">Tình Trạng</label>
-                                <select class="form-select">
+                                <select v-model="thuong_hieu_update.tinh_trang" class="form-select">
                                     <option value="0">Tạm Tắt</option>
                                     <option value="1">Hiển Thị</option>
                                 </select>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Cập Nhật</button>
+                                <button @:click="cap_nhat()" type="button" data-bs-dismiss="modal" class="btn btn-primary">Cập Nhật</button>
                             </div>
                             </div>
                         </div>
@@ -105,14 +105,14 @@
                                         </div>
                                         <div class="ms-3">
                                             <h6 class="mb-0 text-dark">Warning</h6>
-                                            <div class="text-dark text-wrap">Bạn có chắc chắn muốn xóa thương hiệu <b class="text-danger">Samsung</b> này không!</div>
+                                            <div class="text-dark text-wrap">Bạn có chắc chắn muốn xóa thương hiệu <b class="text-danger">{{ thuong_hieu_del.ten_thuong_hieu }}</b> này không!</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-danger">Xóa</button>
+                                <button @:click="huy_bo()" type="button" data-bs-dismiss="modal" class="btn btn-danger">Xóa</button>
                             </div>
                             </div>
                         </div>
@@ -129,19 +129,21 @@ import functionBasic from '../../core/functionBasic';
 export default {
     data() {
         return {
-            thuong_hieu_add :   {
-                "ten_thuong_hieu"   :   "",
-                "url_thuong_hieu"   :   "",
-                "icon_thuong_hieu"  :   "",
-                "tinh_trang"        :   1,
+            thuong_hieu_add: {
+                "ten_thuong_hieu": "",
+                "url_thuong_hieu": "",
+                "icon_thuong_hieu": "",
+                "tinh_trang": 1,
             },
-            list_thuong_hieu :  [],
+            list_thuong_hieu: [],
+            thuong_hieu_del: {},
+            thuong_hieu_update: {},
         }
     },
     mounted() {
         this.loadThuongHieu();
-    },  
-    methods : {
+    },
+    methods: {
         themMoi() {
             baseRequest
                 .post("thuong-hieu/create", this.thuong_hieu_add)
@@ -157,8 +159,32 @@ export default {
                 .then((res) => {
                     this.list_thuong_hieu = res.data.data;
                 });
-        },  
-    },  
+        },
+        huy_bo() {
+            baseRequest
+                .post("thuong-hieu/delete", this.thuong_hieu_del)
+                .then((res) => {
+                    functionBasic.displaySuccess(res);
+                    this.loadThuongHieu();
+                });
+        },
+        cap_nhat() {
+            baseRequest
+                .post("thuong-hieu/update", this.thuong_hieu_update)
+                .then((res) => {
+                    functionBasic.displaySuccess(res);
+                    this.loadThuongHieu();
+                });
+        },
+        trang_thai(value) {
+            baseRequest
+                .post("thuong-hieu/status", value)
+                .then((res) => {
+                    functionBasic.displaySuccess(res);
+                    this.loadThuongHieu();
+                });
+        },
+    },
 }
 </script>
 <style lang="">
