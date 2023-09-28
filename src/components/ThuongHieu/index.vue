@@ -86,7 +86,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button @:click="cap_nhat()" type="button" class="btn btn-primary">Cập Nhật</button>
+                                <button @:click="cap_nhat()" type="button" data-bs-dismiss="modal" class="btn btn-primary">Cập Nhật</button>
                             </div>
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button @:click="huy_bo()" type="button" class="btn btn-danger">Xóa</button>
+                                <button @:click="huy_bo()" type="button" data-bs-dismiss="modal" class="btn btn-danger">Xóa</button>
                             </div>
                             </div>
                         </div>

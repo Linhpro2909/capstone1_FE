@@ -73,7 +73,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                        <button type="button" class="btn btn-primary">Thêm Mới</button>
+                        <button type="button" data-bs-dismiss="modal" class="btn btn-primary">Thêm Mới</button>
                     </div>
                 </div>
             </div>
@@ -200,7 +200,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                    <button type="button" class="btn btn-primary">Thêm Mới</button>
+                                    <button type="button" data-bs-dismiss="modal" class="btn btn-primary">Thêm Mới</button>
                                 </div>
                             </div>
                         </div>
@@ -220,7 +220,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                    <button type="button" class="btn btn-primary">Xóa</button>
+                                    <button type="button" data-bs-dismiss="modal" class="btn btn-primary">Xóa</button>
                                 </div>
                             </div>
                         </div>

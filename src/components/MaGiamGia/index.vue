@@ -96,7 +96,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                    <button @:click="cap_nhat()" type="button" class="btn btn-primary">Lưu</button>
+                                    <button @:click="cap_nhat()" type="button" data-bs-dismiss="modal" class="btn btn-primary">Lưu</button>
                                 </div>
                                 </div>
                             </div>
@@ -123,7 +123,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                    <button @:click="huy_bo()" type="button" class="btn btn-primary">Đồng Ý</button>
+                                    <button @:click="huy_bo()" type="button" data-bs-dismiss="modal" class="btn btn-primary">Đồng Ý</button>
                                 </div>
                                 </div>
                             </div>

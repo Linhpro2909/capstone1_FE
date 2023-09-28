@@ -115,7 +115,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
                                     data-bs-dismiss="modal">Close</button>
-                                <button @:click="huy_bo()" type="button" class="btn btn-danger"
+                                <button @:click="huy_bo()" type="button" data-bs-dismiss="modal" class="btn btn-danger"
                                     data-bs-dismiss="modal">Xác Nhận</button>
                             </div>
                         </div>
@@ -151,7 +151,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
                                     data-bs-dismiss="modal">Close</button>
-                                <button @:click="cap_nhat()" type="button" class="btn btn-primary">Xác Nhận</button>
+                                <button @:click="cap_nhat()" type="button" data-bs-dismiss="modal" class="btn btn-primary">Xác Nhận</button>
                             </div>
                         </div>
                     </div>
