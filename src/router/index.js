@@ -32,6 +32,10 @@ const routes = [
         path : '/admin/tai-khoan',
         component: ()=>import('../components/TaiKhoanAdmin/index.vue')
     },
+    {
+        path : '/admin/khach-hang',
+        component: ()=>import('../components/KhachHang/index.vue')
+    },
 ]
 
 const router = createRouter({
