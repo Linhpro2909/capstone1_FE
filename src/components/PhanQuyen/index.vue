@@ -1,178 +1,141 @@
 <template lang="">
       <div class="row">
-        <div class="col-md-7">
+        <div class="col-8">
             <div class="card">
                 <div class="card-header">
-                    <div class="row">
-                        <div class="d-flex justify-content-between">
-                            <div class="align-middle mt-2">
-                                Danh Sách Quyền
-                            </div>
-                            <button type="button text-end" class="btn btn-outline-primary"
-                                data-bs-toggle="modal" data-bs-target="#addModal">Thêm mới
-                                quyền</button>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Thêm mới quyền</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="formdata">
-                                    <div class="card-body">
-                                        <div class="col-md-12 mb-2">
-                                            <label class="form-label">Tên Quyền</label>
-                                            <input v-model="them_moi.ten_quyen" type="text" class="form-control">
-                                        </div>
-                                        <div class="col-md-12 mb-2">
-                                            <label class="form-label">Trạng Thái</label>
-                                            <select v-model="them_moi.trang_thai" class="form-control">
-                                                <option value="1">Hoạt Động</option>
-                                                <option value="0">Tạm Tắt</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary"
-                                    data-bs-dismiss="modal">Close</button>
-                                <button v-on:click="addQuyen()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Xác Nhận</button>
-                            </div>
-                        </div>
+                    <div class="d-flex">
+                        <h5 class="p-2 w-100 mt-1">Danh sách Quyền</h5>
+                        <button class="btn btn-outline-primary p-2 flex-shrink-1 text-nowrap" data-bs-toggle="modal"
+                                            data-bs-target="#themmoimodal">Thêm mới quyền</button>
                     </div>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr class="text-center">
-                                    <th>#</th>
-                                    <th>Tên Quyền</th>
-                                    <th>Trạng Thái</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <template v-for="(v , k) in list_quyen">
-                                    <tr>
-                                        <th class="text-center align-middle">{{ k + 1}}</th>
-                                        <td class="align-middle">{{ v.ten_quyen}}</td>
-                                        <td class="text-center align-middle">
-                                            <button  @:click="trang_thai(v)" v-if="v.trang_thai == 1" style="width:100px" class="btn btn-success">Hoạt Động</button>
-                                            <button  @:click="trang_thai(v)" v-else style="width:100px" class="btn btn-danger">Tạm Tắt</button>
-                                        </td>
-                                        <td class="text-center align-middle">
-                                            <button  class="btn btn-info">Cấp Quyền</button>
-                                            <button @:click="phan_quyen_update = Object.assign({}, v)" class="btn btn-primary ms-2" data-bs-toggle="modal"
-                                                data-bs-target="#editModal"><i class="fa-solid fa-pen-to-square"
-                                                    style="margin-left: 4px"></i></button>
-                                            <button @:click="phan_quyen_del = Object.assign({}, v)" class="btn btn-danger ms-2" data-bs-toggle="modal"
-                                                data-bs-target="#deleteModal"><i class="fa-solid fa-trash"
-                                                    style="margin-left: 4px"></i></button>
-                                        </td>
-                                    </tr>
-                                </template>
-                            </tbody>
-                        </table>
-                        <div class="modal fade" id="deleteModal" tabindex="-1"
-                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Xóa Quyền</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="alert alert-warning border-0 bg-warning alert-dismissible fade show py-2">
-                                    <div class="d-flex align-items-center">
-                                        <div class="font-35 text-dark"><i class="bx bx-info-circle"></i>
-                                        </div>
-                                        <div class="ms-3">
-                                            <h6 class="mb-0 text-dark">Warning</h6>
-                                            <div class="text-dark">
-                                                <p>Bạn có muốn xóa quyền 
-                                                    <b class="text-danger">{{ phan_quyen_del.ten_quyen }}</b>
-                                                    này không?
-                                                </p>
-                                                <p>
-                                                    <b>Lưu ý:</b> Điều này không thể hoàn tác!
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary"
-                                    data-bs-dismiss="modal">Close</button>
-                                <button @:click="huy_bo()" type="button" data-bs-dismiss="modal" class="btn btn-danger"
-                                    data-bs-dismiss="modal">Xác Nhận</button>
-                            </div>
-                        </div>
-                    </div>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr class="text-center align-middle">
+                                <th>#</th>
+                                <th>Tên Quyền</th>
+                                <th>Trạng Thái</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="align-middle" v-for="(v,k) in list_quyen">
+                                <th class="text-center">{{ k+1 }}</th>
+                                <td>{{ v.ten_quyen }}</td>
+                                <td class="text-center">
+                                    <button @click="trang_thai(v)" v-if="v.trang_thai == 1" class="btn btn-success">Hiển thị</button>
+                                    <button @click="trang_thai(v)" v-else class="btn btn-warning">Tạm tắt</button>
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-info me-1">Cấp quyền</button>
+                                    <button @click="phan_quyen_update=Object.assign({}, v)" data-bs-toggle="modal" data-bs-target="#capnhatmodal" class="btn btn-primary me-1"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button @click="phan_quyen_del=v" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#xoamodal"><i class="fa-solid fa-trash"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Chỉnh Sửa Quyền</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="formdata">
-                                    <div class="card-body">
-                                        <div class="col-md-12 mb-2">
-                                            <label class="form-label">Tên Quyền</label>
-                                            <input v-model="phan_quyen_update.ten_quyen" type="text" class="form-control">
-                                        </div>
-                                        <div class="col-md-12 mb-2">
-                                            <label class="form-label">Trạng Thái</label>
-                                            <select v-model="phan_quyen_update.trang_thai" class="form-control">
-                                                <option value="1">Hoạt Động</option>
-                                                <option value="0">Tạm Tắt</option>
-                                            </select>
-                                        </div>
-                                    </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5>Phân Quyền</h5>
+                </div>
+                <div class="card-body">
 
-                                </form>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-primary" style="width: 100%;">Cấp quyền</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="themmoimodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Thêm mới quyền
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <label class="form-label">Tên Quyền</label>
+                                <input v-model="them_moi.ten_quyen" type="text" class="form-control">
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary"
-                                    data-bs-dismiss="modal">Close</button>
-                                <button @:click="cap_nhat()" type="button" data-bs-dismiss="modal" class="btn btn-primary">Xác Nhận</button>
+                            <div class="col-12">
+                                <label class="form-label mt-3">Tình Trạng</label>
+                                <select v-model="them_moi.trang_thai" class="form-control">
+                                    <option value="1">Hiển thị</option>
+                                    <option value="0">Tạm tắt</option>
+                                </select>
                             </div>
                         </div>
                     </div>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button data-bs-dismiss="modal" type="button" class="btn btn-primary" v-on:click="addQuyen()">Thêm mới</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-5">
-            <div class="card">
-                <div class="card-header">
-                    Phân Quyền
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                       
+        <div class="modal fade" id="capnhatmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Cập nhật quyền
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <label class="form-label">Tên Quyền</label>
+                                <input v-model="phan_quyen_update.ten_quyen" type="text" class="form-control">
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label mt-3">Tình Trạng</label>
+                                <select v-model="phan_quyen_update.trang_thai" class="form-control">
+                                    <option value="1">Hiển thị</option>
+                                    <option value="0">Tạm tắt</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button data-bs-dismiss="modal" type="button" class="btn btn-primary" v-on:click="cap_nhat()">Cập nhật</button>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <div class="text-center">
-                        <button class="btn btn-primary" style="width: 95%">Cập Nhập Phân Quyền</button>
+            </div>
+        </div>
+        <div class="modal fade" id="xoamodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa Sản Phẩm
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-warning border-0 bg-warning alert-dismissible fade show py-2">
+                            <div class="d-flex align-items-center">
+                                <div class="font-35 text-dark"><i class='bx bx-info-circle'></i>
+                                </div>
+                                <div class="ms-3 text-wrap">
+                                    <h6 class="mb-0 text-dark">Warning</h6>
+                                    Bạn chắc chắn muốn xóa <b class="text-danger">{{ phan_quyen_del.ten_quyen }}</b> khỏi
+                                    danh sách?
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" v-on:click="huy_bo()">Xác Nhận</button>
                     </div>
                 </div>
             </div>
