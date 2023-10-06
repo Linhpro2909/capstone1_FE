@@ -11,48 +11,50 @@
                     </h4>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr class="text-center align-middle">
-                                <th>#</th>
-                                <th>Tên sản phẩm</th>
-                                <th>Hình ảnh</th>
-                                <th>Giá gốc</th>
-                                <th>Giá bán</th>
-                                <th>Mô tả</th>
-                                <!-- <th>Số lượng</th> -->
-                                <th>Nội dung</th>
-                                <th>Thông tin thêm</th>
-                                <th>Tình trạng</th>
-                                <th>Ation</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="align-middle" v-for="(v, k) in list_san_pham">
-                                <th>{{ k + 1 }}</th>
-                                <td>{{ v.ten_san_pham }}</td>
-                                <td class="text-center">
-                                    <img class="img-fluid" style="width: 100%; height: 100px;" v-bind:src="convertImage(v.hinh_anh)" alt="">
-                                </td>
-                                <td class="text-end">{{ v.gia_goc }}</td>
-                                <td class="text-end">{{ v.gia_ban }}</td>
-                                <td>{{ v.mo_ta }}</td>
-                                <!-- <td class="text-centers">{{ v.so_luong }}</td> -->
-                                <td>{{ v.noi_dung }}</td>
-                                <td>{{ v.thong_tin_them }}</td>
-                                <td class="text-center">
-                                    <button @click="doi_trang_thai(v)" v-if="v.tinh_trang == 1" class="btn btn-success">Hiển thị</button>
-                                    <button @click="doi_trang_thai(v)" v-else class="btn btn-warning">Tạm tắt</button>
-                                </td>
-                                <td class="text-center">
-                                    <button @click="san_pham_update = Object.assign({}, v)" class="btn btn-primary me-1"
-                                        data-bs-toggle="modal" data-bs-target="#capnhapsanpham">Cập nhật</button>
-                                    <button @click="san_pham_del = v" class="btn btn-danger" data-bs-toggle="modal"
-                                        data-bs-target="#xoasanpham">Xóa</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr class="text-center align-middle">
+                                    <th>#</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Hình ảnh</th>
+                                    <th>Giá gốc</th>
+                                    <th>Giá bán</th>
+                                    <th>Mô tả</th>
+                                    <!-- <th>Số lượng</th> -->
+                                    <th>Nội dung</th>
+                                    <th>Thông tin thêm</th>
+                                    <th>Tình trạng</th>
+                                    <th>Ation</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="align-middle text-nowrap" v-for="(v, k) in list_san_pham">
+                                    <th>{{ k + 1 }}</th>
+                                    <td>{{ v.ten_san_pham }}</td>
+                                    <td class="text-center">
+                                        <img class="img-fluid" style="width: 100%; height: 100px;" v-bind:src="convertImage(v.hinh_anh)" alt="">
+                                    </td>
+                                    <td class="text-end">{{ v.gia_goc }} đ</td>
+                                    <td class="text-end">{{ v.gia_ban }} đ</td>
+                                    <td  class="text-center"><i class="fa-solid fa-circle-info fa-2x text-primary" v-on:click="mo_ta = v.mo_ta" data-bs-toggle="modal" data-bs-target="#exampleModal"></i></td>
+                                    <!-- <td class="text-centers">{{ v.so_luong }}</td> -->
+                                    <td  class="text-center"><i class="fa-solid fa-circle-info fa-2x text-primary" v-on:click="mo_ta = v.noi_dung" data-bs-toggle="modal" data-bs-target="#exampleModal"></i></td>
+                                    <td  class="text-center"><i class="fa-solid fa-circle-info fa-2x text-primary" v-on:click="mo_ta = v.thong_tin_them" data-bs-toggle="modal" data-bs-target="#exampleModal"></i></td>
+                                    <td class="text-center">
+                                        <button @click="doi_trang_thai(v)" v-if="v.tinh_trang == 1" class="btn btn-success">Hiển thị</button>
+                                        <button @click="doi_trang_thai(v)" v-else class="btn btn-warning">Tạm tắt</button>
+                                    </td>
+                                    <td class="text-center">
+                                        <button @click="san_pham_update = Object.assign({}, v)" class="btn btn-primary me-1"
+                                            data-bs-toggle="modal" data-bs-target="#capnhapsanpham">Cập nhật</button>
+                                        <button @click="san_pham_del = v" class="btn btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#xoasanpham">Xóa</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -286,7 +288,24 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {{mo_ta}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            </div>
+        </div>
     </div>
+</div>
 </template>
 
 <script>
@@ -305,6 +324,7 @@ export default {
                 'tinh_trang': 0,
             },
             san_pham_del: {},
+            mo_ta: {},
         }
     },
     mounted() {

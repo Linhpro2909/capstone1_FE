@@ -7,6 +7,16 @@ const routes = [
         component: ()=>import('../components/TrangChu/index.vue')
     },
     {
+        path : '/tat-ca-san-pham',
+        meta : {layout : 'client'},
+        component: ()=>import('../components/TatCaSanPham/index.vue')
+    },
+    {
+        path : '/bai-viet',
+        meta : {layout : 'client'},
+        component: ()=>import('../components/BaiViet/index.vue')
+    },
+    {
         path : '/admin/chuyen-muc',
         component: ()=>import('../components/ChuyenMuc/index.vue')
     },
@@ -36,6 +46,10 @@ const routes = [
     {
         path : '/admin/khach-hang',
         component: ()=>import('../components/KhachHang/index.vue')
+    },
+    {
+        path : '/admin/bai-viet',
+        component: ()=>import('../components/BaiVietAdmin/index.vue')
     },
 ]
 
