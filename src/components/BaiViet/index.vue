@@ -1,4 +1,4 @@
-<template lang="">
+<template>
    <div class="container">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -22,50 +22,30 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-9 col-lg-8">
-                    <div class="card">
-                        <a href="#"><img src="../../assets/rocker/images/news/img_07.jpg"
-                                class="card-img-top" alt=""></a>
-                        <div class="position-absolute top-0 end-0 m-3 product-discount">
-                            <div class="alert alert-danger border-0 bg-danger fade show">
-                                <div class="d-flex align-items-center">
-                                    <div class="">
-                                        <h6 class="text-white">24</h6>
-                                        <div class="text-white">Feb</div>
+                    <template v-for="(v, k) in baiViet" >
+                        <div class="card">
+                            <img v-bind:src="v.hinh_anh"
+                                    class="card-img-top">
+                            <div class="card-body">
+                                <h2 class="card-title cursor-pointer mt-2">
+                                    <router-link to="/chi-tiet-bai-viet">
+                                        <a href="blog_detail.html">{{ v.tieu_de }}</a>
+                                    </router-link>
+                                </h2>
+                                <div class="clearfix d-flex align-items-center">
+                                    <div class="avatar">
+                                        <img src="../../assets/client/img/avatar/img_02.jpg" class="me-1"
+                                            alt="">
                                     </div>
+                                    <span>Admin / <span><i
+                                                class="far fa-comment me-1"></i>3 |</span> <span></span><i
+                                            class="far fa-clock me-1"></i>3 min Read</span>
                                 </div>
+                                <hr>
+                                <p>{{ v.mo_ta_ngan }}</p>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <div class="clearfix">
-                                <p class="mb-0 float-start"><button class="btn btn-sm btn-warning me-2">#
-                                        Tags</button>
-                                    <b class="me-1">Links</b>
-                                    <b class="me-1">Brave </b>
-                                    <b class="me-1">Brave</b>
-                                </p>
-
-                            </div>
-                            <h2 class="card-title cursor-pointer mt-2">
-                                <router-link to="/chi-tiet-bai-viet">
-                                    <a href="blog_detail.html">Finally found a work computer setup That’s practically perf</a>
-                                </router-link>
-                            </h2>
-                            <div class="clearfix d-flex align-items-center">
-                                <div class="avatar">
-                                    <img src="../../assets/client/img/avatar/img_02.jpg" class="me-1"
-                                        alt="">
-                                </div>
-                                <span>Alaxandar / <span class="year">4 year | </span> <span><i
-                                            class="far fa-comment me-1"></i>3 |</span> <span></span><i
-                                        class="far fa-clock me-1"></i>3 min Read</span>
-                            </div>
-                            <hr>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                Lorem the industry's standard dummy text ever since the
-                                when an unknown printer took a galley of type and scrambled it to make a
-                                type spe has been the industry's standard dummy text</p>
-                        </div>
-                    </div>
+                    </template>
                 </div>
                 <div class="col-xl-3 col-lg-4">
                     <div class="card">
@@ -73,7 +53,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <h2>
-                                        <span>Search</span>
+                                        <span>Tìm Kiếm</span>
                                     </h2>
                                     <hr>
                                     <div class="position-relative">
@@ -84,133 +64,30 @@
                                     </div>
                                 </div>
                                 <div class="col-12 mt-4">
-                                    <h2 class="widget__title">
-                                        <span>Stay Connected</span>
-                                    </h2>
-                                    <hr>
-                                    <div class="d-flex align-items-center">
-                                        <div class="fm-file-box bg-light-primary text-primary radius-30"><i
-                                                class="fab fa-facebook-f"></i>
-                                        </div>
-                                        <div class="flex-grow-1 ms-2">
-                                            <h6 class="mb-0">Facebook</h6>
-                                        </div>
-                                        <button class="btn btn-outline-secondary radius-30">Follow</button>
-                                    </div>
-                                    <div class="d-flex align-items-center mt-3">
-                                        <div class="fm-file-box bg-light-primary text-primary radius-30"><i
-                                                class="fab fa-twitter"></i>
-                                        </div>
-                                        <div class="flex-grow-1 ms-2">
-                                            <h6 class="mb-0">Twitter</h6>
-                                        </div>
-                                        <button class="btn btn-outline-secondary radius-30">Follow</button>
-                                    </div>
-                                    <div class="d-flex align-items-center mt-3">
-                                        <div class="fm-file-box bg-light-danger text-danger radius-30"><i
-                                                class="fab fa-instagram"></i>
-                                        </div>
-                                        <div class="flex-grow-1 ms-2">
-                                            <h6 class="mb-0">Instagram</h6>
-                                        </div>
-                                        <button class="btn btn-outline-secondary radius-30">Follow</button>
-                                    </div>
-                                    <div class="d-flex align-items-center mt-3">
-                                        <div class="fm-file-box bg-light-secondary text-danger radius-30"><i
-                                                class="fab fa-youtube"></i>
-                                        </div>
-                                        <div class="flex-grow-1 ms-2">
-                                            <h6 class="mb-0">Youtube</h6>
-                                        </div>
-                                        <button class="btn btn-outline-secondary radius-30">Follow</button>
-                                    </div>
-                                    <div class="d-flex align-items-center mt-3">
-                                        <div class="fm-file-box bg-light-light text-danger radius-30"><i
-                                                class="fab fa-pinterest"></i>
-                                        </div>
-                                        <div class="flex-grow-1 ms-2">
-                                            <h6 class="mb-0">Pinterest</h6>
-                                        </div>
-                                        <button class="btn btn-outline-secondary radius-30">Follow</button>
-                                    </div>
-                                </div>
-                                <div class="col-12 mt-4">
                                     <h2>
-                                        <span>Hot Topics</span>
+                                        <span>Bài Viết Nổi Bật</span>
                                     </h2>
                                     <hr>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="row d-flex align-items-center">
-                                                <div class="col-md-4">
-                                                    <img src="../../assets/rocker/images/news/img_11.jpg"
-                                                        alt="..." class="img-thumbnail">
-                                                </div>
-                                                <div class="col-md-8 ">
-                                                    <div class="card-body">
-                                                        <small class="text-muted">Sports</small>
-                                                        <p class="card-text"><small
-                                                                class="text-muted"><b>Severance Nightmare
-                                                                    Visi Of office Life</b></small></p>
+                                    <template v-for="(v, k) in baiViet">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row d-flex align-items-center">
+                                                    <div class="col-md-4">
+                                                        <img v-bind:src="v.hinh_anh" class="img-thumbnail">
+                                                    </div>
+                                                    <div class="col-md-8 ">
+                                                        <div class="card-body">
+                                                            <small class="text-muted" v-if="v.loai_bai_viet == 1">Tin Hot</small>
+                                                            <small class="text-muted" v-else-if="v.loai_bai_viet == 2">Tin Thời Trang</small>
+                                                            <small class="text-muted" v-else>Thông Báo</small>
+                                                            <p class="card-text"><small
+                                                                    class="text-muted"><b>{{ v.tieu_de }}</b></small></p>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="row d-flex align-items-center">
-                                                <div class="col-md-4">
-                                                    <img src="../../assets/rocker/images/news/img_14.jpg"
-                                                        alt="..." class="img-thumbnail">
-                                                </div>
-                                                <div class="col-md-8 ">
-                                                    <div class="card-body">
-                                                        <small class="text-muted">Sports</small>
-                                                        <p class="card-text"><small
-                                                                class="text-muted"><b>Severance Nightmare
-                                                                    Visi Of office Life</b></small></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="row d-flex align-items-center">
-                                                <div class="col-md-4">
-                                                    <img src="../../assets/rocker/images/news/img_12.jpg"
-                                                        alt="..." class="img-thumbnail">
-                                                </div>
-                                                <div class="col-md-8 ">
-                                                    <div class="card-body">
-                                                        <small class="text-muted">Sports</small>
-                                                        <p class="card-text"><small
-                                                                class="text-muted"><b>Severance Nightmare
-                                                                    Visi Of office Life</b></small></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="row d-flex align-items-center">
-                                                <div class="col-md-4">
-                                                    <img src="../../assets/rocker/images/news/img_13.jpg"
-                                                        alt="..." class="img-thumbnail">
-                                                </div>
-                                                <div class="col-md-8 ">
-                                                    <div class="card-body">
-                                                        <small class="text-muted">Sports</small>
-                                                        <p class="card-text"><small
-                                                                class="text-muted"><b>Severance Nightmare
-                                                                    Visi Of office Life</b></small></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    </template>
                                 </div>
                             </div>
                         </div>
@@ -222,10 +99,29 @@
     </div>
 </template>
 <script>
+import baseRequest from '../../core/baseRequest';
+import functionBasic from '../../core/functionBasic';
 export default {
-    
+    data() {
+        return {
+            baiViet   :   [],
+        }
+    },
+    mounted() {
+        this.loadDataBaiViet();
+    },  
+    methods: {
+        loadDataBaiViet() {
+            baseRequest
+                .get('data-bai-viet')
+                .then((res) => {
+                    this.baiViet  = res.data.baiViet;
+                    console.log(this.baiViet);
+                })
+        }
+    },
 }
 </script>
-<style lang="">
+<style>
     
 </style>
