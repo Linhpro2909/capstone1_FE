@@ -24,7 +24,7 @@
                 <div class="col-xl-9 col-lg-8">
                     <template v-for="(v, k) in baiViet" >
                         <div class="card">
-                            <img v-bind:src="v.hinh_anh"
+                            <img v-bind:src="convertImage(v.hinh_anh)"
                                     class="card-img-top">
                             <div class="card-body">
                                 <h2 class="card-title cursor-pointer mt-2">
@@ -118,6 +118,11 @@ export default {
                     this.baiViet  = res.data.baiViet;
                     console.log(this.baiViet);
                 })
+        },
+        convertImage(text){
+            text = text.toString();
+            const Image = text.split(";");
+            return Image[0];
         }
     },
 }

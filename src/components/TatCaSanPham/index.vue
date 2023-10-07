@@ -1,4 +1,4 @@
-<template lang="">
+<template>
     <div class="container">
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
             <div class="breadcrumb-title pe-3">Tất Cả Sản Phẩm</div>
@@ -23,7 +23,7 @@
                         <div class="row align-items-center">
                             <div class="col-lg-6 col-xl-6 d-flex align-items-center">
                                 <h4 class="me-2"><b>Tất cả sản phẩm</b></h4>
-                                <span>(237 sản phẩm)</span>
+                                <span>({{ list_san_pham.length }})</span>
                             </div>
                             <div class="col-lg-6 col-xl-6">
                                 <form class="float-lg-end">
@@ -58,279 +58,69 @@
         </div>
     
         <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 row-cols-xxl-4 product-grid mt-3">
-            
-            <div class="col d-flex align-items-stretch">
-                <div class="card">
-                    <router-link to="/chi-tiet-san-pham">
-                    <img src="https://bizweb.dktcdn.net/thumb/grande/100/386/444/products/ao-phong-louis-vuitton-monogram-cotton-chuan-authentic-1-9b7b9fe9-ffe0-408d-b9d6-d8ae3c565d97.jpg"
-                        class="card-img-top" alt="...">
-                    </router-link>
-                    <div class="">
-                        <div class="position-absolute top-0 end-0 m-3 product-discount"><span
-                                class="">-10%</span></div>
-                    </div>
-                    <div class="card-body">
+            <template v-for="(v, k) in list_san_pham">
+                <div class="col d-flex align-items-stretch">
+                    <div class="card">
                         <router-link to="/chi-tiet-san-pham">
-                        <h6 class="card-title cursor-pointer">ÁO POLO LOUIS VUITTON LOGO SIGNATURE</h6>
+                        <img v-bind:src="v.hinh_anh"
+                            class="card-img-top" alt="...">
                         </router-link>
-                        <div class="clearfix">
-                            <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                            <p class="mb-0 float-end fw-bold"><span
-                                    class="me-2 text-decoration-line-through text-secondary">2.800.000₫</span><span>2.000.000₫ </span>
-                            </p>
+                        <div class="">
+                            <div class="position-absolute top-0 end-0 m-3 product-discount"><span
+                                    class="">-10%</span></div>
                         </div>
-                        <div class="d-flex align-items-center mt-3 fs-6">
-                            <div class="cursor-pointer">
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-secondary'></i>
+                        <div class="card-body">
+                            <router-link to="/chi-tiet-san-pham">
+                            <h6 class="card-title cursor-pointer">
+                                {{ v.ten_san_pham }}
+                            </h6>
+                            </router-link>
+                            <div class="clearfix">
+                                <p class="mb-0 float-start"><strong>134</strong> Sales</p>
+                                <p class="mb-0 float-end fw-bold"><span
+                                        class="me-2 text-decoration-line-through text-secondary">{{ v.gia_goc }}₫</span><span>{{ v.gia_ban }}₫ </span>
+                                </p>
                             </div>
-                            <p class="mb-0 ms-auto">4.2(182)</p>
+                            <div class="d-flex align-items-center mt-3 fs-6">
+                                <div class="cursor-pointer">
+                                    <i class='bx bxs-star text-warning'></i>
+                                    <i class='bx bxs-star text-warning'></i>
+                                    <i class='bx bxs-star text-warning'></i>
+                                    <i class='bx bxs-star text-warning'></i>
+                                    <i class='bx bxs-star text-secondary'></i>
+                                </div>
+                                <p class="mb-0 ms-auto">4.2(182)</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col d-flex align-items-stretch">
-                <div class="card">
-                    <router-link to="/chi-tiet-san-pham">
-                    <img src="https://bizweb.dktcdn.net/thumb/grande/100/386/444/products/ao-so-mi-louis-vuitton-monogram-aquagarden-chuan-authentic.jpg"
-                        class="card-img-top" alt="...">
-                    </router-link>
-                    <div class="">
-                        <div class="position-absolute top-0 end-0 m-3 product-discount"><span
-                                class="">-10%</span></div>
-                    </div>
-                    <div class="card-body">
-                        <router-link to="/chi-tiet-san-pham">
-                        <h6 class="card-title cursor-pointer">ÁO POLO LOUIS VUITTON LOGO SIGNATURE</h6>
-                        </router-link>
-                        <div class="clearfix">
-                            <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                            <p class="mb-0 float-end fw-bold"><span
-                                    class="me-2 text-decoration-line-through text-secondary">2.800.000₫</span><span>2.000.000₫ </span>
-                            </p>
-                        </div>
-                        <div class="d-flex align-items-center mt-3 fs-6">
-                            <div class="cursor-pointer">
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-secondary'></i>
-                            </div>
-                            <p class="mb-0 ms-auto">4.2(182)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col d-flex align-items-stretch">
-                <div class="card">
-                    <router-link to="/chi-tiet-san-pham">
-                    <img src="https://bizweb.dktcdn.net/thumb/grande/100/386/444/products/ao-phong-louis-vuitton-monogram-comics-chuan-authentic-1.jpg"
-                        class="card-img-top" alt="...">
-                    </router-link>
-                    <div class="">
-                        <div class="position-absolute top-0 end-0 m-3 product-discount"><span
-                                class="">-10%</span></div>
-                    </div>
-                    <div class="card-body">
-                        <router-link to="/chi-tiet-san-pham">
-                        <h6 class="card-title cursor-pointer">ÁO POLO LOUIS VUITTON LOGO SIGNATURE</h6>
-                        </router-link>
-                        <div class="clearfix">
-                            <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                            <p class="mb-0 float-end fw-bold"><span
-                                    class="me-2 text-decoration-line-through text-secondary">2.800.000₫</span><span>2.000.000₫ </span>
-                            </p>
-                        </div>
-                        <div class="d-flex align-items-center mt-3 fs-6">
-                            <div class="cursor-pointer">
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-secondary'></i>
-                            </div>
-                            <p class="mb-0 ms-auto">4.2(182)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col d-flex align-items-stretch">
-                <div class="card">
-                    <router-link to="/chi-tiet-san-pham">
-                    <img src="https://bizweb.dktcdn.net/thumb/grande/100/386/444/products/ao-so-mi-louis-vuitton-monogram-long-sleeved-chuan-authentic-1.jpg"
-                        class="card-img-top" alt="...">
-                    </router-link>
-                    <div class="">
-                        <div class="position-absolute top-0 end-0 m-3 product-discount"><span
-                                class="">-10%</span></div>
-                    </div>
-                    <div class="card-body">
-                        <router-link to="/chi-tiet-san-pham">
-                        <h6 class="card-title cursor-pointer">ÁO POLO LOUIS VUITTON LOGO SIGNATURE</h6>
-                        </router-link>
-                        <div class="clearfix">
-                            <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                            <p class="mb-0 float-end fw-bold"><span
-                                    class="me-2 text-decoration-line-through text-secondary">2.800.000₫</span><span>2.000.000₫ </span>
-                            </p>
-                        </div>
-                        <div class="d-flex align-items-center mt-3 fs-6">
-                            <div class="cursor-pointer">
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-secondary'></i>
-                            </div>
-                            <p class="mb-0 ms-auto">4.2(182)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col d-flex align-items-stretch">
-                <div class="card">
-                    <router-link to="/chi-tiet-san-pham">
-                    <img src="https://bizweb.dktcdn.net/thumb/grande/100/386/444/products/ao-so-mi-louis-vuitton-workwear-denim-chuan-authentic.jpg"
-                        class="card-img-top" alt="...">
-                    </router-link>
-                    <div class="">
-                        <div class="position-absolute top-0 end-0 m-3 product-discount"><span
-                                class="">-10%</span></div>
-                    </div>
-                    <div class="card-body">
-                        <router-link to="/chi-tiet-san-pham">
-                        <h6 class="card-title cursor-pointer">ÁO POLO LOUIS VUITTON LOGO SIGNATURE</h6>
-                        </router-link>
-                        <div class="clearfix">
-                            <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                            <p class="mb-0 float-end fw-bold"><span
-                                    class="me-2 text-decoration-line-through text-secondary">2.800.000₫</span><span>2.000.000₫ </span>
-                            </p>
-                        </div>
-                        <div class="d-flex align-items-center mt-3 fs-6">
-                            <div class="cursor-pointer">
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-secondary'></i>
-                            </div>
-                            <p class="mb-0 ms-auto">4.2(182)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col d-flex align-items-stretch">
-                <div class="card">
-                    <router-link to="/chi-tiet-san-pham">
-                    <img src="https://bizweb.dktcdn.net/thumb/grande/100/386/444/products/ao-polo-gucci-gg-stripe-chuan-authentic-1.jpg"
-                        class="card-img-top" alt="...">
-                    </router-link>
-                    <div class="">
-                        <div class="position-absolute top-0 end-0 m-3 product-discount"><span
-                                class="">-10%</span></div>
-                    </div>
-                    <div class="card-body">
-                        <router-link to="/chi-tiet-san-pham">
-                        <h6 class="card-title cursor-pointer">ÁO POLO LOUIS VUITTON LOGO SIGNATURE</h6>
-                        </router-link>
-                        <div class="clearfix">
-                            <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                            <p class="mb-0 float-end fw-bold"><span
-                                    class="me-2 text-decoration-line-through text-secondary">2.800.000₫</span><span>2.000.000₫ </span>
-                            </p>
-                        </div>
-                        <div class="d-flex align-items-center mt-3 fs-6">
-                            <div class="cursor-pointer">
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-secondary'></i>
-                            </div>
-                            <p class="mb-0 ms-auto">4.2(182)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col d-flex align-items-stretch">
-                <div class="card">
-                    <router-link to="/chi-tiet-san-pham">
-                    <img src="https://bizweb.dktcdn.net/thumb/grande/100/386/444/products/ao-polo-dior-oblique-jacquard-black-chuan-authentic-1.jpg"
-                        class="card-img-top" alt="...">
-                    </router-link>
-                    <div class="">
-                        <div class="position-absolute top-0 end-0 m-3 product-discount"><span
-                                class="">-10%</span></div>
-                    </div>
-                    <div class="card-body">
-                        <router-link to="/chi-tiet-san-pham">
-                        <h6 class="card-title cursor-pointer">ÁO POLO LOUIS VUITTON LOGO SIGNATURE</h6>
-                        </router-link>
-                        <div class="clearfix">
-                            <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                            <p class="mb-0 float-end fw-bold"><span
-                                    class="me-2 text-decoration-line-through text-secondary">2.800.000₫</span><span>2.000.000₫ </span>
-                            </p>
-                        </div>
-                        <div class="d-flex align-items-center mt-3 fs-6">
-                            <div class="cursor-pointer">
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-secondary'></i>
-                            </div>
-                            <p class="mb-0 ms-auto">4.2(182)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col d-flex align-items-stretch">
-                <div class="card">
-                    <router-link to="/chi-tiet-san-pham">
-                    <img src="https://bizweb.dktcdn.net/thumb/grande/100/386/444/products/ao-phong-louis-vuitton-lv-spread-embroidery-chuan-authentic-1-e848d0cf-031b-4b8e-ac3f-35e5432cf246.jpg"
-                        class="card-img-top" alt="...">
-                    </router-link>
-                    <div class="">
-                        <div class="position-absolute top-0 end-0 m-3 product-discount"><span
-                                class="">-10%</span></div>
-                    </div>
-                    <div class="card-body">
-                        <router-link to="/chi-tiet-san-pham">
-                        <h6 class="card-title cursor-pointer">ÁO POLO LOUIS VUITTON LOGO SIGNATURE</h6>
-                        </router-link>
-                        <div class="clearfix">
-                            <p class="mb-0 float-start"><strong>134</strong> Sales</p>
-                            <p class="mb-0 float-end fw-bold"><span
-                                    class="me-2 text-decoration-line-through text-secondary">2.800.000₫</span><span>2.000.000₫ </span>
-                            </p>
-                        </div>
-                        <div class="d-flex align-items-center mt-3 fs-6">
-                            <div class="cursor-pointer">
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-warning'></i>
-                                <i class='bx bxs-star text-secondary'></i>
-                            </div>
-                            <p class="mb-0 ms-auto">4.2(182)</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </template>
         </div>
     </div>
 </template>
 <script>
+import baseRequest from '../../core/baseRequest';
+import functionBasic from '../../core/functionBasic';
 export default {
-    
+    data() {
+        return {
+            list_san_pham: [],
+        }
+    },
+    mounted() {
+        this.loadSanPham();
+    },
+    methods: {
+        loadSanPham() {
+            baseRequest
+                .get("data-tat-ca-san-pham")
+                .then((res) => {
+                    this.list_san_pham = res.data.tatCaSanPham;
+                });
+        },
+    },
 }
 </script>
-<style lang="">
+<style>
     
 </style>

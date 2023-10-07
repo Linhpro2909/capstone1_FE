@@ -24,11 +24,11 @@
                         <label>Hình Ảnh</label>
                         <div class="input-group">
                             <input class="form-control" v-model="bai_viet_add.hinh_anh" type="text" name="filepath">
-                            <span class="input-group-prepend">
+                            <!-- <span class="input-group-prepend">
                                 <a data-preview="holder" class="btn btn-primary">
                                     <i class="fa fa-picture-o"></i> Choose
                                 </a>
-                            </span>
+                            </span> -->
                         </div>
                         <div id="holder" style="margin-top:15px;max-height:100px;"></div>
                     </div>
@@ -90,7 +90,7 @@
                                         <th class="text-center align-middle text-nowrap">{{ k + 1 }}</th>
                                         <td class="align-middle text-nowrap">{{ v.tieu_de }}</td>
                                         <td class="text-center align-middle text-nowrap">
-                                            <img v-bind:src="v.hinh_anh" class="img-fluid" style="max-width: 100px;">
+                                            <img v-bind:src="convertImage(v.hinh_anh)" class="img-fluid" style="max-width: 100px;">
                                         </td>
                                         <td class="text-center align-middle text-nowrap">
                                             <button data-bs-toggle="modal" data-bs-target="#moTaNgan" v-on:click="chi_tiet = v" class="btn btn-primary"><i style="padding-left: 6px" class="fa-sharp fa-solid fa-info"></i></button>
@@ -117,7 +117,7 @@
                         </table>
                     </div>
                     <div class="modal fade" id="moTaChiTiet" tabindex="-1" aria-hidden="true" style="display: none;">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog modal-xl">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title">Mô Tả Chi Tiết</h5>
@@ -127,13 +127,13 @@
                                     {{ chi_tiet.mo_ta_chi_tiet }}
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal fade" id="moTaNgan" tabindex="-1" aria-hidden="true" style="display: none;">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog modal-xl">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title">Mô Tả Ngắn</h5>
@@ -143,7 +143,7 @@
                                     {{ chi_tiet.mo_ta_ngan }}
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                                 </div>
                             </div>
                         </div>
@@ -159,7 +159,7 @@
                                 Bạn có chắc chắn xóa tin này!
                             </div>
                             <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal" v-on:click="xoa()">Xóa Tin</button>
                             </div>
                         </div>
@@ -186,11 +186,11 @@
                                     <label>Hình Ảnh</label>
                                     <div class="input-group">
                                         <input class="form-control" v-model="bai_viet_update.hinh_anh" type="text" name="filepath">
-                                        <span class="input-group-prepend">
+                                        <!-- <span class="input-group-prepend">
                                             <a data-preview="holder" class="btn btn-primary">
                                                 <i class="fa fa-picture-o"></i> Choose
                                             </a>
-                                        </span>
+                                        </span> -->
                                     </div>
                                     <div id="holder" style="margin-top:15px;max-height:100px;"></div>
                                 </div>
@@ -219,7 +219,7 @@
                                 </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
                                     <button data-bs-dismiss="modal" type="button" class="btn btn-primary" v-on:click="capnhap()">Cập Nhật</button>
                                 </div>
                             </div>
@@ -291,6 +291,11 @@ export default {
                     this.loadData();
                 });
         },
+        convertImage(text){
+            text = text.toString();
+            const Image = text.split(";");
+            return Image[0];
+        }
     },
 }
 </script>
