@@ -47,7 +47,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <router-link to="/list-product">
+                    <router-link to="/tat-ca-san-pham">
                         <a class="nav-link" href="tat_ca_san_pham.html">
                             <div class="parent-icon"><i class="fa-brands fa-product-hunt"></i>
                             </div>
@@ -56,7 +56,7 @@
                     </router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link to="/blog">
+                    <router-link to="/bai-viet">
                         <a class="nav-link" href="blog.html">
                             <div class="parent-icon"><i class="fa-solid fa-blog"></i>
                             </div>

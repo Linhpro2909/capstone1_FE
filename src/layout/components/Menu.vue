@@ -94,6 +94,16 @@
 						</a>
 					</router-link>
 				</li>
+				<li class="nav-item">
+					<router-link to="/admin/bai-viet">
+						<a class="nav-link">
+							<div class="parent-icon">
+								<i class="fa-solid fa-book"></i>
+							</div>
+							<div class="menu-title">Bài Viết</div>
+						</a>
+					</router-link>
+				</li>
 				
 			</ul>
 		</nav>
