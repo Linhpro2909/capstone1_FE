@@ -70,7 +70,7 @@
                                         <td class="align-middle text-nowrap">
                                             {{v.ten_chuyen_muc}}
                                         </td>
-                                        <td class="align-middle text-nowrap text-center">
+                                        <td class="align-middle text-nowrap text-center fa-2x">
                                             <span v-html="v.icon_chuyen_muc"></span>
                                         </td>
                                         <td class="align-middle text-nowrap">

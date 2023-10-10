@@ -28,22 +28,16 @@
                         <div class="menu-title">Danh Mục</div>
                     </a>
                     <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href="ecommerce-products.html"><i
-                                    class="bx bx-right-arrow-alt"></i>Danh Mục 1</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="ecommerce-products.html"><i
-                                    class="bx bx-right-arrow-alt"></i>Danh Mục 2</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="ecommerce-products.html"><i
-                                    class="bx bx-right-arrow-alt"></i>Danh Mục 3</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="ecommerce-products.html"><i
-                                    class="bx bx-right-arrow-alt"></i>Danh Mục 4</a>
-                        </li>
+                        <template v-for="(v, k) in list_menu">
+                            <router-link :to="'/chuyen-muc' + v.url_chuyen_muc">
+                            <li>
+                                <a class="dropdown-item">
+                                    <span class="text-primary" v-html="v.icon_chuyen_muc"></span>
+                                    {{ v.ten_chuyen_muc }}
+                                </a>
+                            </li>
+                            </router-link>
+                        </template>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -79,8 +73,25 @@
 </div>
 </template>
 <script>
+import baseRequest from '../../../core/baseRequest';
 export default {
-    
+    data() {
+        return {
+            list_menu   :   [],    
+        }
+    },
+    mounted() {
+        this.loadData();
+    },  
+    methods: {
+        loadData() {
+            baseRequest
+                .get('data-menu-trang-chu')
+                .then((res) => {
+                    this.list_menu  = res.data.data;
+                })
+        }
+    },
 }
 </script>
 <style lang="">

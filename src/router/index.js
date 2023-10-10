@@ -7,6 +7,18 @@ const routes = [
         component: ()=>import('../components/TrangChu/index.vue')
     },
     {
+        path : '/chi-tiet-san-pham/:slug_san_pham',
+        props: true,
+        meta : {layout : 'client'},
+        component: ()=>import('../components/TrangChu/ChiTietSanPham.vue')
+    },
+    {
+        path : '/chuyen-muc/:url_chuyen_muc',
+        props: true,
+        meta : {layout : 'client'},
+        component: ()=>import('../components/TrangChu/SanPhamTheoChuyenMuc.vue')
+    },
+    {
         path : '/tat-ca-san-pham',
         meta : {layout : 'client'},
         component: ()=>import('../components/TatCaSanPham/index.vue')
