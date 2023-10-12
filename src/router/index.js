@@ -7,7 +7,7 @@ const routes = [
         component: ()=>import('../components/TrangChu/index.vue')
     },
     {
-        path : '/chi-tiet-san-pham/:slug_san_pham',
+        path : '/chi-tiet-san-pham/:id_san_pham',
         props: true,
         meta : {layout : 'client'},
         component: ()=>import('../components/TrangChu/ChiTietSanPham.vue')
@@ -31,6 +31,10 @@ const routes = [
     {
         path : '/admin/chuyen-muc',
         component: ()=>import('../components/ChuyenMuc/index.vue')
+    },
+    {
+        path : '/admin/nhap-kho',
+        component: ()=>import('../components/NhapKho/index.vue')
     },
     {
         path : '/admin/phan-quyen',

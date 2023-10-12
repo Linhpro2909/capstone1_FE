@@ -83,7 +83,7 @@
         <template v-for="(v, k) in sanPhamNoiBat">
             <div class="col d-flex align-items-stretch">
             <div class="card">
-                <router-link to="/chi-tiet-san-pham">
+                <router-link :to="'/chi-tiet-san-pham/'+ toSlug(v.ten_san_pham) + '-' + v.id">
                 <img v-bind:src="v.hinh_anh"
                     class="card-img-top" alt="...">
                 </router-link>
@@ -243,6 +243,18 @@ export default {
                     this.sanPhamMoi     = res.data.sanPhamMoi;
                     this.tuiBalo        = res.data.tuiBalo;
                 })
+        },
+        toSlug(str) {
+            str = str.toLowerCase();     
+            str = str
+                .normalize('NFD') // chuyển chuỗi sang unicode tổ hợp
+                .replace(/[\u0300-\u036f]/g, ''); // xóa các ký tự dấu sau khi tách tổ hợp
+            str = str.replace(/[đĐ]/g, 'd');
+            str = str.replace(/([^0-9a-z-\s])/g, '');
+            str = str.replace(/(\s+)/g, '-');
+            str = str.replace(/-+/g, '-');
+            str = str.replace(/^-+|-+$/g, '');
+            return str;
         }
     },
 }
