@@ -1,72 +1,116 @@
 import { createRouter, createWebHistory } from "vue-router"; // cài vue-router: npm install vue-router@next --save
 
 const routes = [
+  
+    
     {
         path : '/',
-        meta : {layout : 'client'},
+       
         component: ()=>import('../components/TrangChu/index.vue')
     },
+    
     {
-        path : '/chi-tiet-san-pham/:id_san_pham',
-        props: true,
+        path : '/trang-chu-user',
         meta : {layout : 'client'},
-        component: ()=>import('../components/TrangChu/ChiTietSanPham.vue')
+        component: ()=>import('../components_user/TrangChuUser/index.vue')
     },
     {
-        path : '/chuyen-muc/:url_chuyen_muc',
-        props: true,
+        path : '/sinh-vien-nhom-do-an',
         meta : {layout : 'client'},
-        component: ()=>import('../components/TrangChu/SanPhamTheoChuyenMuc.vue')
+        component: ()=>import('../components_user/NhomDoAn/index.vue')
     },
     {
-        path : '/tat-ca-san-pham',
+        path : '/dang-nhap',
         meta : {layout : 'client'},
-        component: ()=>import('../components/TatCaSanPham/index.vue')
+        component: ()=>import('../components_user/DangNhapUser/index.vue'),
     },
+    
     {
-        path : '/bai-viet',
+        path : '/chi-tiet-sinh-vien',
         meta : {layout : 'client'},
-        component: ()=>import('../components/BaiViet/index.vue')
+        component: ()=>import('../components_user/ChiTietSinhVien/index.vue'),
     },
     {
-        path : '/admin/chuyen-muc',
-        component: ()=>import('../components/ChuyenMuc/index.vue')
+        path : '/ngan-hang-de-tai',
+        meta : {layout : 'client'},
+        component: ()=>import('../components_user/NganHangDeTai/index.vue'),
+    },
+
+    {
+        path : '/chia-nhom',
+        meta : {layout : 'client'},
+        component: ()=>import('../components_user/ChiaNhom/index.vue'),
     },
     {
-        path : '/admin/nhap-kho',
-        component: ()=>import('../components/NhapKho/index.vue')
+        path : '/giang-vien-nhom-do-an',
+        meta : {layout : 'client'},
+        component: ()=>import('../components_user/GiangVien/index.vue'),
+    },
+    // ---------
+    {
+        path : '/quan-li-nk',
+       
+        component: ()=>import('../components/QuanLiNienKhoa/index.vue')
     },
     {
-        path : '/admin/phan-quyen',
+        path : '/quan-li-gv',
+       
+        component: ()=>import('../components/GiangVien/index.vue')
+    },
+    
+    {
+        path : '/ngan-hang-de-tai-admin',
+       
+        component: ()=>import('../components/NganHangDeTai/index.vue')
+    },
+    {
+        path : '/ke-hoach-tot-nghiep',
+       
+        component: ()=>import('../components/KeHoachTotNghiep/index.vue')
+    },
+    {
+        path : '/quan-li-hoi-dong',
+       
+        component: ()=>import('../components/QuanLiHoiDong/index.vue')
+    },
+    {
+        path : '/nhom-do-an',
+       
+        component: ()=>import('../components/NhomDoAn/index.vue')
+    },
+    // {
+    //     path : '/quan-li-khoa',
+       
+    //     component: ()=>import('../components/QuanLiKhoa/index.vue')
+    // },
+   
+    {
+        path : '/quan-li-sv',
+       
+        component: ()=>import('../components/QuanLiSinhVien/index.vue')
+    },
+   
+    // {
+    //     path : '/quan-li-lop',
+       
+    //     component: ()=>import('../components/QuanLiLop/index.vue')
+    // },
+    {
+        path : '/phan-quyen',
+       
         component: ()=>import('../components/PhanQuyen/index.vue')
     },
     {
-        path : '/admin/thuong-hieu',
-        component: ()=>import('../components/ThuongHieu/index.vue')
+        path : '/tai-khoan',
+       
+        component: ()=>import('../components/TaiKhoan/index.vue')
+    },
+    {
+        path : '/duyet-nhom',
+       
+        component: ()=>import('../components/DuyetNhom/index.vue')
     },
 
-    {
-        path : '/admin/ma-giam-gia',
-        component: ()=>import('../components/MaGiamGia/index.vue')
-    },
-
-    {
-        path : '/admin/san-pham',
-        component: ()=>import('../components/SanPham/index.vue')
-    },
-
-    {
-        path : '/admin/tai-khoan',
-        component: ()=>import('../components/TaiKhoanAdmin/index.vue')
-    },
-    {
-        path : '/admin/khach-hang',
-        component: ()=>import('../components/KhachHang/index.vue')
-    },
-    {
-        path : '/admin/bai-viet',
-        component: ()=>import('../components/BaiVietAdmin/index.vue')
-    },
 ]
 
 const router = createRouter({

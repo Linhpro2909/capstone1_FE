@@ -1,5 +1,5 @@
-<template lang="">
-      <div class="row">
+<template>
+    <div class="row">
         <div class="col-8">
             <div class="card">
                 <div class="card-header">
@@ -20,17 +20,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="align-middle" v-for="(v,k) in list_quyen">
-                                <th class="text-center">{{ k+1 }}</th>
-                                <td>{{ v.ten_quyen }}</td>
+                            <tr class="align-middle" >
+                                <th class="text-center">1</th>
+                                <td>Admin</td>
                                 <td class="text-center">
-                                    <button @click="trang_thai(v)" v-if="v.trang_thai == 1" class="btn btn-success">Hiển thị</button>
-                                    <button @click="trang_thai(v)" v-else class="btn btn-warning">Tạm tắt</button>
+                                    <button style="margin-right: 10px;" class="btn btn-success">Hiển thị</button>
+                                    <button style="margin-right: 10px;" class="btn btn-warning">Tạm tắt</button>
                                 </td>
                                 <td class="text-center">
                                     <button class="btn btn-info me-1">Cấp quyền</button>
-                                    <button @click="phan_quyen_update=Object.assign({}, v)" data-bs-toggle="modal" data-bs-target="#capnhatmodal" class="btn btn-primary me-1"><i class="fa-solid fa-pen-to-square"></i></button>
-                                    <button @click="phan_quyen_del=v" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#xoamodal"><i class="fa-solid fa-trash"></i></button>
+                                    <button  data-bs-toggle="modal" data-bs-target="#capnhatmodal" class="btn btn-primary me-1"><i class="fa-solid fa-pen-to-square"></i></button>
+                                    <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#xoamodal"><i class="fa-solid fa-trash"></i></button>
                                 </td>
                             </tr>
                         </tbody>
@@ -63,11 +63,11 @@
                         <div class="row">
                             <div class="col-12">
                                 <label class="form-label">Tên Quyền</label>
-                                <input v-model="them_moi.ten_quyen" type="text" class="form-control">
+                                <input  type="text" class="form-control">
                             </div>
                             <div class="col-12">
                                 <label class="form-label mt-3">Tình Trạng</label>
-                                <select v-model="them_moi.trang_thai" class="form-control">
+                                <select  class="form-control">
                                     <option value="1">Hiển thị</option>
                                     <option value="0">Tạm tắt</option>
                                 </select>
@@ -76,7 +76,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button data-bs-dismiss="modal" type="button" class="btn btn-primary" v-on:click="addQuyen()">Thêm mới</button>
+                        <button data-bs-dismiss="modal" type="button" class="btn btn-primary">Thêm mới</button>
                     </div>
                 </div>
             </div>
@@ -93,11 +93,11 @@
                         <div class="row">
                             <div class="col-12">
                                 <label class="form-label">Tên Quyền</label>
-                                <input v-model="phan_quyen_update.ten_quyen" type="text" class="form-control">
+                                <input type="text" class="form-control">
                             </div>
                             <div class="col-12">
                                 <label class="form-label mt-3">Tình Trạng</label>
-                                <select v-model="phan_quyen_update.trang_thai" class="form-control">
+                                <select  class="form-control">
                                     <option value="1">Hiển thị</option>
                                     <option value="0">Tạm tắt</option>
                                 </select>
@@ -106,7 +106,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button data-bs-dismiss="modal" type="button" class="btn btn-primary" v-on:click="cap_nhat()">Cập nhật</button>
+                        <button data-bs-dismiss="modal" type="button" class="btn btn-primary">Cập nhật</button>
                     </div>
                 </div>
             </div>
@@ -126,7 +126,7 @@
                                 </div>
                                 <div class="ms-3 text-wrap">
                                     <h6 class="mb-0 text-dark">Warning</h6>
-                                    Bạn chắc chắn muốn xóa <b class="text-danger">{{ phan_quyen_del.ten_quyen }}</b> khỏi
+                                    Bạn chắc chắn muốn xóa <b class="text-danger"></b> khỏi
                                     danh sách?
                                 </div>
                             </div>
@@ -135,7 +135,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" v-on:click="huy_bo()">Xác Nhận</button>
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Xác Nhận</button>
                     </div>
                 </div>
             </div>
@@ -143,64 +143,8 @@
     </div>
 </template>
 <script>
-import baseRequest from '../../core/baseRequest';
-import functionBasic from '../../core/functionBasic';
 export default {
-    data() {
-        return {
-            list_quyen: [],
-            them_moi: { 'trang_thai': 1 },
-            phan_quyen_del: {},
-            phan_quyen_update: {},
-        }
-    },
-    mounted() {
-        this.getListQuyen();
-    },
-    methods: {
-        addQuyen() {
-            console.log(this.them_moi);
-            baseRequest
-                .post("phan-quyen/create", this.them_moi)
-                .then((res) => {
-                    functionBasic.displaySuccess(res);
-                    this.getListQuyen();
-                    this.them_moi = {};
-                });
-        },
-        getListQuyen() {
-            baseRequest
-                .get("phan-quyen/data")
-                .then((res) => {
-                    this.list_quyen = res.data.data;
-                    console.log(this.list_quyen);
-                });
-        },
-        huy_bo() {
-            baseRequest
-                .post("phan-quyen/delete", this.phan_quyen_del)
-                .then((res) => {
-                    functionBasic.displaySuccess(res);
-                    this.getListQuyen();
-                });
-        },
-        cap_nhat() {
-            baseRequest
-                .post("phan-quyen/update", this.phan_quyen_update)
-                .then((res) => {
-                    functionBasic.displaySuccess(res);
-                    this.getListQuyen();
-                });
-        },
-        trang_thai(value) {
-            baseRequest
-                .post("phan-quyen/status", value)
-                .then((res) => {
-                    functionBasic.displaySuccess(res);
-                    this.getListQuyen();
-                });
-        },
-    },
+    
 }
 </script>
 <style lang="">
