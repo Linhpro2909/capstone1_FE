@@ -63,7 +63,7 @@
 
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="text-center">
                         <template v-for="(v,k) in list_sinh_vien">
                             <tr>
                                 <td><input type="checkbox" class="form-check-input" id="exampleCheck1"></td>
@@ -77,7 +77,7 @@
                                 <td>
                                     <ul>
                                         <li>
-                                            0 {{v.so_dien_thoai}}
+                                            {{v.so_dien_thoai}}
                                         </li>
 
                                     </ul>
@@ -137,7 +137,7 @@
                 <label for="">Tên nhóm</label>
                 <input type="text" class="form-control" placeholder="nhập mã sinh viên">
                 <label for=""> Tên giảng viên hướng dẫn</label>
-                <select name="" id="" style="padding: 8px 154px; margin:3px; border-radius:6px; ">
+                <select name="" id="" style="padding: 8px 154px; margin:3px; border-radius:6px;">
                     <option value="1">
                         -Chọn tên giảng viên-
                     </option>
@@ -215,7 +215,6 @@ export default {
                 });
         },
         capNhat() {
-
             baseRequest
                 .post("sinh-vien/update", this.sinh_vien_update)
                 .then((res) => {

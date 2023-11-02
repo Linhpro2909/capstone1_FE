@@ -12,8 +12,17 @@
                 <input type="text" class="form-control" placeholder="Nhập tên đề tài">
                 <label for="">Mô tả</label>
                <textarea name="" id="" cols="30" rows="5" class="form-control">
-
+                
                </textarea>
+               <label for="">Người đăng ký</label>
+               <select name="" id="" class="form-control">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+               </select>
+               
                 
             </div>
             <div class="card-footer text-end">
@@ -36,7 +45,9 @@
                                 <th>#</th>
                                 <th>Tên Đề Tài</th>
                                 <th>Mô tả</th>
-                                <th>Trang thái</th>
+                                <th>Người đăng ký</th>
+                                <th>Thời gian đăng ký</th>
+                                <th>Trạng thái</th>
                                 
                             </tr>
                         </thead>
@@ -45,6 +56,8 @@
                                 <th class="text-center">1</th>
                                 <td>Quản lí đồ án tốt nghiệp</td>
                                 <td>Làm chớ chưa biết được không nghe</td>
+                                <td>THO</td>
+                                <td>2-2-2023</td>
                                 <td>Đã duyệt</td>
                                 
                             </tr>
@@ -101,7 +114,7 @@
                                 <th>#</th>
                                 <th>Tên Đề Tài</th>
                                 <th>Mô tả</th>
-                                
+                                <th>Yêu cầu</th>
                                 
                             </tr>
                         </thead>
@@ -110,7 +123,7 @@
                                 <th class="text-center">1</th>
                                 <td>Quản lí đồ án tốt nghiệp</td>
                                 <td>Làm chớ chưa biết được không nghe</td>
-                                
+                                <td>Ngôn ngữ PHP và VUEJS</td>
                                 
                             </tr>
                         </tbody>
