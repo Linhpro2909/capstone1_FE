@@ -95,7 +95,7 @@
                                 <td>{{v.thoi_gian_bat_dau}}-{{v.thoi_gian_ket_thuc}}</td>
                                 <td>
                                     <button v-if="v.tinh_trang==1" class="btn btn-success" style="margin-right: 10px;">Hoạt Động</button>
-                                    <button v-else class="btn btn-secondary">Tạm tắt</button>
+                                    <button v-else class="btn btn-secondary">Tạm tắt </button>
                                 </td>
                             </tr>
 
