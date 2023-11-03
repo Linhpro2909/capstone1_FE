@@ -1,4 +1,4 @@
-<template lang="">
+<template>
 <div class="row ">
     <div class="col-4">
         <h4 class="text-danger">Quản Lý Sinh Viên</h4>
@@ -6,27 +6,52 @@
 </div>
 <div class="row">
     <div class="col-4">
-        <div class="card">
-            <div class="card-header">
-                Thêm Mới Lớp
-            </div>
-            <div class="card-body">
-                <label for="">Tên Sinh Viên</label>
-                <input v-model="sinh_vien_add.ten_sinh_vien" type="text" class="form-control">
-                <label for="">Mã Sinh Viên</label>
-                <input v-model="sinh_vien_add.ma_sinh_vien" type="text" class="form-control">
-                <label for="">Số Điện Thoại</label>
-                <input v-model="sinh_vien_add.so_dien_thoai" type="tel" id="phone" name="phone" pattern="[0-9]{10}" class="form-control" required>
-                <label for="">Điểm GPA</label>
-                <input v-model="sinh_vien_add.diem_gpa" type="float" class="form-control">
 
-            </div>
-            <div class="card-footer text-end">
-                <button v-on:click="them_moi()" class="btn btn-outline-success">Tạo</button>
+    </div>
+    <div class="col-8 text-end">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleThemMoi">Thêm Mới</button>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleThemMoi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleThemMoi">Thêm Mới Sinh Viên</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
+
+                        <div class="card-body">
+                            <label for="">Khóa</label>
+                            <select name="" id="" class="form-control">
+                                <option value="">k26</option>
+                                <option value="">k27</option>
+                                <option value="k28"></option>
+                            </select>
+                            <label for="">Tên Sinh Viên</label>
+                            <input v-model="sinh_vien_add.ten_sinh_vien" type="text" class="form-control">
+                            <label for="">Mã Sinh Viên</label>
+                            <input v-model="sinh_vien_add.ma_sinh_vien" type="text" class="form-control">
+                            <label for="">Số Điện Thoại</label>
+                            <input v-model="sinh_vien_add.so_dien_thoai" type="tel" id="phone" name="phone" pattern="[0-9]{10}" class="form-control" required>
+                            <label for="">Điểm GPA</label>
+                            <input v-model="sinh_vien_add.diem_gpa" type="float" class="form-control">
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-outline-success">Thêm</button>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-8">
+</div>
+<div class="row mt-2">
+    <div class="col-12">
         <div class="card">
             <div class="card-header">
                 <h5 class="text-danger">
@@ -64,7 +89,27 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <template v-for="(v,k) in list_sinh_vien">
+                        <tr>
+                            <td><input type="checkbox" class="form-check-input" id="exampleCheck1"></td>
+                            <td>
+                                <button class="btn btn-info" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#exampleCapNhat">Cập Nhật</button>
+                                <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleChiTiet">Chi Tiết</button>
+                            </td>
+                            <td>1</td>
+                            <td>
+                                26211241674
+                            </td>
+                            <td>
+                                Lương Trọng Linh
+                            </td>
+                            <td>
+                                0397757013
+                            </td>
+                            <td>
+                                3.2
+                            </td>
+                        </tr>
+                        <!-- <template v-for="(v,k) in list_sinh_vien">
                             <tr>
                                 <td><input type="checkbox" class="form-check-input" id="exampleCheck1"></td>
                                 <td>
@@ -87,11 +132,99 @@
                                 </td>
 
                             </tr>
-                        </template>
+                        </template> -->
 
                     </tbody>
                 </table>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleCapNhat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Cập Nhật</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="card">
 
+                                    <div class="card-body">
+                                        <label for="">Khóa</label>
+                                        <select name="" id="" class="form-control">
+                                            <option value="">k26</option>
+                                            <option value="">k27</option>
+                                            <option value="k28"></option>
+                                        </select>
+                                        <label for="">Tên Sinh Viên</label>
+                                        <input v-model="sinh_vien_add.ten_sinh_vien" type="text" class="form-control">
+                                        <label for="">Mã Sinh Viên</label>
+                                        <input v-model="sinh_vien_add.ma_sinh_vien" type="text" class="form-control">
+                                        <label for="">Số Điện Thoại</label>
+                                        <input v-model="sinh_vien_add.so_dien_thoai" type="tel" id="phone" name="phone" pattern="[0-9]{10}" class="form-control" required>
+                                        <label for="">Điểm GPA</label>
+                                        <input v-model="sinh_vien_add.diem_gpa" type="float" class="form-control">
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                <button type="button" class="btn btn-primary">Lưu</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleChiTiet" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleCHiTiet">Chi Tiết</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+
+                                            <th>#</th>
+                                            <th>Mã sinh viên</th>
+                                            <th>Tên sinh viên</th>
+                                            <th>Số Điện Thoại</th>
+                                            <th>Điểm GPA</th>
+                                            <th>Nhóm Đồ Án</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+
+                                            <td>1</td>
+                                            <td>
+                                                26211241674
+                                            </td>
+                                            <td>
+                                                Lương Trọng Linh
+                                            </td>
+                                            <td>
+                                                0397757013
+                                            </td>
+                                            <td>
+                                                3.2
+                                            </td>
+                                            <td>
+                                                C1SE_18
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -151,34 +284,8 @@
     </div>
 </div>
 <!-- ------------------ -->
-<!-- Modal -->
-<div class="modal fade" id="exampleSua" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleSua">Cập nhật</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="card-body">
-                <label for="">Tên Sinh Viên</label>
-                <input v-model="sinh_vien_update.ten_sinh_vien" type="text" class="form-control">
-                <label for="">Mã Sinh Viên</label>
-                <input v-model="sinh_vien_update.ma_sinh_vien" type="text" class="form-control">
-                <label for="">Số Điện Thoại</label>
-                <input v-model="sinh_vien_update.so_dien_thoai" type="tel" id="phone" name="phone" pattern="[0-9]{10}" class="form-control" required>
-                <label for="">Điểm GPA</label>
-                <input v-model="sinh_vien_update.diem_gpa" type="float" class="form-control">
 
-            </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-        <button v-on:click="capNhat()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Lưu</button>
-      </div>
-    </div>
-  </div>
-</div>
+
 </template>
 
 <script>

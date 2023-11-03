@@ -54,7 +54,10 @@
                                 Quản lí đồ án tốt nghiệp
                             </td>
                             <td>
+                                <button class="btn btn-info">
                                 <i class="fa-solid fa-info" data-bs-toggle="modal" data-bs-target="#staticChitiet"></i>
+
+                                </button>
                             </td>
                             <td>1</td>
                             <td>

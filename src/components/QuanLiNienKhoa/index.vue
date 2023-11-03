@@ -4,9 +4,23 @@
         <h4 class="text-danger">Quản Lý Niên Khóa</h4>
     </div>
 </div>
-<div class="row">
+<div class="row ">
     <div class="col-4">
-        <div class="card">
+
+    </div>
+    <div class="col-8 text-end">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleThemMoi">Thêm Mới</button>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleThemMoi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleThemMoi">Thêm Mới Khóa</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
             <div class="card-header">
                 Thêm Mới Niên Khóa
             </div>
@@ -23,12 +37,20 @@
                     <option value="0">Tạm tắt</option>
                 </select>
             </div>
-            <div class="card-footer text-end">
-                <button v-on:click="them_moi()" class="btn btn-outline-success">Tạo</button>
+            
+        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-outline-success">Thêm</button>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-8">
+</div>
+<div class="row mt-2">
+    
+    <div class="col-12">
         <div class="card">
             <div class="card-header">
                 <h5 class="text-danger">

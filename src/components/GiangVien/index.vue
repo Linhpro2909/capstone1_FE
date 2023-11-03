@@ -4,32 +4,50 @@
         <h1>Quản Lí Giảng Viên</h1>
     </div>
     <div class="row mt-2">
+        <div class="col-10 ">
+
+        </div>
+        <div class="col-2 text-end">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleThemMoi">Thêm Mới</button>
+
+        </div>
 
     </div>
-    <div class="col-3">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="text-primary">Thêm Mới Giảng Viên</h5>
-            </div>
-            <div class="card-body">
-                <label for="">Tên Giảng Viên</label>
-                <input type="text" class="form-control" placeholder="Nhập tên giảng viên">
-                <label for="">Ngày Tháng Năm Sinh</label>
-                <input type="date" class="form-control" placeholder="Nhập ngày tháng năm sinh">
-                <label for="">Địa Chỉ</label>
-                <input type="text" class="form-control" placeholder="Nhập địa chỉ">
-                <label for="">Đơn Vị Đang Công Tác</label>
-                <input type="text" class="form-control" placeholder="Nhập đơn vị đang công tác">
-               
-                
+    <!-- Modal -->
+    <div class="modal fade" id="exampleThemMoi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleThemMoi">Thêm Mới Giảng Viên</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="card">
 
-            </div>
-            <div class="card-footer text-end">
-                <button class="btn btn-primary">Thêm Mới</button>
+                        <div class="card-body">
+                            <div class="card-body">
+                                <label for="">Tên Giảng Viên</label>
+                                <input type="text" class="form-control" placeholder="Nhập tên giảng viên">
+                                <label for="">Ngày Tháng Năm Sinh</label>
+                                <input type="date" class="form-control" placeholder="Nhập ngày tháng năm sinh">
+                                <label for="">Địa Chỉ</label>
+                                <input type="text" class="form-control" placeholder="Nhập địa chỉ">
+                                <label for="">Đơn Vị Đang Công Tác</label>
+                                <input type="text" class="form-control" placeholder="Nhập đơn vị đang công tác">
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-outline-success">Thêm</button>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-9">
+    <div class="col-12 mt-2">
         <div class="card">
             <div class="card-header">
                 <h5>Danh Sách Giảng Viên</h5>
@@ -57,7 +75,6 @@
                             <th>Năm Sinh</th>
                             <th>Địa Chỉ</th>
                             <th>Đơn Vị Công Tác</th>
-                            
 
                         </tr>
                     </thead>
@@ -68,8 +85,8 @@
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             </td>
                             <td class="">
-                                <button style="margin-right: 10px;" class="btn btn-info">Sửa</button>
-                            
+                                <button style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#exampleCapNhat" class="btn btn-info">Sửa</button>
+
                             </td>
                             <td>1</td>
                             <td>
@@ -105,7 +122,7 @@
                             <td>
                                 Đại Học Viên Hàn Đà Nẵng
                             </td>
-                           
+
                         </tr>
 
                     </tbody>
@@ -114,11 +131,41 @@
         </div>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleCapNhat" tabindex="-1" aria-labelledby="exampleCapNhat" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Cập Nhật</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="card-body">
+                            <div class="card-body">
+                                <label for="">Tên Giảng Viên</label>
+                                <input type="text" class="form-control" placeholder="Nhập tên giảng viên">
+                                <label for="">Ngày Tháng Năm Sinh</label>
+                                <input type="date" class="form-control" placeholder="Nhập ngày tháng năm sinh">
+                                <label for="">Địa Chỉ</label>
+                                <input type="text" class="form-control" placeholder="Nhập địa chỉ">
+                                <label for="">Đơn Vị Đang Công Tác</label>
+                                <input type="text" class="form-control" placeholder="Nhập đơn vị đang công tác">
+                            </div>
+
+                        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-primary">Lưu</button>
+      </div>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
 export default {
-     
+
 }
 </script>
 
