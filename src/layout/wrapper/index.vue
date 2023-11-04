@@ -22,6 +22,7 @@ import MenuVue from  '../components/Menu.vue';
 // import "https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js";
 // import "https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js";
 // import "../../assets/js/bootstrap.bundle.min.js";
+import "../../assets/plugins/select2/js/select2.min.js";
 import "../../assets_client/rocker/js/bootstrap.bundle.min.js";
 import "../../assets/js/jquery.min.js";
 import "../../assets/plugins/simplebar/js/simplebar.min.js";
@@ -51,4 +52,8 @@ export default {
 @import "../../assets/css/semi-dark.css";   
 @import "../../assets/css/header-colors.css";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");   
+@import"../../assets/plugins/select2/css/select2.min.css" ;
+@import"../../assets/plugins/select2/css/select2-bootstrap4.css";
+@import"../../assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css";
+@import"../../assets/plugins/metismenu/css/metisMenu.min.css";
 </style>

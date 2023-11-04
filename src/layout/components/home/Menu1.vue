@@ -21,6 +21,9 @@
                             <router-link to="/giang-vien-nhom-do-an">
                                 <li class="nav-item"> <a class="nav-link" href="#"><i class="fa-regular fa-user" style="margin-right: 10px;"></i>Giảng viên</a></li>
                             </router-link>
+                            <router-link to="/hoi-dong-danh-gia">
+                                <li class="nav-item"> <a class="nav-link" href="#"><i class="fa-regular fa-user" style="margin-right: 10px;"></i>Hội Đồng Đánh Giá</a></li>
+                            </router-link>
                             
                         </ul>
                         <form class="d-flex">

@@ -8,7 +8,11 @@ const routes = [
        
         component: ()=>import('../components/TrangChu/index.vue')
     },
-    
+    {
+        path : '/hoi-dong-danh-gia',
+        meta : {layout : 'client'},
+        component: ()=>import('../components_user/HoiDongDanhGia/index.vue')
+    },
     {
         path : '/trang-chu-user',
         meta : {layout : 'client'},
