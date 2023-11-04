@@ -22,7 +22,7 @@
                         <div class="card-body">
                             <div class="card-body">
                     <label for="">Tên Sinh Viên</label>
-                    <input v-model="tai_khoan_add.email" type="email" class="form-control" placeholder="nhập tên sinh viên">           
+                    <input v-model="tai_khoan_add.name" type="text" class="form-control" placeholder="nhập tên sinh viên">           
                     <label for="">Email</label>
                     <input v-model="tai_khoan_add.email" type="email" class="form-control" placeholder="nhập email">
                     <label for="">Password</label>
