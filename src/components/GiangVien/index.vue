@@ -1,4 +1,4 @@
-<template>
+<template lang="">
 <div class="row">
     <div class="">
         <h1>Quản Lí Giảng Viên</h1>
@@ -27,13 +27,13 @@
                         <div class="card-body">
                             <div class="card-body">
                                 <label for="">Tên Giảng Viên</label>
-                                <input type="text" class="form-control" placeholder="Nhập tên giảng viên">
+                                <input v-model="giang_vien_add.Name" type="text" class="form-control" placeholder="Nhập tên giảng viên">
                                 <label for="">Ngày Tháng Năm Sinh</label>
-                                <input type="date" class="form-control" placeholder="Nhập ngày tháng năm sinh">
+                                <input v-model="giang_vien_add.Date_of_birth" type="date" class="form-control" placeholder="Nhập ngày tháng năm sinh">
                                 <label for="">Địa Chỉ</label>
-                                <input type="text" class="form-control" placeholder="Nhập địa chỉ">
+                                <input v-model="giang_vien_add.Address" type="text" class="form-control" placeholder="Nhập địa chỉ">
                                 <label for="">Đơn Vị Đang Công Tác</label>
-                                <input type="text" class="form-control" placeholder="Nhập đơn vị đang công tác">
+                                <input v-model="giang_vien_add.don_vi_cong_tac" type="text" class="form-control" placeholder="Nhập đơn vị đang công tác">
                             </div>
 
                         </div>
@@ -42,7 +42,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-outline-success">Thêm</button>
+                    <button @click="them_moi()" type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Thêm</button>
                 </div>
             </div>
         </div>
@@ -67,7 +67,7 @@
                 </div>
                 <table class="table table-bordered mt-2">
                     <thead class="text-center">
-                        <tr>
+                        <tr class="text-center">
                             <th><input type="checkbox" class="form-check-input" id="exampleCheck1"></th>
                             <th>Action</th>
                             <th>#</th>
@@ -80,50 +80,25 @@
                     </thead>
 
                     <tbody class="text-center">
-                        <tr>
-                            <td>
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            </td>
-                            <td class="">
-                                <button style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#exampleCapNhat" class="btn btn-info">Sửa</button>
+                        <template v-for="(v,k) in list_giang_vien">
+                            <tr>
+                                <td><input type="checkbox" class="form-check-input" id="exampleCheck1"></td>
+                                <td>
+                                    <button style="margin-right:10px;" @click="giang_vien_update = Object.assign({},v)" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleCapNhat">Cập Nhật</button>
+                                    <button  class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleChiTiet">Chi Tiết</button>
+                                </td>
+                                <td>{{k+1}}</td>
+                                <td>{{v.Name}}</td>
+                                <td class="uppercase">{{v.Date_of_birth}}</td>
+                                <td>
+                                     {{v.Address}}   
+                                </td>
+                                <td>
+                                    {{v.don_vi_cong_tac}}
+                                </td>
 
-                            </td>
-                            <td>1</td>
-                            <td>
-                                Lê Minh Thái
-                            </td>
-                            <td>
-                                10/10/1965
-                            </td>
-                            <td>
-                                46 Nguyễn Tri Phương Đà Nẫng
-                            </td>
-                            <td>
-                                Đại Học Viên Hàn Đà Nẵng
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                            </td>
-                            <td>
-                                <button style="margin-right: 10px;" class="btn btn-info">Sửa</button>
-                            </td>
-                            <td>2</td>
-                            <td>
-                                Lê Minh Thái
-                            </td>
-                            <td>
-                                10/10/1965
-                            </td>
-                            <td>
-                                46 Nguyễn Tri Phương Đà Nẫng
-                            </td>
-                            <td>
-                                Đại Học Viên Hàn Đà Nẵng
-                            </td>
-
-                        </tr>
+                            </tr>
+                        </template>
 
                     </tbody>
                 </table>
@@ -143,20 +118,20 @@
         <div class="card-body">
                             <div class="card-body">
                                 <label for="">Tên Giảng Viên</label>
-                                <input type="text" class="form-control" placeholder="Nhập tên giảng viên">
+                                <input v-model="giang_vien_update.Name" type="text" class="form-control" placeholder="Nhập tên giảng viên">
                                 <label for="">Ngày Tháng Năm Sinh</label>
-                                <input type="date" class="form-control" placeholder="Nhập ngày tháng năm sinh">
+                                <input v-model="giang_vien_update.Date_of_birth" type="date" class="form-control" placeholder="Nhập ngày tháng năm sinh">
                                 <label for="">Địa Chỉ</label>
-                                <input type="text" class="form-control" placeholder="Nhập địa chỉ">
+                                <input v-model="giang_vien_update.Address" type="text" class="form-control" placeholder="Nhập địa chỉ">
                                 <label for="">Đơn Vị Đang Công Tác</label>
-                                <input type="text" class="form-control" placeholder="Nhập đơn vị đang công tác">
+                                <input v-model="giang_vien_update.don_vi_cong_tac" type="text" class="form-control" placeholder="Nhập đơn vị đang công tác">
                             </div>
 
                         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-        <button type="button" class="btn btn-primary">Lưu</button>
+        <button v-on:click="capNhat()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Lưu</button>
       </div>
     </div>
   </div>
@@ -164,8 +139,45 @@
 </template>
 
 <script>
+import Toaster from '@meforma/vue-toaster';
+import baseRequest from '../../core/baseRequest';
+import functionBasic from '../../core/functionBasic';
 export default {
-
+    data(){
+        return{
+            list_giang_vien: [],
+            giang_vien_add: {},
+            giang_vien_update: {},
+        }
+    },
+    mounted() {
+        this.load()
+    },
+    methods: {
+        them_moi(){
+            baseRequest
+                .post("giang-vien/create", this.giang_vien_add)
+                .then((res) => {
+                    functionBasic.displaySuccess(res);
+                    this.load();
+                });
+        },
+        load(){
+            baseRequest
+                .get("giang-vien/data")
+                .then((res)=>{
+                    this.list_giang_vien =res.data.data;
+                });
+        },
+        capNhat(){
+            baseRequest
+                .post("giang-vien/update", this.giang_vien_update)
+                .then((res) => {
+                    functionBasic.displaySuccess(res);
+                    this.load();
+                });
+        },
+    },
 }
 </script>
 

@@ -21,35 +21,35 @@
                 </div>
                 <div class="modal-body">
                     <div class="card">
-            <div class="card-header">
-                Thêm Mới Niên Khóa
-            </div>
-            <div class="card-body">
-                <label for="">Tên Khóa</label>
-                <input v-model="nien_khoa_add.ten_nien_khoa" type="text" class="form-control">
-                <label for="">Thời Gian Bắt Đầu</label>
-                <input v-model="nien_khoa_add.thoi_gian_bat_dau" type="text" class="form-control">
-                <label for="">Thời Gian Kết Thúc</label>
-                <input v-model="nien_khoa_add.thoi_gian_ket_thuc" type="text" class="form-control">
-                <label for="">Tình Trạng</label>
-                <select v-model="nien_khoa_add.tinh_trang" class="form-control">
-                    <option value="1">Hiển thị</option>
-                    <option value="0">Tạm tắt</option>
-                </select>
-            </div>
-            
-        </div>
+                        <div class="card-header">
+                            Thêm Mới Niên Khóa
+                        </div>
+                        <div class="card-body">
+                            <label for="">Tên Khóa</label>
+                            <input v-model="nien_khoa_add.ten_nien_khoa" type="text" class="form-control">
+                            <label for="">Thời Gian Bắt Đầu</label>
+                            <input v-model="nien_khoa_add.thoi_gian_bat_dau" type="text" class="form-control">
+                            <label for="">Thời Gian Kết Thúc</label>
+                            <input v-model="nien_khoa_add.thoi_gian_ket_thuc" type="text" class="form-control">
+                            <label for="">Tình Trạng</label>
+                            <select v-model="nien_khoa_add.tinh_trang" class="form-control">
+                                <option value="1">Hiển thị</option>
+                                <option value="0">Tạm tắt</option>
+                            </select>
+                        </div>
+
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-outline-success">Thêm</button>
+                    <button @click="them_moi()" type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Thêm</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <div class="row mt-2">
-    
+
     <div class="col-12">
         <div class="card">
             <div class="card-header">
