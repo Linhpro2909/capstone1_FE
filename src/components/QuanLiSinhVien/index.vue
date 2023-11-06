@@ -1,4 +1,4 @@
-<template>
+<template lang="">
 <div class="row ">
     <div class="col-4">
         <h4 class="text-danger">Quản Lý Sinh Viên</h4>
@@ -23,16 +23,17 @@
                     <div class="card">
 
                         <div class="card-body">
-                            <label for="">Khóa</label>
-                            <select name="" id="" class="form-control">
-                                <option value="">k26</option>
-                                <option value="">k27</option>
-                                <option value="k28"></option>
-                            </select>
+
                             <label for="">Tên Sinh Viên</label>
                             <input v-model="sinh_vien_add.ten_sinh_vien" type="text" class="form-control">
                             <label for="">Mã Sinh Viên</label>
                             <input v-model="sinh_vien_add.ma_sinh_vien" type="text" class="form-control">
+                            <label for="">Khóa</label>
+                            <select v-model="sinh_vien_add.id_nien_khoa" class="form-select">
+                                <template v-for="(v, k) in list_nien_khoa">
+                                    <option v-bind:value="v.id">{{v.ten_nien_khoa}}</option>
+                                </template>
+                            </select>
                             <label for="">Số Điện Thoại</label>
                             <input v-model="sinh_vien_add.so_dien_thoai" type="tel" id="phone" name="phone" pattern="[0-9]{10}" class="form-control" required>
                             <label for="">Điểm GPA</label>
@@ -44,7 +45,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-outline-success">Thêm</button>
+                    <button @click="them_moi()" type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Thêm</button>
                 </div>
             </div>
         </div>
@@ -77,7 +78,7 @@
                 </div>
                 <table class="table table-bordered">
                     <thead>
-                        <tr>
+                        <tr class="text-center">
                             <th>
                                 <input v-on:click="handleSelectAll()" type="checkbox" name="" id="select_all_ids">
                             </th>
@@ -85,58 +86,35 @@
                             <th>#</th>
                             <th>Mã sinh viên</th>
                             <th>Tên sinh viên</th>
-                            <th>Số Điện Thoại</th>
+                            <th>Khoá</th>
                             <th>Điểm GPA</th>
 
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="ids" class="checkbox_ids" id="">
-                            </td>
-                            <td>
-                                <button class="btn btn-info" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#exampleCapNhat">Cập Nhật</button>
-                                <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleChiTiet">Chi Tiết</button>
-                            </td>
-                            <td>1</td>
-                            <td>
-                                26211241674
-                            </td>
-                            <td>
-                                Lương Trọng Linh
-                            </td>
-                            <td>
-                                0397757013
-                            </td>
-                            <td>
-                                3.2
-                            </td>
-                        </tr>
-                        <!-- <template v-for="(v,k) in list_sinh_vien">
-                            <tr>
-                                <td><input type="checkbox" class="form-check-input" id="exampleCheck1"></td>
-                                <td>
-                                    <button @:click="sinh_vien_update=Object.assign({},v)" style="margin-right: 10px;" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleSua">Sửa</button>
 
+                    <tbody class="text-center">
+
+                        <template v-for="(v,k) in list_sinh_vien">
+                            <tr>
+                                <td> <input type="checkbox" name="ids" class="checkbox_ids" id=""></td>
+                                
+                                <td>
+                                    <button style="margin-right:10px;" @click="sinh_vien_update = Object.assign({},v)" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleCapNhat">Cập Nhật</button>
+                                    <button @click="sinh_vien_update = Object.assign({},v)" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleChiTiet">Chi Tiết</button>
                                 </td>
                                 <td>{{k+1}}</td>
                                 <td>{{v.ma_sinh_vien}}</td>
                                 <td class="uppercase">{{v.ten_sinh_vien}}</td>
                                 <td>
-                                    <ul>
-                                        <li>
-                                            0 {{v.so_dien_thoai}}
-                                        </li>
+                                    {{ getTenNienKhoa(v.id_nien_khoa) }}
 
-                                    </ul>
                                 </td>
                                 <td>
                                     {{v.diem_gpa}}
                                 </td>
 
                             </tr>
-                        </template> -->
+                        </template>
 
                     </tbody>
                 </table>
@@ -152,20 +130,20 @@
                                 <div class="card">
 
                                     <div class="card-body">
-                                        <label for="">Khóa</label>
-                                        <select name="" id="" class="form-control">
-                                            <option value="">k26</option>
-                                            <option value="">k27</option>
-                                            <option value="k28"></option>
-                                        </select>
+
                                         <label for="">Tên Sinh Viên</label>
-                                        <input v-model="sinh_vien_add.ten_sinh_vien" type="text" class="form-control">
+                                        <input v-model="sinh_vien_update.ten_sinh_vien" type="text" class="form-control">
                                         <label for="">Mã Sinh Viên</label>
-                                        <input v-model="sinh_vien_add.ma_sinh_vien" type="text" class="form-control">
-                                        <label for="">Số Điện Thoại</label>
-                                        <input v-model="sinh_vien_add.so_dien_thoai" type="tel" id="phone" name="phone" pattern="[0-9]{10}" class="form-control" required>
+                                        <input v-model="sinh_vien_update.ma_sinh_vien" type="text" class="form-control">
+                                        <label for="">Khóa</label>
+                                        <!-- <input v-model="sinh_vien_update.so_dien_thoai" type="tel" id="phone" name="phone" pattern="[0-9]{10}" class="form-control" required> -->
+                                        <select v-model="sinh_vien_update.id_nien_khoa" class="form-select">
+                                            <template v-for="(v, k) in list_nien_khoa">
+                                                <option v-bind:value="v.id">{{v.ten_nien_khoa}}</option>
+                                            </template>
+                                        </select>
                                         <label for="">Điểm GPA</label>
-                                        <input v-model="sinh_vien_add.diem_gpa" type="float" class="form-control">
+                                        <input v-model="sinh_vien_update.diem_gpa" type="float" class="form-control">
 
                                     </div>
 
@@ -173,7 +151,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                <button type="button" class="btn btn-primary">Lưu</button>
+                                <button v-on:click="capNhat()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Lưu</button>
                             </div>
                         </div>
                     </div>
@@ -184,44 +162,34 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleCHiTiet">Chi Tiết</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button  type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <table class="table table-bordered">
                                     <thead>
                                         <tr>
 
-                                            <th>#</th>
-                                            <th>Mã sinh viên</th>
-                                            <th>Tên sinh viên</th>
-                                            <th>Số Điện Thoại</th>
-                                            <th>Điểm GPA</th>
-                                            <th>Nhóm Đồ Án</th>
+
+                                            <th v-bind:value="sinh_vien_update.ma_sinh_vien">Mã sinh viên</th>
+                                            <th v-bind:value="sinh_vien_update.ten_sinh_vien">Tên sinh viên</th>
+                                            <th v-bind:value="sinh_vien_update.so_dien_thoai">Số Điện Thoại</th>
+                                            <th v-bind:value="sinh_vien_update.diem_gpa">Điểm GPA</th>
+                                            <th v-bind:value="sinh_vien_update.nhom_do_an">Nhóm Đồ Án</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                        <tr >
+                                            <td >{{ sinh_vien_update.ma_sinh_vien }} </td>
+                                            <td>{{ sinh_vien_update.ten_sinh_vien }}</td>
+                                            <td>{{ sinh_vien_update.so_dien_thoai }}</td>
+                                            <td>{{ sinh_vien_update.diem_gpa }}</td>
 
-                                            <td>1</td>
-                                            <td>
-                                                26211241674
-                                            </td>
-                                            <td>
-                                                Lương Trọng Linh
-                                            </td>
-                                            <td>
-                                                0397757013
-                                            </td>
-                                            <td>
-                                                3.2
-                                            </td>
-                                            <td>
-                                                C1SE_18
-                                            </td>
+                                            <td>null</td>
                                         </tr>
 
                                     </tbody>
                                 </table>
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
@@ -287,7 +255,7 @@
         </div>
     </div>
 </div>
-<!-- ------------------ -->
+
 </template>
 
 <script>
@@ -299,8 +267,11 @@ export default {
     data() {
         return {
             list_sinh_vien: [],
+            list_nien_khoa: [],
             sinh_vien_add: {},
             sinh_vien_update: {},
+            list_sinh_vien_detail: [],
+
         }
     },
     mounted() {
@@ -317,13 +288,34 @@ export default {
 
                 });
         },
+        getTenNienKhoa(idNienKhoa) {
+            const nienKhoa = this.list_nien_khoa.find((nk) => nk.id === idNienKhoa);
+            return nienKhoa ? nienKhoa.ten_nien_khoa : "";
+        },
+        layTheoId(id) {
+            // Sử dụng phương thức `find()` để lấy sinh viên theo ID
+            const sinhVien = this.list_sinh_vien.find((v) => v.id === id);
+            // Trả về sinh viên đã tìm thấy
+            return sinhVien;
 
+        },
         load() {
             baseRequest
                 .get("sinh-vien/data")
                 .then((res) => {
                     this.list_sinh_vien = res.data.data;
                 });
+            baseRequest
+                .get("sinh-vien/data/{id}")
+                .then((res) => {
+                    this.list_sinh_vien_detail = res.data.data;
+                });
+            baseRequest
+                .get("nien-khoa/data")
+                .then((res) => {
+                    this.list_nien_khoa = res.data.data;
+                });
+
         },
         capNhat() {
 
