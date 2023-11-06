@@ -96,17 +96,14 @@
                                 <td><input type="checkbox" class="form-check-input" id="exampleCheck1"></td>
                                 <td>
                                     <button style="margin-right:10px;" @click="sinh_vien_update = Object.assign({},v)" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleCapNhat">Cập Nhật</button>
-                                    <button  class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleChiTiet">Chi Tiết</button>
+                                    <button @click="sinh_vien_update = Object.assign({},v)" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleChiTiet">Chi Tiết</button>
                                 </td>
                                 <td>{{k+1}}</td>
                                 <td>{{v.ma_sinh_vien}}</td>
                                 <td class="uppercase">{{v.ten_sinh_vien}}</td>
                                 <td>
                                     {{ getTenNienKhoa(v.id_nien_khoa) }}
-                                    <!-- <span v-for="(nienKhoa, k) in list_nien_khoa">
-                                        {{ nienKhoa.ten_nien_khoa }}
-
-                                    </span> -->
+                                    
                                 </td>
                                 <td>
                                     {{v.diem_gpa}}
@@ -168,32 +165,24 @@
                                     <thead>
                                         <tr>
 
-                                            <th>#</th>
-                                            <th>Mã sinh viên</th>
-                                            <th>Tên sinh viên</th>
-                                            <th>Số Điện Thoại</th>
-                                            <th>Điểm GPA</th>
-                                            <th>Nhóm Đồ Án</th>
+                                            
+                                            <th v-bind:value="sinh_vien_update.ma_sinh_vien">Mã sinh viên</th>
+                                            <th v-bind:value="sinh_vien_update.ten_sinh_vien">Tên sinh viên</th>
+                                            <th v-bind:value="sinh_vien_update.so_dien_thoai">Số Điện Thoại</th>
+                                            <th v-bind:value="sinh_vien_update.diem_gpa">Điểm GPA</th>
+                                            <th v-bind:value="sinh_vien_update.nhom_do_an">Nhóm Đồ Án</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr v-for="(v) in list_sinh_vien" :key="v.id">
-                                            <td>{{ v.id }}</td>
-                                            <td>{{ v.ma_sinh_vien }}</td>
-                                            <td>{{ v.ten_sinh_vien }}</td>
-                                            <td>{{ v.so_dien_thoai }}</td>
-                                            <td>{{ v.diem_gpa }}</td>
+                                        <tr >
+                                            <td >{{ sinh_vien_update.ma_sinh_vien }} </td>
+                                            <td>{{ sinh_vien_update.ten_sinh_vien }}</td>
+                                            <td>{{ sinh_vien_update.so_dien_thoai }}</td>
+                                            <td>{{ sinh_vien_update.diem_gpa }}</td>
+                                            
                                             <td>null</td>
                                         </tr>
-                                        <!-- <div v-if="selectedSinhVien">
-                                    
-                                    <h2>Chi tiết sinh viên</h2>
-                                    <p>ID: {{ selectedSinhVien.id }}</p>
-                                    <p>Mã sinh viên: {{ selectedSinhVien.ma_sinh_vien }}</p>
-                                    <p>Tên sinh viên: {{ selectedSinhVien.ten_sinh_vien }}</p>
-                                    <p>Số điện thoại: {{ selectedSinhVien.so_dien_thoai }}</p>
-                                    <p>Điểm GPA: {{ selectedSinhVien.diem_gpa }}</p>
-                                    </div> -->
+                                        
                                     </tbody>
                                 </table>
                                 
@@ -262,7 +251,7 @@
         </div>
     </div>
 </div>
-<!-- ------------------ -->
+
 </template>
 
 <script>
@@ -276,7 +265,7 @@ export default {
             list_nien_khoa: [],
             sinh_vien_add: {},
             sinh_vien_update: {},
-            list_sinh_vien_detail: [],
+           
             
         }
     },
@@ -297,13 +286,7 @@ export default {
             const nienKhoa = this.list_nien_khoa.find((nk) => nk.id === idNienKhoa);
             return nienKhoa ? nienKhoa.ten_nien_khoa : "";
         },
-        layTheoId(id) {
-        // Sử dụng phương thức `find()` để lấy sinh viên theo ID
-        const sinhVien = this.list_sinh_vien.find((v) => v.id === id);
-        // Trả về sinh viên đã tìm thấy
-        return sinhVien;
-      
-    },
+        
         load() {
             baseRequest
                 .get("sinh-vien/data")
