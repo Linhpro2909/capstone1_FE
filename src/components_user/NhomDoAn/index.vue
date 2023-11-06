@@ -309,6 +309,7 @@
 </template>
 
 <script>
+npm
 export default {
 
 }
@@ -316,4 +317,4 @@ export default {
 
 <style lang="">
 
-    </style>
+</style>

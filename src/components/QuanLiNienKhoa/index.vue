@@ -42,7 +42,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-outline-success">Thêm</button>
+                    <button v-on:click="them_moi()" type="button" class="btn btn-outline-success">Thêm</button>
                 </div>
             </div>
         </div>
@@ -66,8 +66,8 @@
                     </div>
                     <div class="col-6">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="nhập tên cần niên khóa" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Tìm</button>
+                            <input v-on:keyup.enter="timKiem()" v-model="search.ten_nien_khoa" type="text" class="form-control" placeholder="nhập tên cần niên khóa" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <button v-on:click="timKiem()" class="btn btn-outline-secondary" type="button" id="button-addon2">Tìm</button>
                         </div>
                     </div>
 
@@ -81,11 +81,11 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body text-dark">
-                                <p>Bạn Có Chắc Muốn Xóa Khóa Này Không</p>
+                                <p>Bạn Có Chắc Muốn Xóa {{nien_khoa_delete.ten_nien_khoa}}</p>
                             </div>
                             <div class="modal-footer border-dark">
                                 <button type="button" class="btn btn-light" data-bs-dismiss="modal">Đóng</button>
-                                <button type="button" class="btn btn-dark">Xác Nhận</button>
+                                <button v-on:click="xoa()" type="button" class="btn btn-dark">Xác Nhận</button>
                             </div>
                         </div>
                     </div>
@@ -95,7 +95,8 @@
                     <thead>
                         <tr style="text-align: center;">
                             <th>
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <input v-on:click="handleSelectAll()" type="checkbox" name="" id="select_all_ids">
+
                             </th>
                             <th>Action</th>
                             <th>Tên Khóa</th>
@@ -108,7 +109,8 @@
                         <template v-for="(v,k) in list_nien_khoa">
                             <tr>
                                 <td>
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    <input  @:click="nien_khoa_delete = Object.assign({},v), chon_delete()" type="checkbox"  class="checkbox_ids" id="" v-bind:value="v.id">
+
                                 </td>
                                 <td>
                                     <button @:click="nien_khoa_update = Object.assign({},v)" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleSua">Sửa</button>
@@ -199,13 +201,16 @@ export default {
 
             },
             nien_khoa_update: {
-
             },
-
+            nien_khoa_delete: {
+            },
+            search          :   {},
+            list_delete     :  []
         }
     },
     mounted() {
         this.load();
+        this.handleSelectAll()
     },
     methods: {
         them_moi() {
@@ -224,6 +229,7 @@ export default {
                 .then((res) => {
                     this.list_nien_khoa = res.data.data;
                 });
+                this.handleSelectAll();
         },
         capNhat() {
 
@@ -235,6 +241,54 @@ export default {
                 });
         },
 
+        uncheckAll() {
+
+        },
+        
+        handleSelectAll(e) {
+            $("#select_all_ids").click(function () {
+                $('.checkbox_ids').prop('checked', $(this).prop('checked'));
+            });
+            console.log(this.list_delete);
+            // $('#deleteAllSelectedRecord').click(function (e) {
+            //     e.preventDefault();
+            //     var all_ids = [];
+            //     $('input::checkbox[name=ids]:checked').each(function () {
+            //         all_ids.push($(this).val());
+            //     });
+            //     $.ajax({
+            //         url: "",
+            //         type: "DELETE",
+            //         data: {
+            //             ids: all_ids,
+            //             _token: '{{csrf_token()}}'
+            //         },
+            //         success: function (respones) {
+            //             $.each(all_ids, function (v, k) {
+
+            //             })
+            //         }
+            //     })
+            // })
+        },
+        xoa() {
+            baseRequest
+                .post("nien-khoa/delete", this.nien_khoa_delete)
+                .then((res) => {
+                    if (res.data.status == 1) {
+                        functionBasic.displaySuccess(res);
+                        this.load();
+                        $('.checkbox_ids').prop('checked', false);
+                    }
+                });
+        },
+        timKiem() {
+            baseRequest
+                .post('nien-khoa/search', this.search)
+                .then((res) => {
+                    this.list_nien_khoa = res.data.data;
+                })
+        },
     },
 
 }

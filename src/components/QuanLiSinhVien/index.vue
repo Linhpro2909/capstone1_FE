@@ -67,7 +67,7 @@
                             <input type="text" class="form-control" placeholder="nhập tên sinh viên cần tìm" aria-label="Recipient's username" aria-describedby="button-addon2">
                             <button class="btn btn-outline-secondary" type="button" id="button-addon2">Tìm</button>
                         </div>
-                        <button class="btn btn-outline-danger">
+                        <button class="btn btn-outline-danger" id="deleteAllSelectedRecord">
                             <i class="fa-solid fa-trash-can"></i>Xoá
                         </button>
 
@@ -78,7 +78,9 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th><input type="checkbox" class="form-check-input" id="exampleCheck1"></th>
+                            <th>
+                                <input v-on:click="handleSelectAll()" type="checkbox" name="" id="select_all_ids">
+                            </th>
                             <th>Thao Tác</th>
                             <th>#</th>
                             <th>Mã sinh viên</th>
@@ -90,7 +92,9 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><input type="checkbox" class="form-check-input" id="exampleCheck1"></td>
+                            <td>
+                                <input type="checkbox" name="ids" class="checkbox_ids" id="">
+                            </td>
                             <td>
                                 <button class="btn btn-info" style="margin-right: 10px;" data-bs-toggle="modal" data-bs-target="#exampleCapNhat">Cập Nhật</button>
                                 <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleChiTiet">Chi Tiết</button>
@@ -284,14 +288,13 @@
     </div>
 </div>
 <!-- ------------------ -->
-
-
 </template>
 
 <script>
 import Toaster from '@meforma/vue-toaster';
 import baseRequest from '../../core/baseRequest';
 import functionBasic from '../../core/functionBasic';
+
 export default {
     data() {
         return {
@@ -302,6 +305,7 @@ export default {
     },
     mounted() {
         this.load()
+        this.handleSelectAll()
     },
     methods: {
         them_moi() {
@@ -330,6 +334,32 @@ export default {
                     this.load();
                 });
         },
+        handleSelectAll(e) {
+            $("#select_all_ids").click(function () {
+                $('.checkbox_ids').prop('checked', $(this).prop('checked'));
+            });
+            // $('#deleteAllSelectedRecord').click(function (e) {
+            //     e.preventDefault();
+            //     var all_ids = [];
+            //     $('input::checkbox[name=ids]:checked').each(function () {
+            //         all_ids.push($(this).val());
+            //     });
+            //     $.ajax({
+            //         url: "",
+            //         type: "DELETE",
+            //         data: {
+            //             ids: all_ids,
+            //             _token: '{{csrf_token()}}'
+            //         },
+            //         success: function (respones) {
+            //             $.each(all_ids, function (v, k) {
+
+            //             })
+            //         }
+            //     })
+            // })
+        }
+
     },
 
 }
