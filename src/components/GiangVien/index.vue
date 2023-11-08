@@ -26,6 +26,8 @@
 
                         <div class="card-body">
                             <div class="card-body">
+                                <label for="">Mã Giảng Viên</label>
+                                <input v-model="giang_vien_add.ma_giang_vien" type="text" class="form-control" placeholder="Nhập tên giảng viên">
                                 <label for="">Tên Giảng Viên</label>
                                 <input v-model="giang_vien_add.Name" type="text" class="form-control" placeholder="Nhập tên giảng viên">
                                 <label for="">Ngày Tháng Năm Sinh</label>
@@ -71,6 +73,7 @@
                             <th><input type="checkbox" class="form-check-input" id="exampleCheck1"></th>
                             <th>Action</th>
                             <th>#</th>
+                            <th>Mã Giảng viên</th>
                             <th>Tên Giảng viên</th>
                             <th>Năm Sinh</th>
                             <th>Địa Chỉ</th>
@@ -85,9 +88,10 @@
                                 <td><input type="checkbox" class="form-check-input" id="exampleCheck1"></td>
                                 <td>
                                     <button style="margin-right:10px;" @click="giang_vien_update = Object.assign({},v)" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleCapNhat">Cập Nhật</button>
-                                    <button  class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleChiTiet">Chi Tiết</button>
+                                    
                                 </td>
                                 <td>{{k+1}}</td>
+                                <td>{{v.ma_giang_vien}}</td>
                                 <td>{{v.Name}}</td>
                                 <td class="uppercase">{{v.Date_of_birth}}</td>
                                 <td>
@@ -117,6 +121,8 @@
       <div class="modal-body">
         <div class="card-body">
                             <div class="card-body">
+                                <label for="">Mã Giảng Viên</label>
+                                <input v-model="giang_vien_update.ma_giang_vien" type="text" class="form-control" placeholder="Nhập mã giảng viên">
                                 <label for="">Tên Giảng Viên</label>
                                 <input v-model="giang_vien_update.Name" type="text" class="form-control" placeholder="Nhập tên giảng viên">
                                 <label for="">Ngày Tháng Năm Sinh</label>
@@ -136,6 +142,7 @@
     </div>
   </div>
 </div>
+
 </template>
 
 <script>

@@ -68,7 +68,7 @@
                             <input type="text" class="form-control" placeholder="nhập tên sinh viên cần tìm" aria-label="Recipient's username" aria-describedby="button-addon2">
                             <button class="btn btn-outline-secondary" type="button" id="button-addon2">Tìm</button>
                         </div>
-                        <button class="btn btn-outline-danger">
+                        <button class="btn btn-outline-danger" id="deleteAllSelectedRecord">
                             <i class="fa-solid fa-trash-can"></i>Xoá
                         </button>
 
@@ -79,7 +79,9 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr class="text-center">
-                            <th><input type="checkbox" class="form-check-input" id="exampleCheck1"></th>
+                            <th>
+                                <input v-on:click="handleSelectAll()" type="checkbox" name="" id="select_all_ids">
+                            </th>
                             <th>Thao Tác</th>
                             <th>#</th>
                             <th>Mã sinh viên</th>
@@ -89,11 +91,13 @@
 
                         </tr>
                     </thead>
+
                     <tbody class="text-center">
 
-                        <template v-for="(v,k) in list_sinh_vien">
+                        <template v-for="(v,k) in list_sinh_vien" >
                             <tr>
-                                <td><input type="checkbox" class="form-check-input" id="exampleCheck1"></td>
+                                <td> <input type="checkbox" name="ids" class="checkbox_ids" id=""></td>
+
                                 <td>
                                     <button style="margin-right:10px;" @click="sinh_vien_update = Object.assign({},v)" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleCapNhat">Cập Nhật</button>
                                     <button @click="sinh_vien_update = Object.assign({},v)" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleChiTiet">Chi Tiết</button>
@@ -134,7 +138,7 @@
                                         <label for="">Khóa</label>
                                         <!-- <input v-model="sinh_vien_update.so_dien_thoai" type="tel" id="phone" name="phone" pattern="[0-9]{10}" class="form-control" required> -->
                                         <select v-model="sinh_vien_update.id_nien_khoa" class="form-select">
-                                            <template v-for="(v, k) in list_nien_khoa">
+                                            <template v-for="(v, k) in list_nien_khoa" >
                                                 <option v-bind:value="v.id">{{v.ten_nien_khoa}}</option>
                                             </template>
                                         </select>
@@ -157,7 +161,7 @@
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1  class="modal-title fs-5" id="exampleCHiTiet">Chi Tiết</h1>
+                                <h1 class="modal-title fs-5" id="exampleCHiTiet">Chi Tiết</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -166,26 +170,30 @@
                                         <tr>
 
                                             
-                                            <th v-bind:value="sinh_vien_update.ma_sinh_vien">Mã sinh viên</th>
-                                            <th v-bind:value="sinh_vien_update.ten_sinh_vien">Tên sinh viên</th>
-                                            <th v-bind:value="sinh_vien_update.so_dien_thoai">Số Điện Thoại</th>
-                                            <th v-bind:value="sinh_vien_update.diem_gpa">Điểm GPA</th>
-                                            <th v-bind:value="sinh_vien_update.nhom_do_an">Nhóm Đồ Án</th>
+                                                <th v-bind:value="sinh_vien_update.ma_sinh_vien">Mã sinh viên</th>
+                                                <th v-bind:value="sinh_vien_update.ten_sinh_vien">Tên sinh viên</th>
+                                                <th v-bind:value="sinh_vien_update.so_dien_thoai">Số Điện Thoại</th>
+                                                <th v-bind:value="sinh_vien_update.diem_gpa">Điểm GPA</th>
+                                                <th v-bind:value="sinh_vien_update.nhom_do_an">Nhóm Đồ Án</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr >
-                                            <td >{{ sinh_vien_update.ma_sinh_vien }} </td>
+                                        <tr>
+                                            <td>{{ sinh_vien_update.ma_sinh_vien }} </td>
                                             <td>{{ sinh_vien_update.ten_sinh_vien }}</td>
                                             <td>{{ sinh_vien_update.so_dien_thoai }}</td>
                                             <td>{{ sinh_vien_update.diem_gpa }}</td>
-                                            
-                                            <td>null</td>
+                                             <td>null</td>
                                         </tr>
+
+                                        
+                                        
+                                        
+
                                         
                                     </tbody>
                                 </table>
-                                
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
@@ -251,13 +259,13 @@
         </div>
     </div>
 </div>
-
 </template>
 
 <script>
 import Toaster from '@meforma/vue-toaster';
 import baseRequest from '../../core/baseRequest';
 import functionBasic from '../../core/functionBasic';
+
 export default {
     data() {
         return {
@@ -267,10 +275,13 @@ export default {
             sinh_vien_update: {},
            
             
+
+           
         }
     },
     mounted() {
         this.load()
+        this.handleSelectAll()
     },
     methods: {
         them_moi() {
@@ -287,23 +298,25 @@ export default {
             return nienKhoa ? nienKhoa.ten_nien_khoa : "";
         },
         
+        
+        
         load() {
             baseRequest
                 .get("sinh-vien/data")
                 .then((res) => {
                     this.list_sinh_vien = res.data.data;
                 });
-            baseRequest
-                .get("sinh-vien/data/{id}")
-                .then((res) => {
-                    this.list_sinh_vien_detail = res.data.data;
-                });
+            // baseRequest
+            //     .get("sinh-vien/data/{id}")
+            //     .then((res) => {
+            //         this.list_sinh_vien_detail = res.data.data;
+            //     });
             baseRequest
                 .get("nien-khoa/data")
                 .then((res) => {
                     this.list_nien_khoa = res.data.data;
                 });
-            
+
         },
         capNhat() {
 
@@ -314,6 +327,32 @@ export default {
                     this.load();
                 });
         },
+        handleSelectAll(e) {
+            $("#select_all_ids").click(function () {
+                $('.checkbox_ids').prop('checked', $(this).prop('checked'));
+            });
+            // $('#deleteAllSelectedRecord').click(function (e) {
+            //     e.preventDefault();
+            //     var all_ids = [];
+            //     $('input::checkbox[name=ids]:checked').each(function () {
+            //         all_ids.push($(this).val());
+            //     });
+            //     $.ajax({
+            //         url: "",
+            //         type: "DELETE",
+            //         data: {
+            //             ids: all_ids,
+            //             _token: '{{csrf_token()}}'
+            //         },
+            //         success: function (respones) {
+            //             $.each(all_ids, function (v, k) {
+
+            //             })
+            //         }
+            //     })
+            // })
+        }
+
     },
 
 }

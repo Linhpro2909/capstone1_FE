@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid" style="margin-top:-130px;">
+    <div class="container-fluid" style="margin-top:-30px;">
     
         <div class="card-body">
             <div class="card">
@@ -262,6 +262,7 @@
     </template>
     
     <script>
+    
     export default {
     
     }

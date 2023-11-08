@@ -21,7 +21,7 @@ const routes = [
     {
         path : '/sinh-vien-nhom-do-an',
         meta : {layout : 'client'},
-        component: ()=>import('../components_user/NhomDoAn/index.vue')
+        component: ()=>import('../components_user/SinhVien/index.vue')
     },
     {
         path : '/dang-nhap',

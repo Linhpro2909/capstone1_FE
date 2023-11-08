@@ -21,8 +21,8 @@
 
                         <div class="card-body">
                             <div class="card-body">
-                    <label for="">Tên Sinh Viên</label>
-                    <input v-model="tai_khoan_add.name" type="text" class="form-control" placeholder="nhập tên sinh viên">           
+                    <label for="">Mã Số Sinh Viên</label>
+                    <input v-model="tai_khoan_add.name" type="text" class="form-control" placeholder="nhập mã sinh viên">           
                     <label for="">Email</label>
                     <input v-model="tai_khoan_add.email" type="email" class="form-control" placeholder="nhập email">
                     <label for="">Password</label>
@@ -51,7 +51,7 @@
                         <thead class="text-center">
                             <tr>
                                 <th>#</th>
-                                <th>Tên Sinh Viên</th>
+                                <th>Mã số sinh viên</th>
                                 <th>Email</th>
                                 <th>Password</th>
                                 <th>Action</th>
@@ -62,7 +62,7 @@
                                 <td>
                                     1
                                 </td>
-                                <td>Lương Trọng Linh</td>
+                                <td>26211234519</td>
                                 <td>Tronglinhluong@gmail.com</td>
                                 <td>tronglinh11</td>
                                 <td>
