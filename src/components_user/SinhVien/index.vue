@@ -5,12 +5,12 @@
             <div class="card">
                 <div style="background-color: aquamarine;" class="card-header ">
                     <div class="row">
-                        <div class="col-9">
-                            <h5 style="margin-top:10px;">Nhóm đồ án</h5>
+                        <div class="col-12">
+                            <h5 style="margin-top:15px;">Nhóm đồ án</h5>
                         </div>
                         <div class="col-3">
                             <div class="text-end">
-                                <router-link to="/chia-nhom">
+                                <!-- <router-link to="/chia-nhom">
     
                                     <button class="btn btn-outline-dark mt-1" style="margin-right:10px;"> Chia nhóm</button>
     
@@ -19,7 +19,7 @@
     
                                     <button class="btn btn-outline-dark mt-1"> Đăng ký đề tài</button>
     
-                                </router-link>
+                                </router-link> -->
                             </div>
                         </div>
                     </div>

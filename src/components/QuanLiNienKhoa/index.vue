@@ -202,7 +202,7 @@ export default {
             nien_khoa_delete: {
             },
             search          :   {},
-            list_delete     :  []
+            list_delete     :  [],
         }
     },
     mounted() {
@@ -238,9 +238,7 @@ export default {
                 });
         },
 
-        uncheckAll() {
-
-        },
+       
         
         handleSelectAll(e) {
             $("#select_all_ids").click(function () {
