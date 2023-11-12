@@ -1,4 +1,4 @@
-<template lang="">
+<template lang="" >
 <div class="row ">
     <div class="col-4">
         <h4 class="text-danger">Quản Lý Sinh Viên</h4>
@@ -30,7 +30,7 @@
                             <input v-model="sinh_vien_add.ma_sinh_vien" type="text" class="form-control">
                             <label for="">Khóa</label>
                             <select v-model="sinh_vien_add.id_nien_khoa" class="form-select">
-                                <template v-for="(v, k) in list_nien_khoa">
+                                <template v-for="(v, k) in list_nien_khoa" :key="k">
                                     <option v-bind:value="v.id">{{v.ten_nien_khoa}}</option>
                                 </template>
                             </select>
@@ -65,59 +65,93 @@
 
                         <div class="input-group mb-3">
 
-                            <input type="text" class="form-control" placeholder="nhập tên sinh viên cần tìm" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Tìm</button>
+                            <input v-on:keyup.enter="timKiem()" v-model="search.ten_sinh_vien" type="text" class="form-control" placeholder="nhập tên sinh viên cần tìm" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <button  v-on:click="timKiem()" class="btn btn-outline-secondary" type="button" id="button-addon2">Tìm</button>
                         </div>
-                        <button class="btn btn-outline-danger" id="deleteAllSelectedRecord">
+                        <button class="btn btn-outline-danger" id="deleteAllSelectedRecord" data-bs-toggle="modal" data-bs-target="#exampleXoa">
                             <i class="fa-solid fa-trash-can"></i>Xoá
                         </button>
 
                         <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-left:5px;">Chia nhóm</button>
                     </div>
 
+                    
                 </div>
                 <table class="table table-bordered">
                     <thead>
                         <tr class="text-center">
-                            <th>
-                                <input v-on:click="handleSelectAll()" type="checkbox" name="" id="select_all_ids">
-                            </th>
-                            <th>Thao Tác</th>
+                           <th>Thao Tác</th>
                             <th>#</th>
                             <th>Mã sinh viên</th>
                             <th>Tên sinh viên</th>
                             <th>Khoá</th>
-                            <th>Điểm GPA</th>
-
+                          
+                            <th v-on:click="sort()" >
+                                Điểm GPA
+                                <i  v-if="order_by == 2" class="text-primary fa-solid fa-arrow-up"></i>
+                                <i  v-else-if="order_by == 1" class="text-danger fa-solid fa-arrow-down"></i>
+                                <i  v-else class="text-success fa-solid fa-spinner fa-pulse"></i>
+                            </th>
+                            <th>
+                                <input v-on:click="handleSelectAll()"  type="checkbox" name="" id="select_all_ids">
+                            </th>
                         </tr>
                     </thead>
-
                     <tbody class="text-center">
 
+<<<<<<< HEAD
                         <template v-for="(v,k) in list_sinh_vien" >
                             <tr>
                                 <td> <input type="checkbox" name="ids" class="checkbox_ids" id=""></td>
 
+=======
+                        <template v-for="(v,k) in list_sinh_vien" :key="k">
+                            <tr>
+>>>>>>> 475b0c860b5a025094204b77bf4917405f47cf78
                                 <td>
                                     <button style="margin-right:10px;" @click="sinh_vien_update = Object.assign({},v)" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleCapNhat">Cập Nhật</button>
                                     <button @click="sinh_vien_update = Object.assign({},v)" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleChiTiet">Chi Tiết</button>
                                 </td>
                                 <td>{{k+1}}</td>
                                 <td>{{v.ma_sinh_vien}}</td>
-                                <td class="uppercase">{{v.ten_sinh_vien}}</td>
+                                <td class=" text-uppercase">{{v.ten_sinh_vien}}</td>
                                 <td>
+<<<<<<< HEAD
                                     {{ getTenNienKhoa(v.id_nien_khoa) }}
                                     
+=======
+                                    {{ getTenNienKhoa(v.id_nien_khoa)}}
+
+>>>>>>> 475b0c860b5a025094204b77bf4917405f47cf78
                                 </td>
                                 <td>
                                     {{v.diem_gpa}}
                                 </td>
+                                <td> <input v-model="v.check" type="checkbox" name="ids" class="checkbox_ids"></td>
 
                             </tr>
                         </template>
 
                     </tbody>
                 </table>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleXoa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa Sinh Viên</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-danger">Bạn có chắc muốn xóa </p>{{ sinh_vien_delete.ten_sinh_vien }}
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                <button v-on:click="xoa()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Xác Nhận</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- Modal -->
                 <div class="modal fade" id="exampleCapNhat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -169,12 +203,21 @@
                                     <thead>
                                         <tr>
 
+<<<<<<< HEAD
                                             
                                                 <th v-bind:value="sinh_vien_update.ma_sinh_vien">Mã sinh viên</th>
                                                 <th v-bind:value="sinh_vien_update.ten_sinh_vien">Tên sinh viên</th>
                                                 <th v-bind:value="sinh_vien_update.so_dien_thoai">Số Điện Thoại</th>
                                                 <th v-bind:value="sinh_vien_update.diem_gpa">Điểm GPA</th>
                                                 <th v-bind:value="sinh_vien_update.nhom_do_an">Nhóm Đồ Án</th>
+=======
+                                            <th v-bind:value="sinh_vien_update.ma_sinh_vien">Mã sinh viên</th>
+                                            <th v-bind:value="sinh_vien_update.ten_sinh_vien">Tên sinh viên</th>
+                                            <th v-bind:value="sinh_vien_update.so_dien_thoai">Số Điện Thoại</th>
+                                            <th v-bind:value="sinh_vien_update.diem_gpa">Điểm GPA</th>
+                                            <th v-bind:value="sinh_vien_update.nhom_do_an">Nhóm Đồ Án</th>
+                                            
+>>>>>>> 475b0c860b5a025094204b77bf4917405f47cf78
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -185,12 +228,15 @@
                                             <td>{{ sinh_vien_update.diem_gpa }}</td>
                                              <td>null</td>
                                         </tr>
+<<<<<<< HEAD
 
                                         
                                         
                                         
 
                                         
+=======
+>>>>>>> 475b0c860b5a025094204b77bf4917405f47cf78
                                     </tbody>
                                 </table>
 
@@ -273,6 +319,14 @@ export default {
             list_nien_khoa: [],
             sinh_vien_add: {},
             sinh_vien_update: {},
+<<<<<<< HEAD
+=======
+            list_sinh_vien_detail: [],
+            sinh_vien_delete: {},
+            search: {},
+            dem: 0,
+            order_by : 0,
+>>>>>>> 475b0c860b5a025094204b77bf4917405f47cf78
            
             
 
@@ -327,37 +381,64 @@ export default {
                     this.load();
                 });
         },
+        xoa() {
+            baseRequest
+                .post("sinh-vien/delete", this.list_sinh_vien)
+                .then((res) => {
+                    if (res.data.status == 1) {
+                        functionBasic.displaySuccess(res);
+                        this.load();
+                        $('.checkbox_ids').prop('checked', false);
+                    }
+                });
+        },
+
         handleSelectAll(e) {
             $("#select_all_ids").click(function () {
                 $('.checkbox_ids').prop('checked', $(this).prop('checked'));
+
             });
-            // $('#deleteAllSelectedRecord').click(function (e) {
-            //     e.preventDefault();
-            //     var all_ids = [];
-            //     $('input::checkbox[name=ids]:checked').each(function () {
-            //         all_ids.push($(this).val());
-            //     });
-            //     $.ajax({
-            //         url: "",
-            //         type: "DELETE",
-            //         data: {
-            //             ids: all_ids,
-            //             _token: '{{csrf_token()}}'
-            //         },
-            //         success: function (respones) {
-            //             $.each(all_ids, function (v, k) {
-
-            //             })
-            //         }
-            //     })
-            // })
-        }
-
+            if (this.dem % 2 == 0) {
+                this.list_sinh_vien.forEach((value, key) => {
+                    value.check = false;
+                });
+            } else {
+                this.list_sinh_vien.forEach((value, key) => {
+                    value.check = true;
+                });
+            }
+            this.dem++;
+        },
+        timKiem() {
+            baseRequest
+                .post('sinh-vien/search', this.search)
+                .then((res) => {
+                    this.list_sinh_vien = res.data.data;
+                })
+        },
+        sort() {
+            this.order_by = this.order_by + 1;
+            if(this.order_by > 2) {
+                this.order_by = 0;
+            }
+            // Quy ước : 1 tăng dần theo giá, 2 giảm dần theo giá, 0: tăng dần theo id
+            if(this.order_by == 1) {
+                this.list_sinh_vien = this.list_sinh_vien.sort(function(a, b) {
+                    return a.diem_gpa - b.diem_gpa;
+                })
+            } else if(this.order_by == 2) {
+                this.list_sinh_vien = this.list_sinh_vien.sort(function(a, b) {
+                    return b.diem_gpa - a.diem_gpa;
+                })
+            } else {
+                this.list_sinh_vien = this.list_sinh_vien.sort(function(a, b) {
+                    return a.id - b.id;
+                })
+            }
+        },
     },
 
 }
 </script>
 
-<style>
-
-     </style>
+<style></style>

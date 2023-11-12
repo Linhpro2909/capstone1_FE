@@ -8,7 +8,7 @@
                     <div class="col-9">
                         <h5 style="margin-top:10px;">Nhóm đồ án</h5>
                     </div>
-                    <div class="col-3">
+                    <!-- <div class="col-3">
                         <div class="text-end">
 
                             <router-link to="/ngan-hang-de-tai">
@@ -17,7 +17,7 @@
 
                             </router-link>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="card-body ">

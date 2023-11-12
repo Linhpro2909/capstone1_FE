@@ -29,13 +29,13 @@
                                 <label for="">Mã Giảng Viên</label>
                                 <input v-model="giang_vien_add.ma_giang_vien" type="text" class="form-control" placeholder="Nhập tên giảng viên">
                                 <label for="">Tên Giảng Viên</label>
-                                <input v-model="giang_vien_add.Name" type="text" class="form-control" placeholder="Nhập tên giảng viên">
+                                <input v-model="giang_vien_add.ten_giang_vien" type="text" class="form-control" placeholder="Nhập tên giảng viên">
                                 <label for="">Ngày Tháng Năm Sinh</label>
-                                <input v-model="giang_vien_add.Date_of_birth" type="date" class="form-control" placeholder="Nhập ngày tháng năm sinh">
+                                <input v-model="giang_vien_add.ngay_thang_nam_sinh" type="date" class="form-control" placeholder="Nhập ngày tháng năm sinh">
                                 <label for="">Địa Chỉ</label>
-                                <input v-model="giang_vien_add.Address" type="text" class="form-control" placeholder="Nhập địa chỉ">
+                                <input v-model="giang_vien_add.dia_chi" type="text" class="form-control" placeholder="Nhập địa chỉ">
                                 <label for="">Đơn Vị Đang Công Tác</label>
-                                <input v-model="giang_vien_add.don_vi_cong_tac" type="text" class="form-control" placeholder="Nhập đơn vị đang công tác">
+                                <input v-model="giang_vien_add.dia_chi_cong_tac" type="text" class="form-control" placeholder="Nhập đơn vị đang công tác">
                             </div>
 
                         </div>
@@ -57,12 +57,14 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-2">
-                        <button class="btn btn-danger"><i class="fa-solid fa-trash" style="color: #c8bab8;"></i> Xóa</button>
+                        <button class="btn btn-outline-danger" id="deleteAllSelectedRecord" data-bs-toggle="modal" data-bs-target="#exampleXoa">
+                            <i class="fa-solid fa-trash-can"></i>Xoá
+                        </button>
                     </div>
                     <div class="col-4">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Nhập Tên Giảng Viên Cần Tìm" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2">Tìm Kiếm</button>
+                            <input v-on:keyup.enter="timKiem()" v-model="search.ten_giang_vien" type="text" class="form-control" placeholder="Nhập Tên Giảng Viên Cần Tìm" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <button  v-on:click="timKiem()"  class="btn btn-outline-secondary" type="button" id="button-addon2">Tìm Kiếm</button>
                         </div>
                     </div>
 
@@ -70,7 +72,9 @@
                 <table class="table table-bordered mt-2">
                     <thead class="text-center">
                         <tr class="text-center">
-                            <th><input type="checkbox" class="form-check-input" id="exampleCheck1"></th>
+                            <th>
+                                <input v-on:click="handleSelectAll()"  type="checkbox" name="" id="select_all_ids">
+                            </th>
                             <th>Action</th>
                             <th>#</th>
                             <th>Mã Giảng viên</th>
@@ -85,20 +89,25 @@
                     <tbody class="text-center">
                         <template v-for="(v,k) in list_giang_vien">
                             <tr>
-                                <td><input type="checkbox" class="form-check-input" id="exampleCheck1"></td>
+                                <td> <input v-model="v.check" type="checkbox" name="ids" class="checkbox_ids"></td>
                                 <td>
                                     <button style="margin-right:10px;" @click="giang_vien_update = Object.assign({},v)" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleCapNhat">Cập Nhật</button>
                                     
                                 </td>
                                 <td>{{k+1}}</td>
                                 <td>{{v.ma_giang_vien}}</td>
+<<<<<<< HEAD
                                 <td>{{v.Name}}</td>
                                 <td class="uppercase">{{v.Date_of_birth}}</td>
+=======
+                                <td>{{v.ten_giang_vien}}</td>
+                                <td class="uppercase">{{v.ngay_thang_nam_sinh}}</td>
+>>>>>>> 475b0c860b5a025094204b77bf4917405f47cf78
                                 <td>
-                                     {{v.Address}}   
+                                     {{v.dia_chi}}   
                                 </td>
                                 <td>
-                                    {{v.don_vi_cong_tac}}
+                                    {{v.dia_chi_cong_tac}}
                                 </td>
 
                             </tr>
@@ -124,13 +133,13 @@
                                 <label for="">Mã Giảng Viên</label>
                                 <input v-model="giang_vien_update.ma_giang_vien" type="text" class="form-control" placeholder="Nhập mã giảng viên">
                                 <label for="">Tên Giảng Viên</label>
-                                <input v-model="giang_vien_update.Name" type="text" class="form-control" placeholder="Nhập tên giảng viên">
+                                <input v-model="giang_vien_update.ten_giang_vien" type="text" class="form-control" placeholder="Nhập tên giảng viên">
                                 <label for="">Ngày Tháng Năm Sinh</label>
-                                <input v-model="giang_vien_update.Date_of_birth" type="date" class="form-control" placeholder="Nhập ngày tháng năm sinh">
+                                <input v-model="giang_vien_update.ngay_thang_nam_sinh" type="date" class="form-control" placeholder="Nhập ngày tháng năm sinh">
                                 <label for="">Địa Chỉ</label>
-                                <input v-model="giang_vien_update.Address" type="text" class="form-control" placeholder="Nhập địa chỉ">
+                                <input v-model="giang_vien_update.dia_chi" type="text" class="form-control" placeholder="Nhập địa chỉ">
                                 <label for="">Đơn Vị Đang Công Tác</label>
-                                <input v-model="giang_vien_update.don_vi_cong_tac" type="text" class="form-control" placeholder="Nhập đơn vị đang công tác">
+                                <input v-model="giang_vien_update.dia_chi_cong_tac" type="text" class="form-control" placeholder="Nhập đơn vị đang công tác">
                             </div>
 
                         </div>
@@ -142,6 +151,27 @@
     </div>
   </div>
 </div>
+<<<<<<< HEAD
+=======
+<!-- Modal -->
+<div class="modal fade" id="exampleXoa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa Giảng Viên</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-danger">Bạn có chắc muốn xóa </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                                <button v-on:click="xoa()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Xác Nhận</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+>>>>>>> 475b0c860b5a025094204b77bf4917405f47cf78
 
 </template>
 
@@ -155,6 +185,9 @@ export default {
             list_giang_vien: [],
             giang_vien_add: {},
             giang_vien_update: {},
+            giang_vien_delete:{},
+            dem: 0,
+            search: {},
         }
     },
     mounted() {
@@ -183,6 +216,40 @@ export default {
                     functionBasic.displaySuccess(res);
                     this.load();
                 });
+        },
+        xoa() {
+            baseRequest
+                .post("giang-vien/delete", this.list_giang_vien)
+                .then((res) => {
+                    if (res.data.status == 1) {
+                        functionBasic.displaySuccess(res);
+                        this.load();
+                        $('.checkbox_ids').prop('checked', false);
+                    }
+                });
+        },
+        handleSelectAll(e) {
+            $("#select_all_ids").click(function () {
+                $('.checkbox_ids').prop('checked', $(this).prop('checked'));
+
+            });
+            if (this.dem % 2 == 0) {
+                this.list_giang_vien.forEach((value, key) => {
+                    value.check = false;
+                });
+            } else {
+                this.list_giang_vien.forEach((value, key) => {
+                    value.check = true;
+                });
+            }
+            this.dem++;
+        },
+        timKiem() {
+            baseRequest
+                .post('giang-vien/search', this.search)
+                .then((res) => {
+                    this.list_giang_vien = res.data.data;
+                })
         },
     },
 }

@@ -1,421 +1,173 @@
 <template>
-<div class="container-fluid " style="margin-top:10px;">
-
-    <div class="card-body">
+<div class="row">
+    <div class="col">
+        <h6 class="mb-0 text-uppercase">Nhóm Đồ Án</h6>
+        <hr>
         <div class="card">
-            <div style="background-color: aquamarine;" class="card-header ">
-                <div class="row">
-                    <div class="col-9">
-                        <h5 style="margin-top:10px;">Nhóm đồ án</h5>
-                    </div>
-
-                </div>
-            </div>
-            <div class="card-body ">
-                <table class="table table-bordered text-center">
-                    <thead>
-                        <tr class="text-center align-middle">
-                            <th>#</th>
-                            <th>Nhóm</th>
-                            <th>Tên Thành Viên</th>
-                            <th>Tên Mentor</th>
-                            <th>Đề Tài</th>
-                            <th>Mô Tả</th>
-                            <th>Hội Đồng</th>
-                            <th>Điểm Đồ Án</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody class="align-middle">
-                        <tr>
-                            <td>
-                                1
-                            </td>
-                            <td>CSE18</td>
-                            <td>
-                                <ul>
-                                    <li>
-                                        Lương Trọng Linh
-                                    </li>
-                                    <li>
-                                        Thọ
-                                    </li>
-                                    <li>
-                                        Trí
-                                    </li>
-                                    <li>
-                                        Diễm
-                                    </li>
-                                </ul>
-                            </td>
-
-                            <td>Lê Minh Thái</td>
-                            <td>
-                                Quản lí đồ án tốt nghiệp
-                            </td>
-                            <td>
-                                <button class="btn btn-info">
-                                <i class="fa-solid fa-info" data-bs-toggle="modal" data-bs-target="#staticChitiet"></i>
-
-                                </button>
-                            </td>
-                            <td>1</td>
-                            <td>
-                                <ul>
-                                    <li>
-                                        10
-                                    </li>
-                                    <li>
-                                        10
-                                    </li>
-                                    <li>
-                                        10
-                                    </li>
-                                    <li>
-                                        10
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>
-                                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleNhatki" style="margin-right: 10px;">Nhật Kí</button>
-                                <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleTailieu">Tài Liệu</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                2
-                            </td>
-                            <td>CSE18</td>
-                            <td>
-                                <ul>
-                                    <li>
-                                        Lương Trọng Linh
-                                    </li>
-                                    <li>
-                                        Thọ
-                                    </li>
-                                    <li>
-                                        Trí
-                                    </li>
-                                    <li>
-                                        Diễm
-                                    </li>
-                                </ul>
-                            </td>
-
-                            <td>Lê Minh Thái</td>
-                            <td>
-                                Quản lí đồ án tốt nghiệp
-                            </td>
-                            <td>
-                                <i class="fa-solid fa-info"></i>
-                            </td>
-                            <td>3</td>
-                            <td>
-                                <ul>
-                                    <li>
-                                        10
-                                    </li>
-                                    <li>
-                                        10
-                                    </li>
-                                    <li>
-                                        10
-                                    </li>
-                                    <li>
-                                        10
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>
-                                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleNhatki" style="margin-right: 10px;">Nhật Kí</button>
-                                <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleTailieu">Tài Liệu</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                4
-                            </td>
-                            <td>CSE18</td>
-                            <td>
-                                <ul>
-                                    <li>
-                                        Lương Trọng Linh
-                                    </li>
-                                    <li>
-                                        Thọ
-                                    </li>
-                                    <li>
-                                        Trí
-                                    </li>
-                                    <li>
-                                        Diễm
-                                    </li>
-                                </ul>
-                            </td>
-
-                            <td>Lê Minh Thái</td>
-                            <td>
-                                Quản lí đồ án tốt nghiệp
-                            </td>
-                            <td>
-                                <i class="fa-solid fa-info"></i>
-                            </td>
-                            <td>5</td>
-                            <td>
-                                <ul>
-                                    <li>
-                                        10
-                                    </li>
-                                    <li>
-                                        10
-                                    </li>
-                                    <li>
-                                        10
-                                    </li>
-                                    <li>
-                                        10
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>
-                                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleNhatki" style="margin-right: 10px;">Nhật Kí</button>
-                                <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleTailieu">Tài Liệu</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                6
-                            </td>
-                            <td>CSE18</td>
-                            <td>
-                                <ul>
-                                    <li>
-                                        Lương Trọng Linh
-                                    </li>
-                                    <li>
-                                        Thọ
-                                    </li>
-                                    <li>
-                                        Trí
-                                    </li>
-                                    <li>
-                                        Diễm
-                                    </li>
-                                </ul>
-                            </td>
-
-                            <td>Lê Minh Thái</td>
-                            <td>
-                                Quản lí đồ án tốt nghiệp
-                            </td>
-                            <td>
-                                <i class="fa-solid fa-info"></i>
-                            </td>
-                            <td>7</td>
-                            <td>
-                                <ul>
-                                    <li>
-                                        10
-                                    </li>
-                                    <li>
-                                        10
-                                    </li>
-                                    <li>
-                                        10
-                                    </li>
-                                    <li>
-                                        10
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>
-                                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleNhatki" style="margin-right: 10px;">Nhật Kí</button>
-                                <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleTailieu">Tài Liệu</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                7
-                            </td>
-                            <td>CSE18</td>
-                            <td>
-                                <ul>
-                                    <li>
-                                        Lương Trọng Linh
-                                    </li>
-                                    <li>
-                                        Thọ
-                                    </li>
-                                    <li>
-                                        Trí
-                                    </li>
-                                    <li>
-                                        Diễm
-                                    </li>
-                                </ul>
-                            </td>
-
-                            <td>Lê Minh Thái</td>
-                            <td>
-                                Quản lí đồ án tốt nghiệp
-                            </td>
-                            <td>
-                                <i class="fa-solid fa-info"></i>
-                            </td>
-                            <td>1</td>
-                            <td>
-                                <ul>
-                                    <li>
-                                        10
-                                    </li>
-                                    <li>
-                                        10
-                                    </li>
-                                    <li>
-                                        10
-                                    </li>
-                                    <li>
-                                        10
-                                    </li>
-                                </ul>
-                            </td>
-                            <td>
-                                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleNhatki" style="margin-right: 10px;">Nhật Kí</button>
-                                <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleTailieu">Tài Liệu</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <!-- Modal -->
-                <div class="modal fade" id="exampleNhatki" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleNhatki">Chi Tiết Nhật Kí</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="card">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr class="text-center align-middle text-center">
-                                                <th>#</th>
-                                                <th>Tên nhật ký</th>
-                                                <th>Date</th>
-                                                <th>Mô tả</th>
-
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="align-middle text-center">
-                                                <th class="text-center">1</th>
-                                                <td>xxxx</td>
-                                                <td>434</td>
-                                                <td>rrrrrr</td>
-
-                                            </tr>
-                                        </tbody>
-                                    </table>
+            <div class="card-body">
+                <ul class="nav nav-pills mb-3" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-bs-toggle="pill" href="#primary-pills-home" role="tab" aria-selected="false" tabindex="-1">
+                            <div class="d-flex align-items-center">
+                                <div class="tab-icon"><i class="bx bx-home font-18 me-1"></i>
                                 </div>
+                                <div class="tab-title">Tạo Nhóm Đồ Án</div>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" data-bs-toggle="pill" href="#primary-pills-profile" role="tab" aria-selected="true">
+                            <div class="d-flex align-items-center">
+                                <div class="tab-icon"><i class="bx bx-user-pin font-18 me-1"></i>
+                                </div>
+                                <div class="tab-title">Danh Sách Nhóm Đồ Án</div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Nhật kí</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-bs-toggle="pill" href="#primary-pills-contact" role="tab" aria-selected="false" tabindex="-1">
+                            <div class="d-flex align-items-center">
+                                <div class="tab-icon"><i class="bx bx-microphone font-18 me-1"></i>
+                                </div>
+                                <div class="tab-title">Contact</div>
                             </div>
-                            <div class="modal-body">
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade" id="primary-pills-home" role="tabpanel">
+
+                        <div class="row">
+                            <div class="col-8">
                                 <table class="table table-bordered">
-                                    <tbody>
-                                        <thead>
-                                            <tr>
-                                                <th>Ngày</th>
-                                                <th>Mô tả</th>
-                                            </tr>
-                                        </thead>
-                                    <tbody>
+                                    <thead class="text-center">
                                         <tr>
-                                            <td>10/10/2023</td>
-                                            <td>nộp propasla</td>
+                                            <th>Tên Sinh Viên</th>
+                                            <th>
+                                                Điểm GPA
+                                            </th>
+                                            <th>
+                                                Action
+                                            </th>
                                         </tr>
-                                    </tbody>
+                                    </thead>
+                                    <tbody class="text-center">
+                                        <tr>
+                                            <td>Lương Trọng Linh</td>
+                                            <td>
+                                                4
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-primary">
+                                                    Add
+                                                </button>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ----- -->
-                <div class="modal fade" id="exampleTailieu" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleTailieu">Tài liệu chi tiết</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
+                            <div class="col-4">
                                 <div class="card">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr class="text-center align-middle text-center">
-                                                <th>#</th>
-                                                <th>Tên file</th>
-                                                <th>File tài liệu</th>
+                                    <div class="card-body text-center">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        Tên Sinh Viên
+                                                    </th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        Lương Trọng Linh
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-danger"> Chuyển</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr class="align-middle text-center">
-                                                <th>1</th>
-                                                <td>xxxx</td>
-                                                <td>xxxxxx</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                        </table>
+                                    </div>
+                                    <div class="card-footer text-end">
+                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleTaoNhom">Tạo</button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
 
                             </div>
                         </div>
+
                     </div>
-                </div>
-                <!-- ----------------- -->
-                <!-- Modal -->
-                <div class="modal fade" id="staticChitiet" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="staticChitiet">Chi Tiết</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                chi tiết gi thì ở đây hết đấy nhé
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                            </div>
-                        </div>
+                    <div class="tab-pane fade active show" id="primary-pills-profile" role="tabpanel">
+                        <table class="table table-bordered">
+                            <thead class="text-center">
+                                <tr>
+                                <th>
+                                    Tên Nhóm
+                                </th>
+                                <th>
+                                    Mã Nhóm
+                                </th>
+                                <th>Tên Sinh Viên</th>
+                                <th>Tên Giảng Viên HD</th>
+                                <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr>
+                                    <td>Nhóm C1ES_18</td>
+                                    <td>cis18</td>
+                                    <td>Lương Trọng Linh</td>
+                                    <td>Lê Minh Thái</td>
+                                    <td>
+                                        <button style="margin-right: 10px;" class="btn btn-secondary">Sửa</button>
+                                        <button style="margin-right: 10px;" class="btn btn-info">Đổi Thành Viên</button>
+                                        <button class="btn btn-danger">Xóa</button>
+
+                                        
+                                    </td>
+                                </tr>                                
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="primary-pills-contact" role="tabpanel">
+                        <p>Etsy mixtape wayfarers, ethical wes anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack lo-fi farm-to-table readymade. Messenger bag gentrify pitchfork tattooed craft beer, iphone skateboard locavore carles etsy salvia banksy hoodie helvetica. DIY synth PBR banksy irony. Leggings gentrify squid 8-bit cred pitchfork. Williamsburg banh mi whatever gluten-free, carles pitchfork biodiesel fixie etsy retro mlkshk vice blog. Scenester cred you probably haven't heard of them, vinyl craft beer blog stumptown. Pitchfork sustainable tofu synth chambray yr.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
+<div class="modal fade" id="exampleTaoNhom" tabindex="-1" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Tạo Nhóm</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label for="">Tên nhóm</label>
+                <input type="text" class="form-control">
+                <label for="">Mã nhóm</label>
+                <input type="text" class="form-control">
+                <label for="">Tên giảng viên hướng dẫn</label>
+               <select name="" id="" class="form-control">
+                <option value="1">
+                    Lê Minh Thái
+                </option>
+                <option value="2">
+                    Lê Minh Nam
+                </option>
+               </select>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Xác Nhận</button>
+            </div>
+        </div>
+    </div>
 </div>
 </template>
 
@@ -427,4 +179,4 @@ export default {
 
 <style lang="">
 
-        </style>
+</style>

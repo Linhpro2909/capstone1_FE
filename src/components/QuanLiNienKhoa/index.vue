@@ -208,7 +208,7 @@ export default {
             nien_khoa_delete: {
             },
             search          :   {},
-            list_delete     :  []
+            list_delete     :  [],
         }
     },
     mounted() {
@@ -244,35 +244,12 @@ export default {
                 });
         },
 
-        uncheckAll() {
-
-        },
+       
         
         handleSelectAll(e) {
             $("#select_all_ids").click(function () {
                 $('.checkbox_ids').prop('checked', $(this).prop('checked'));
             });
-            console.log(this.list_delete);
-            // $('#deleteAllSelectedRecord').click(function (e) {
-            //     e.preventDefault();
-            //     var all_ids = [];
-            //     $('input::checkbox[name=ids]:checked').each(function () {
-            //         all_ids.push($(this).val());
-            //     });
-            //     $.ajax({
-            //         url: "",
-            //         type: "DELETE",
-            //         data: {
-            //             ids: all_ids,
-            //             _token: '{{csrf_token()}}'
-            //         },
-            //         success: function (respones) {
-            //             $.each(all_ids, function (v, k) {
-
-            //             })
-            //         }
-            //     })
-            // })
         },
         xoa() {
             baseRequest
