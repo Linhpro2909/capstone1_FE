@@ -22,6 +22,8 @@
                             Thêm Mới Niên Khóa
                         </div>
                         <div class="card-body">
+                            <label for="">Mã Khóa</label>
+                            <input v-model="nien_khoa_add.ma_nien_khoa" type="text" class="form-control">
                             <label for="">Tên Khóa</label>
                             <input v-model="nien_khoa_add.ten_nien_khoa" type="text" class="form-control">
                             <label for="">Thời Gian Bắt Đầu</label>
@@ -96,6 +98,7 @@
 
                             </th>
                             <th>Action</th>
+                            <th>Mã Khóa</th>
                             <th>Tên Khóa</th>
                             <th>Niên Khóa</th>
                             <th>Tình Trạng</th>
@@ -112,6 +115,7 @@
                                 <td>
                                     <button @:click="nien_khoa_update = Object.assign({},v)" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleSua">Sửa</button>
                                 </td>
+                                <td> {{v.ma_nien_khoa}}</td>
                                 <td> {{v.ten_nien_khoa}}</td>
                                 <td>{{v.thoi_gian_bat_dau}}-{{v.thoi_gian_ket_thuc}}</td>
                                 <td>
@@ -132,6 +136,8 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
+                                <label for="">Mã Khóa</label>
+                                <input v-model="nien_khoa_update.ma_nien_khoa" type="text" class="form-control">
                                 <label for="">Tên Khóa</label>
                                 <input v-model="nien_khoa_update.ten_nien_khoa" type="text" class="form-control">
                                 <label for="">Thời Gian Bắt Đầu</label>
@@ -244,27 +250,6 @@ export default {
             $("#select_all_ids").click(function () {
                 $('.checkbox_ids').prop('checked', $(this).prop('checked'));
             });
-            console.log(this.list_delete);
-            // $('#deleteAllSelectedRecord').click(function (e) {
-            //     e.preventDefault();
-            //     var all_ids = [];
-            //     $('input::checkbox[name=ids]:checked').each(function () {
-            //         all_ids.push($(this).val());
-            //     });
-            //     $.ajax({
-            //         url: "",
-            //         type: "DELETE",
-            //         data: {
-            //             ids: all_ids,
-            //             _token: '{{csrf_token()}}'
-            //         },
-            //         success: function (respones) {
-            //             $.each(all_ids, function (v, k) {
-
-            //             })
-            //         }
-            //     })
-            // })
         },
         xoa() {
             baseRequest

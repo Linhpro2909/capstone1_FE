@@ -160,7 +160,7 @@
                                         <label for="">Khóa</label>
                                         <!-- <input v-model="sinh_vien_update.so_dien_thoai" type="tel" id="phone" name="phone" pattern="[0-9]{10}" class="form-control" required> -->
                                         <select v-model="sinh_vien_update.id_nien_khoa" class="form-select">
-                                            <template v-for="(v, k) in list_nien_khoa">
+                                            <template v-for="(v, k) in list_nien_khoa" >
                                                 <option v-bind:value="v.id">{{v.ten_nien_khoa}}</option>
                                             </template>
                                         </select>
@@ -196,6 +196,7 @@
                                             <th v-bind:value="sinh_vien_update.so_dien_thoai">Số Điện Thoại</th>
                                             <th v-bind:value="sinh_vien_update.diem_gpa">Điểm GPA</th>
                                             <th v-bind:value="sinh_vien_update.nhom_do_an">Nhóm Đồ Án</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -204,10 +205,8 @@
                                             <td>{{ sinh_vien_update.ten_sinh_vien }}</td>
                                             <td>{{ sinh_vien_update.so_dien_thoai }}</td>
                                             <td>{{ sinh_vien_update.diem_gpa }}</td>
-
-                                            <td>null</td>
+                                             <td>null</td>
                                         </tr>
-
                                     </tbody>
                                 </table>
 
@@ -276,7 +275,6 @@
         </div>
     </div>
 </div>
-
 </template>
 
 <script>
@@ -296,6 +294,10 @@ export default {
             search: {},
             dem: 0,
             order_by : 0,
+           
+            
+
+           
         }
     },
     mounted() {
@@ -316,24 +318,20 @@ export default {
             const nienKhoa = this.list_nien_khoa.find((nk) => nk.id === idNienKhoa);
             return nienKhoa ? nienKhoa.ten_nien_khoa : "";
         },
-        layTheoId(id) {
-            // Sử dụng phương thức `find()` để lấy sinh viên theo ID
-            const sinhVien = this.list_sinh_vien.find((v) => v.id === id);
-            // Trả về sinh viên đã tìm thấy
-            return sinhVien;
-
-        },
+        
+        
+        
         load() {
             baseRequest
                 .get("sinh-vien/data")
                 .then((res) => {
                     this.list_sinh_vien = res.data.data;
                 });
-            baseRequest
-                .get("sinh-vien/data/{id}")
-                .then((res) => {
-                    this.list_sinh_vien_detail = res.data.data;
-                });
+            // baseRequest
+            //     .get("sinh-vien/data/{id}")
+            //     .then((res) => {
+            //         this.list_sinh_vien_detail = res.data.data;
+            //     });
             baseRequest
                 .get("nien-khoa/data")
                 .then((res) => {
