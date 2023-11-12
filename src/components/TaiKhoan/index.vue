@@ -21,7 +21,7 @@
 
                         <div class="card-body">
                             <div class="card-body">
-<<<<<<< HEAD
+
                                 <label for="">Mã Số Sinh Viên</label>
                                 <input v-model="tai_khoan_add.MSSV" type="text" class="form-control" placeholder="nhập mã sinh viên">
                                 <label for="">Email</label>
@@ -29,15 +29,6 @@
                                 <label for="">Password</label>
                                 <input v-model="tai_khoan_add.password" type="text" class="form-control" placeholder="nhập password">
                             </div>
-=======
-                    <label for="">Mã Số Sinh Viên</label>
-                    <input v-model="tai_khoan_add.name" type="text" class="form-control" placeholder="nhập mã sinh viên">           
-                    <label for="">Email</label>
-                    <input v-model="tai_khoan_add.email" type="email" class="form-control" placeholder="nhập email">
-                    <label for="">Password</label>
-                    <input v-model="tai_khoan_add.password" type="text" class="form-control" placeholder="nhập password">
-                </div>
->>>>>>> 475b0c860b5a025094204b77bf4917405f47cf78
 
                         </div>
 
@@ -68,7 +59,6 @@
                             </tr>
                         </thead>
                         <tbody class="text-center">
-<<<<<<< HEAD
                             <template lang="" v-for="(v,k) in list_tai_khoan">
                                 <tr>
                                     <td>
@@ -83,21 +73,6 @@
                                     </td>
                                 </tr>
                             </template>
-=======
-                            <tr>
-                                <td>
-                                    1
-                                </td>
-                                <td>26211234519</td>
-                                <td>Tronglinhluong@gmail.com</td>
-                                <td>tronglinh11</td>
-                                <td>
-                                    <button @:click="tai_khoan_update=Object.assign({},v)" style="margin-right: 10px;" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleSua">Sửa</button>
-                                    <button @:click="tai_khoan_delete=Object.assign({},v)" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleXoa">Xóa</button> 
-                                </td>
-                            </tr>
-                           
->>>>>>> 475b0c860b5a025094204b77bf4917405f47cf78
                         </tbody>
                     </table>
                     <!-- Modal -->
