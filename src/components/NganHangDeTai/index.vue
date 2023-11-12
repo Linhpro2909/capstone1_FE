@@ -35,17 +35,17 @@
 
                                     <td class="text-center">
                                         <button v-on:click="duyet(v)" class="btn btn-info me-1">Duyệt</button>
-                                        <button  v-on:click="duyet1(v)" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#xoamodal"><i class=" fa-2x fa-solid fa-trash"></i></button>
+                                        <button v-on:click="duyet1(v)" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#xoamodal"><i class=" fa-2x fa-solid fa-trash"></i></button>
                                     </td>
                                 </tr>
                             </template>
-                           
+
                         </template>
                     </tbody>
                 </table>
             </div>
         </div>
-       
+
     </div>
     <div class="col-6">
         <div class="card">
@@ -56,7 +56,7 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            
+
                             <th>Tên Đề Tài</th>
                             <th>
                                 Mô tả
@@ -87,7 +87,7 @@
             </div>
         </div>
     </div>
-   
+
 </div>
 <div class="modal fade" id="exampleMota" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -150,23 +150,23 @@ export default {
             // this.handleSelectAll();
         },
         duyet(v) {
-        console.log(v);
-        baseRequest
-            .post("de-tai-sinh-vien/trang-thai", v)
-            .then((res) => {
-                this.load();
-            });
+
+            baseRequest
+                .post("de-tai-sinh-vien/trang-thai", v)
+                .then((res) => {
+                    this.load();
+                });
+        },
+        duyet1(v) {
+
+            baseRequest
+                .post("de-tai-sinh-vien/trang-thai-1", v)
+                .then((res) => {
+                    this.load();
+                });
+        }
     },
-    duyet1(v) {
-        console.log(v);
-        baseRequest
-            .post("de-tai-sinh-vien/trang-thai-1", v)
-            .then((res) => {
-                this.load();
-            });
-    }
-    },
-    
+
 }
 </script>
 

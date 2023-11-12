@@ -96,13 +96,10 @@
                                 </td>
                                 <td>{{k+1}}</td>
                                 <td>{{v.ma_giang_vien}}</td>
-<<<<<<< HEAD
-                                <td>{{v.Name}}</td>
-                                <td class="uppercase">{{v.Date_of_birth}}</td>
-=======
+
                                 <td>{{v.ten_giang_vien}}</td>
                                 <td class="uppercase">{{v.ngay_thang_nam_sinh}}</td>
->>>>>>> 475b0c860b5a025094204b77bf4917405f47cf78
+
                                 <td>
                                      {{v.dia_chi}}   
                                 </td>
@@ -151,8 +148,7 @@
     </div>
   </div>
 </div>
-<<<<<<< HEAD
-=======
+
 <!-- Modal -->
 <div class="modal fade" id="exampleXoa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -171,7 +167,7 @@
                         </div>
                     </div>
                 </div>
->>>>>>> 475b0c860b5a025094204b77bf4917405f47cf78
+
 
 </template>
 

@@ -99,15 +99,10 @@
                     </thead>
                     <tbody class="text-center">
 
-<<<<<<< HEAD
-                        <template v-for="(v,k) in list_sinh_vien" >
-                            <tr>
-                                <td> <input type="checkbox" name="ids" class="checkbox_ids" id=""></td>
 
-=======
                         <template v-for="(v,k) in list_sinh_vien" :key="k">
                             <tr>
->>>>>>> 475b0c860b5a025094204b77bf4917405f47cf78
+
                                 <td>
                                     <button style="margin-right:10px;" @click="sinh_vien_update = Object.assign({},v)" class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#exampleCapNhat">Cập Nhật</button>
                                     <button @click="sinh_vien_update = Object.assign({},v)" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleChiTiet">Chi Tiết</button>
@@ -116,13 +111,12 @@
                                 <td>{{v.ma_sinh_vien}}</td>
                                 <td class=" text-uppercase">{{v.ten_sinh_vien}}</td>
                                 <td>
-<<<<<<< HEAD
+
                                     {{ getTenNienKhoa(v.id_nien_khoa) }}
                                     
-=======
+
                                     {{ getTenNienKhoa(v.id_nien_khoa)}}
 
->>>>>>> 475b0c860b5a025094204b77bf4917405f47cf78
                                 </td>
                                 <td>
                                     {{v.diem_gpa}}
@@ -203,21 +197,14 @@
                                     <thead>
                                         <tr>
 
-<<<<<<< HEAD
-                                            
-                                                <th v-bind:value="sinh_vien_update.ma_sinh_vien">Mã sinh viên</th>
-                                                <th v-bind:value="sinh_vien_update.ten_sinh_vien">Tên sinh viên</th>
-                                                <th v-bind:value="sinh_vien_update.so_dien_thoai">Số Điện Thoại</th>
-                                                <th v-bind:value="sinh_vien_update.diem_gpa">Điểm GPA</th>
-                                                <th v-bind:value="sinh_vien_update.nhom_do_an">Nhóm Đồ Án</th>
-=======
+
                                             <th v-bind:value="sinh_vien_update.ma_sinh_vien">Mã sinh viên</th>
                                             <th v-bind:value="sinh_vien_update.ten_sinh_vien">Tên sinh viên</th>
                                             <th v-bind:value="sinh_vien_update.so_dien_thoai">Số Điện Thoại</th>
                                             <th v-bind:value="sinh_vien_update.diem_gpa">Điểm GPA</th>
                                             <th v-bind:value="sinh_vien_update.nhom_do_an">Nhóm Đồ Án</th>
                                             
->>>>>>> 475b0c860b5a025094204b77bf4917405f47cf78
+
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -228,15 +215,7 @@
                                             <td>{{ sinh_vien_update.diem_gpa }}</td>
                                              <td>null</td>
                                         </tr>
-<<<<<<< HEAD
 
-                                        
-                                        
-                                        
-
-                                        
-=======
->>>>>>> 475b0c860b5a025094204b77bf4917405f47cf78
                                     </tbody>
                                 </table>
 
@@ -319,14 +298,14 @@ export default {
             list_nien_khoa: [],
             sinh_vien_add: {},
             sinh_vien_update: {},
-<<<<<<< HEAD
-=======
+
+
             list_sinh_vien_detail: [],
             sinh_vien_delete: {},
             search: {},
             dem: 0,
             order_by : 0,
->>>>>>> 475b0c860b5a025094204b77bf4917405f47cf78
+
            
             
 
