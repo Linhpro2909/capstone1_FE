@@ -179,7 +179,7 @@ export default {
         xoa() {
 
             baseRequest
-                .post("tai-khoan/delete", this.tai_khoan_delete)
+                .post("auth/delete", this.tai_khoan_delete)
                 .then((res) => {
                     functionBasic.displaySuccess(res);
                     this.load();

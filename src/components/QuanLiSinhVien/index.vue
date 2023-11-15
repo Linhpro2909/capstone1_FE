@@ -112,7 +112,7 @@
                                 <td class=" text-uppercase">{{v.ten_sinh_vien}}</td>
                                 <td>
 
-                                    {{ getTenNienKhoa(v.id_nien_khoa) }}
+                                    
                                     
 
                                     {{ getTenNienKhoa(v.id_nien_khoa)}}

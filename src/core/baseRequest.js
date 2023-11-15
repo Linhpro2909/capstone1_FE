@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // const apiUrl = 'https://dzfullstack.com/api/'; 
-const apiUrl = 'http://127.0.0.1:8000/api/'; 
+const apiUrl = 'http://127.0.0.1:8080/api/'; 
 
 export default {
     getHeader() {
