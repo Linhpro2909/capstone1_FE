@@ -119,12 +119,32 @@
                       </td>
                       <td class="text-center align-middle text-nowrap">
                         <button class="btn btn-primary me-2 " data-bs-toggle="modal" data-bs-target="#capNhatModal" v-on:click="edit = value">Cập Nhật</button>
-                        <button class="btn btn-danger">Xóa</button>
+                        
+                        <button  data-bs-toggle="modal" data-bs-target="#exampleXoanhom" class="btn btn-danger"  @:click="xoa_ke_hoach= Object.assign({},value)">Xóa</button>
+
+
                       </td>
                     </tr>
                 </template>
             </tbody>
           </table>
+          <div class="modal fade" id="exampleXoanhom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Xóa Nhóm</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Bạn Có Chắc Muốn Xóa Nhóm <p class="text-danger">{{xoa_ke_hoach.ten_ke_hoach}}</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                        <button v-on:click="Xoa()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Xác Nhận</button>
+                    </div>
+                </div>
+            </div>
+        </div>
           <div class="modal fade" id="capNhatModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -174,6 +194,7 @@
 <script>
 import Toaster from '@meforma/vue-toaster';
 import axios from 'axios';
+import baseRequest from '../../core/baseRequest';
 import functionBasic from '../../core/functionBasic';
 export default {
     data() {
@@ -182,6 +203,7 @@ export default {
             file         : null,
             list         : [],
             edit         : [],
+            xoa_ke_hoach : {},
         }
     },
     mounted() {
@@ -270,7 +292,20 @@ export default {
                 .catch((res) => {
                     
                 });
+        },
+       
+        Xoa() {
+          baseRequest
+          .post('ke-hoach-tot-nghiep/delete', this.xoa_ke_hoach)
+                    .then(res => {
+                        functionBasic.displaySuccess(res);
+                        this.loadData();
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
         }
+
     }
 };
 </script>

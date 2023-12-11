@@ -263,6 +263,7 @@
         },
         mounted() {
             this.getNhom();
+            
         },
         methods: {
             getTmpNhom() {
