@@ -117,7 +117,7 @@
                                 </td>
                                 <td> {{v.ma_nien_khoa}}</td>
                                 <td> {{v.ten_nien_khoa}}</td>
-                                <td>{{v.thoi_gian_bat_dau}} ----- {{v.thoi_gian_ket_thuc}}</td>
+                                <td>{{v.thoi_gian_bat_dau}}---{{v.thoi_gian_ket_thuc}}</td>
                                 <td>
                                     <button v-if="v.tinh_trang==1" class="btn btn-success" style="margin-right: 10px;">Hoạt Động</button>
                                     <button v-else class="btn btn-secondary">Tạm tắt </button>
@@ -218,7 +218,7 @@ export default {
     methods: {
         them_moi() {
             baseRequest
-                .post("nien-khoa/create", this.nien_khoa_add)
+                .post("admin/nien-khoa/create", this.nien_khoa_add)
                 .then((res) => {
                     functionBasic.displaySuccess(res);
                     this.load();
@@ -228,7 +228,7 @@ export default {
 
         load() {
             baseRequest
-                .get("nien-khoa/data")
+                .get("admin/nien-khoa/data")
                 .then((res) => {
                     this.list_nien_khoa = res.data.data;
                 });
@@ -237,7 +237,7 @@ export default {
         capNhat() {
 
             baseRequest
-                .post("nien-khoa/update", this.nien_khoa_update)
+                .post("admin/nien-khoa/update", this.nien_khoa_update)
                 .then((res) => {
                     functionBasic.displaySuccess(res);
                     this.load();
@@ -253,7 +253,7 @@ export default {
         },
         xoa() {
             baseRequest
-                .post("nien-khoa/delete", this.nien_khoa_delete)
+                .post("admin/nien-khoa/delete", this.nien_khoa_delete)
                 .then((res) => {
                     if (res.data.status == 1) {
                         functionBasic.displaySuccess(res);
@@ -264,7 +264,7 @@ export default {
         },
         timKiem() {
             baseRequest
-                .post('nien-khoa/search', this.search)
+                .post('admin/nien-khoa/search', this.search)
                 .then((res) => {
                     this.list_nien_khoa = res.data.data;
                 })

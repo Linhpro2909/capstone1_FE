@@ -204,7 +204,7 @@ export default {
     methods: {
         them_moi(){
             baseRequest
-                .post("giang-vien/create", this.giang_vien_add)
+                .post("admin/giang-vien/create", this.giang_vien_add)
                 .then((res) => {
                     functionBasic.displaySuccess(res);
                     this.load();
@@ -212,14 +212,14 @@ export default {
         },
         load(){
             baseRequest
-                .get("giang-vien/data")
+                .get("admin/giang-vien/data")
                 .then((res)=>{
                     this.list_giang_vien =res.data.data;
                 });
         },
         capNhat(){
             baseRequest
-                .post("giang-vien/update", this.giang_vien_update)
+                .post("admin/giang-vien/update", this.giang_vien_update)
                 .then((res) => {
                     functionBasic.displaySuccess(res);
                     this.load();
@@ -227,7 +227,7 @@ export default {
         },
         xoa() {
             baseRequest
-                .post("giang-vien/delete", this.list_giang_vien)
+                .post("admin/giang-vien/delete", this.list_giang_vien)
                 .then((res) => {
                     if (res.data.status == 1) {
                         functionBasic.displaySuccess(res);
@@ -254,7 +254,7 @@ export default {
         },
         timKiem() {
             baseRequest
-                .post('giang-vien/search', this.search)
+                .post('admin/giang-vien/search', this.search)
                 .then((res) => {
                     this.list_giang_vien = res.data.data;
                 })

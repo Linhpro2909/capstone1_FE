@@ -15,7 +15,7 @@ export default {
                 return {}
             }
             return { Authorization : 'Bearer ' + window.localStorage.getItem('token-admin') }
-        } else {
+        } else if(window.localStorage.getItem('token-giang-vien') != null) {
             if(window.localStorage.getItem('token-giang-vien') == null) {
                 return {}
             }

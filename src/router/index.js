@@ -94,19 +94,24 @@ const routes = [
   },
   {
     path: "/dang-nhap",
-    meta: { layout: "giangvien" },
+    meta: { layout: "login-giangvien" },
     component: () => import("../components_user/DangNhapUser/index.vue"),
   },
   {
-    path: "/chi-tiet-sinh-vien",
+    path: "/giang-vien-nhom-do-an",
     meta: { layout: "giangvien" },
-    component: () => import("../components_user/ChiTietSinhVien/index.vue"),
+    component: () => import("../components_user/GiangVien/index.vue"),
   },
-  {
-    path: "/chia-nhom",
-    meta: { layout: "giangvien" },
-    component: () => import("../components_user/ChiaNhom/index.vue"),
-  },
+  // {
+  //   path: "/chi-tiet-sinh-vien",
+  //   meta: { layout: "giangvien" },
+  //   component: () => import("../components_user/ChiTietSinhVien/index.vue"),
+  // },
+  // {
+  //   path: "/chia-nhom",
+  //   meta: { layout: "giangvien" },
+  //   component: () => import("../components_user/ChiaNhom/index.vue"),
+  // },
 ];
 
 const router = createRouter({

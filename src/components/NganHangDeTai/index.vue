@@ -143,7 +143,7 @@ export default {
     methods: {
         load() {
             baseRequest
-                .get("de-tai-sinh-vien/data")
+                .get("admin/de-tai-sinh-vien/data")
                 .then((res) => {
                     this.list_de_tai = res.data.data;
                 });
@@ -152,7 +152,7 @@ export default {
         duyet(v) {
 
             baseRequest
-                .post("de-tai-sinh-vien/trang-thai", v)
+                .post("admin/de-tai-sinh-vien/trang-thai", v)
                 .then((res) => {
                     this.load();
                 });
@@ -160,7 +160,7 @@ export default {
         duyet1(v) {
 
             baseRequest
-                .post("de-tai-sinh-vien/trang-thai-1", v)
+                .post("admin/de-tai-sinh-vien/trang-thai-1", v)
                 .then((res) => {
                     this.load();
                 });

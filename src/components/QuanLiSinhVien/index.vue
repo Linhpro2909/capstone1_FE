@@ -72,7 +72,7 @@
                             <i class="fa-solid fa-trash-can"></i>Xoá
                         </button>
 
-                        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-left:5px;">Chia nhóm</button>
+                        
                     </div>
                 </div>
                 <table class="table table-bordered">
@@ -108,8 +108,8 @@
                                 <td>
                                     {{ getTenNienKhoa(v.id_nien_khoa) }}
                                 </td>
-                                <td>
-                                    {{v.diem_gpa}}
+                                <td :style="{ backgroundColor: getMauTheoDiem(v.diem_gpa) }">
+                                    {{ v.diem_gpa }}
                                 </td>
                                 <td> <input v-model="v.check" type="checkbox" name="ids" class="checkbox_ids"></td>
                             </tr>
@@ -300,7 +300,7 @@ export default {
     methods: {
         them_moi() {
             baseRequest
-                .post("sinh-vien/create", this.sinh_vien_add)
+                .post("admin/sinh-vien/create", this.sinh_vien_add)
                 .then((res) => {
                     functionBasic.displaySuccess(res);
                     this.load();
@@ -312,11 +312,9 @@ export default {
             return nienKhoa ? nienKhoa.ten_nien_khoa : "";
         },
         
-        
-        
         load() {
             baseRequest
-                .get("sinh-vien/data")
+                .get("admin/sinh-vien/data")
                 .then((res) => {
                     this.list_sinh_vien = res.data.data;
                 });
@@ -326,7 +324,7 @@ export default {
             //         this.list_sinh_vien_detail = res.data.data;
             //     });
             baseRequest
-                .get("nien-khoa/data")
+                .get("admin/nien-khoa/data")
                 .then((res) => {
                     this.list_nien_khoa = res.data.data;
                 });
@@ -335,7 +333,7 @@ export default {
         capNhat() {
 
             baseRequest
-                .post("sinh-vien/update", this.sinh_vien_update)
+                .post("admin/sinh-vien/update", this.sinh_vien_update)
                 .then((res) => {
                     functionBasic.displaySuccess(res);
                     this.load();
@@ -343,7 +341,7 @@ export default {
         },
         xoa() {
             baseRequest
-                .post("sinh-vien/delete", this.list_sinh_vien)
+                .post("admin/sinh-vien/delete", this.list_sinh_vien)
                 .then((res) => {
                     if (res.data.status == 1) {
                         functionBasic.displaySuccess(res);
@@ -371,7 +369,7 @@ export default {
         },
         timKiem() {
             baseRequest
-                .post('sinh-vien/search', this.search)
+                .post('admin/sinh-vien/search', this.search)
                 .then((res) => {
                     this.list_sinh_vien = res.data.data;
                 })
@@ -394,6 +392,17 @@ export default {
                 this.list_sinh_vien = this.list_sinh_vien.sort(function(a, b) {
                     return a.id - b.id;
                 })
+            }
+        },
+        getMauTheoDiem(diem) {
+            if (2.5 <= diem && diem < 3.1) {
+                return "yellow";
+            } else if (3.1 <= diem && diem < 3.6) {
+                return "purple";
+            } else if (3.6 <= diem && diem <= 4) {
+                return "green";
+            } else {
+                return "black"; // Hoặc một màu khác tùy bạn chọn
             }
         },
     },

@@ -50,65 +50,19 @@
                                         {{ value.ten_de_tai }}
                                     </td>
                                     <td>{{ value.ten_hoi_dong }}</td>
-                                    <!-- <td>
-                                        <i class="fa-solid fa-book fa-2xl" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color: #5020d5;"></i>
-                                    </td>
-                                    <td>
-                                        <a href="">link</a>
-                                    </td> -->
                                     <td>
                                         <ul>
-                                            <li>
-                                                10
-                                            </li>
-                                            <li>
-                                                10
-                                            </li>
-                                            <li>
-                                                10
-                                            </li>
-                                            <li>
-                                                10
-                                            </li>
+                                            <template v-for="(v, k) in value.list" :key="k">
+                                                <li class="text-start">
+                                                    {{ v.diem_tong }}
+                                                </li>
+                                            </template>
                                         </ul>
                                     </td>
                                 </tr>
                             </template>
                         </tbody>
                     </table>
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Nhật kí</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <table class="table table-bordered">
-                                        <tbody>
-                                            <thead>
-                                                <tr>
-                                                    <th>Ngày</th>
-                                                    <th>Mô tả</th>
-                                                </tr>
-                                            </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>10/10/2023</td>
-                                                <td>nộp propasla</td>
-                                            </tr>
-                                        </tbody>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -281,7 +235,6 @@ export default {
     methods : {
         handleFileChange(event) {
           this.file = event.target.files[0];
-          console.log(this.file);
         },
         checkLogin() {
             baseRequest.post('check-login').then((res) => {

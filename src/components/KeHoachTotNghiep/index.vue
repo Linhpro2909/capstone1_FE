@@ -119,16 +119,13 @@
                       </td>
                       <td class="text-center align-middle text-nowrap">
                         <button class="btn btn-primary me-2 " data-bs-toggle="modal" data-bs-target="#capNhatModal" v-on:click="edit = value">Cập Nhật</button>
-                        
-                        <button  data-bs-toggle="modal" data-bs-target="#exampleXoanhom" class="btn btn-danger"  @:click="xoa_ke_hoach= Object.assign({},value)">Xóa</button>
-
-
+                        <button  data-bs-toggle="modal" data-bs-target="#exampleXoakehoach" class="btn btn-danger"  @:click="xoa_ke_hoach= Object.assign({},value)">Xóa</button>
                       </td>
                     </tr>
                 </template>
             </tbody>
           </table>
-          <div class="modal fade" id="exampleXoanhom" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="exampleXoakehoach" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -180,8 +177,8 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                  <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Lưu </button>
                 </div>
               </div>
             </div>
@@ -194,8 +191,8 @@
 <script>
 import Toaster from '@meforma/vue-toaster';
 import axios from 'axios';
-import baseRequest from '../../core/baseRequest';
 import functionBasic from '../../core/functionBasic';
+import baseRequest from '../../core/baseRequest';
 export default {
     data() {
         return {
@@ -203,7 +200,7 @@ export default {
             file         : null,
             list         : [],
             edit         : [],
-            xoa_ke_hoach : {},
+            xoa_ke_hoach:{},
         }
     },
     mounted() {
@@ -293,7 +290,6 @@ export default {
                     
                 });
         },
-       
         Xoa() {
           baseRequest
           .post('ke-hoach-tot-nghiep/delete', this.xoa_ke_hoach)
@@ -305,7 +301,6 @@ export default {
                         console.error(error);
                     });
         }
-
     }
 };
 </script>

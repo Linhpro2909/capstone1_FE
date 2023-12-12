@@ -43,17 +43,17 @@
 						
 						<li> 
 							<router-link to="/admin/quan-li-nk">
-								<a class="dropdown-item" href="index.html"><i class="bx bx-right-arrow-alt"></i>Niên Khóa</a>
+								<a class="dropdown-item"><i class="bx bx-right-arrow-alt"></i>Niên Khóa</a>
 							</router-link>
 						</li>
 						<li> 
 							<router-link to="/admin/quan-li-sv">
-								<a class="dropdown-item" href="index.html"><i class="bx bx-right-arrow-alt"></i>Sinh Viên</a>
+								<a class="dropdown-item"><i class="bx bx-right-arrow-alt"></i>Sinh Viên</a>
 							</router-link>
 						</li>
 						<li> 
 							<router-link to="/admin/quan-li-gv">
-								<a class="dropdown-item" href="index.html"><i class="bx bx-right-arrow-alt"></i>Giảng Viên</a>
+								<a class="dropdown-item"><i class="bx bx-right-arrow-alt"></i>Giảng Viên</a>
 							</router-link>
 						</li>
 					</ul>
@@ -98,14 +98,14 @@
 							<div class="menu-title">Kế Hoạch</div>
 					</router-link>
 				</li>
-				<li class="nav-item">
+				<!-- <li class="nav-item">
 					<router-link to="/admin/phan-quyen" class="nav-link">
 						<div class="parent-icon">
 							<i class="fa-solid fa-user-lock" style="color: #0b4ec1;"></i>
 						</div>
 						<div class="menu-title">Phân Quyền</div>
 					</router-link>
-				</li>
+				</li> -->
 			</ul>
 		</nav>
 	</div>

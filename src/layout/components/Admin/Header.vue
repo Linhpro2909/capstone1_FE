@@ -4,7 +4,7 @@
 		<nav class="navbar navbar-expand">
 			<div class="topbar-logo-header">
 				<div class="">
-					<img src="https://cdn.duytan.edu.vn/upload/images/logoDT-70.png" class="logo-icon" alt="logo icon">
+					<img src="../../../assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
 				</div>
 				<div class="">
 					<h4 class="logo-text">Rocker</h4>
@@ -15,7 +15,7 @@
 			</div>
 			<div class="user-box dropdown">
 				<a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-					<img src="https://cdn.duytan.edu.vn/upload/images/logoDT-70.png" class="user-img" alt="user avatar">
+					<img src="../../assets/rocker/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
 					<div class="user-info ps-3">
 						<p class="user-name mb-0">Pauline Seitz</p>
 						<p class="designattion mb-0">Web Designer</p>

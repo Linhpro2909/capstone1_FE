@@ -199,7 +199,7 @@ export default {
         them_moi() {
             this.de_tai_add.id_user = this.user_login.id;
             baseRequest
-                .post("de-tai-sinh-vien/create", this.de_tai_add)
+                .post("admin/de-tai-sinh-vien/create", this.de_tai_add)
                 .then((res) => {
                     functionBasic.displaySuccess(res);
                     this.load();
