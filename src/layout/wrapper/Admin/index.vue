@@ -1,5 +1,5 @@
-<template lang="">
-     <div class="wrapper">
+<template>
+    <div class="wrapper">
         <div class="header-wrapper">
             <HeaderVue></HeaderVue>
             <MenuVue></MenuVue>
@@ -14,8 +14,8 @@
     </div>
 </template>
 <script>
-import FooterVue from  '../../components/Admin/Footer.vue';
 import HeaderVue from  '../../components/Admin/Header.vue';
+import FooterVue from  '../../components/Admin/Footer.vue';
 import MenuVue from  '../../components/Admin/Menu.vue';
 import "../../../assets/js/bootstrap.bundle.min.js";
 import "../../../assets/js/jquery.min.js";
@@ -27,7 +27,6 @@ import "../../../assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js";
 import "../../../assets/plugins/chartjs/js/Chart.min.js";
 import "../../../assets/js/index.js";
 import "../../../assets/js/app.js";
-import baseRequest from '../../../core/baseRequest';
 export default {
     name    :   'app',
     components : {
@@ -58,5 +57,5 @@ export default {
 @import "../../../assets/css/dark-theme.css";   
 @import "../../../assets/css/semi-dark.css";   
 @import "../../../assets/css/header-colors.css";
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");  
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");   
 </style>

@@ -19,8 +19,8 @@
                         </tr>
                     </thead>
                     <tbody class="align-middle">
-                        <template v-for="(value, key) in list" :key="key">
-                            <tr>
+                        <template v-for="(value, key) in list" :key="key" >
+                            <tr v-if="value.list_ma_nhom != null">
                                 <th>
                                     {{ key + 1 }}
                                 </th>

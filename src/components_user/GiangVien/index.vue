@@ -55,7 +55,23 @@
     
                                 <td>{{ value.ten_giang_vien }}</td>
                                 <td>
-                                   {{ value.ten_de_tai }}
+                                    <template v-if="value.tinh_trang != null">
+                                        <template v-if="value.tinh_trang == 0">
+                                            <span class="text-warning">
+                                                {{ value.ten_de_tai }}
+                                            </span>
+                                        </template>
+                                        <template v-else-if="value.tinh_trang == 1">
+                                            <span class="text-primary">
+                                                {{ value.ten_de_tai }}
+                                            </span>
+                                        </template>
+                                        <template v-else>
+                                            <span class="text-danger">
+                                                {{ value.ten_de_tai }}
+                                            </span>
+                                        </template>
+                                    </template>
                                 </td>
                                 <td>{{ value.ten_hoi_dong }}</td>
                                 <!-- <td>
@@ -74,8 +90,12 @@
                                     </ul>
                                 </td>
                                 <td>
-                                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalChoDiem" style="margin-right:10px;" v-on:click="Object.assign(cho_diem, value)">Cho Điểm</button>
-                                    <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleChiTiet" v-on:click="Object.assign(cho_diem, value); getChiTiet()">Chi Tiết</button>
+                                    <template v-if="value.tinh_trang != null">
+                                        <template v-if="value.tinh_trang != 2">
+                                            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalChoDiem" style="margin-right:10px;" v-on:click="Object.assign(cho_diem, value)">Cho Điểm</button>
+                                            <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleChiTiet" v-on:click="Object.assign(cho_diem, value); getChiTiet()">Chi Tiết</button>
+                                        </template>
+                                    </template>
                                 </td>
                             </tr>
                         </template>

@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router"; // cài vue-router: npm install vue-router@next --save
 import { createToaster } from "@meforma/vue-toaster";
+import checkLogin from "./checkLogin";
 const toastr = createToaster({
   position: "top-right",
 });
@@ -8,60 +9,68 @@ const routes = [
   {
     path: "/admin",
     component: () => import("../components/TrangChu/index.vue"),
+    beforeEnter:checkLogin
   },
   {
     path: "/admin/quan-li-nk",
     component: () => import("../components/QuanLiNienKhoa/index.vue"),
+    beforeEnter:checkLogin
   },
   {
     path: "/admin/quan-li-gv",
     component: () => import("../components/GiangVien/index.vue"),
+    beforeEnter:checkLogin
   },
 
   {
     path: "/admin/ngan-hang-de-tai-admin",
     component: () => import("../components/NganHangDeTai/index.vue"),
+    beforeEnter:checkLogin
   },
   {
     path: "/admin/ke-hoach-tot-nghiep",
     component: () => import("../components/KeHoachTotNghiep/index.vue"),
+    beforeEnter:checkLogin
   },
   {
     path: "/admin/quan-li-hoi-dong",
     component: () => import("../components/QuanLiHoiDong/index.vue"),
+    beforeEnter:checkLogin
   },
   {
     path: "/admin/nhom-do-an",
     component: () => import("../components/NhomDoAn/index.vue"),
+    beforeEnter:checkLogin
   },
   {
     path: "/admin/quan-li-sv",
     component: () => import("../components/QuanLiSinhVien/index.vue"),
+    beforeEnter:checkLogin
   },
   {
     path: "/admin/tien-do",
     component: () => import("../components/TienDo/index.vue"),
+    beforeEnter:checkLogin
   },
   {
     path: "/admin/phan-quyen",
     component: () => import("../components/PhanQuyen/index.vue"),
-    meta: { requiresAuth: true },
+    beforeEnter:checkLogin
   },
   {
     path: "/admin/tai-khoan",
     component: () => import("../components/TaiKhoan/index.vue"),
-    meta: { requiresAuth: true },
+    beforeEnter:checkLogin
   },
   {
     path: "/admin/duyet-nhom",
     component: () => import("../components/DuyetNhom/index.vue"),
-    meta: { requiresAuth: true },
+    beforeEnter:checkLogin
   },
   {
     path: "/admin/login",
-    name: "admin-login",
+    meta: { layout: "login-admin" },
     component: () => import("../components/Login/index.vue"),
-    meta: { requiresAuth: false },
   },
   // Sinh Viên
   {
@@ -117,22 +126,6 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes: routes,
-});
-const isAuthenticated = () => {
-  // Replace this with your actual authentication logic, e.g., checking for a token
-  const token = localStorage.getItem('token');
-  return token !== null && token !== undefined;
-};
-router.beforeEach((to, from, next) => {
-    if (to.matched.some((route) => route.meta.requiresAuth)) {
-        if (isAuthenticated()) {
-            next();
-        } else {
-            next("/sinh-vien/login");
-        }
-    } else {
-        next();
-    }
 });
 
 export default router;

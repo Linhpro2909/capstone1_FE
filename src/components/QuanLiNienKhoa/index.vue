@@ -27,9 +27,9 @@
                             <label for="">Tên Khóa</label>
                             <input v-model="nien_khoa_add.ten_nien_khoa" type="text" class="form-control">
                             <label for="">Thời Gian Bắt Đầu</label>
-                            <input v-model="nien_khoa_add.thoi_gian_bat_dau" type="date" class="form-control">
+                            <input v-model="nien_khoa_add.thoi_gian_bat_dau" type="text" class="form-control">
                             <label for="">Thời Gian Kết Thúc</label>
-                            <input v-model="nien_khoa_add.thoi_gian_ket_thuc" type="date" class="form-control">
+                            <input v-model="nien_khoa_add.thoi_gian_ket_thuc" type="text" class="form-control">
                             <label for="">Tình Trạng</label>
                             <select v-model="nien_khoa_add.tinh_trang" class="form-control">
                                 <option value="1">Hiển thị</option>
@@ -117,7 +117,7 @@
                                 </td>
                                 <td> {{v.ma_nien_khoa}}</td>
                                 <td> {{v.ten_nien_khoa}}</td>
-                                <td>{{v.thoi_gian_bat_dau}}---{{v.thoi_gian_ket_thuc}}</td>
+                                <td>{{v.thoi_gian_bat_dau}}-{{v.thoi_gian_ket_thuc}}</td>
                                 <td>
                                     <button v-if="v.tinh_trang==1" class="btn btn-success" style="margin-right: 10px;">Hoạt Động</button>
                                     <button v-else class="btn btn-secondary">Tạm tắt </button>
@@ -141,9 +141,9 @@
                                 <label for="">Tên Khóa</label>
                                 <input v-model="nien_khoa_update.ten_nien_khoa" type="text" class="form-control">
                                 <label for="">Thời Gian Bắt Đầu</label>
-                                <input v-model="nien_khoa_update.thoi_gian_bat_dau" type="date" class="form-control">
+                                <input v-model="nien_khoa_update.thoi_gian_bat_dau" type="text" class="form-control">
                                 <label for="">Thời Gian Kết Thúc</label>
-                                <input v-model="nien_khoa_update.thoi_gian_ket_thuc" type="date" class="form-control">
+                                <input v-model="nien_khoa_update.thoi_gian_ket_thuc" type="text" class="form-control">
                                 <label for="">Tình Trạng</label>
                                 <select v-model="nien_khoa_update.tinh_trang" name="" id="" class="form-control">
                                     <option value="1" class="form-control">Hiển thị</option>

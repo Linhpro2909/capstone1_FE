@@ -72,7 +72,7 @@
                             <i class="fa-solid fa-trash-can"></i>Xoá
                         </button>
 
-                        
+                        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-left:5px;">Chia nhóm</button>
                     </div>
                 </div>
                 <table class="table table-bordered">

@@ -1,4 +1,4 @@
-<template lang="">
+<template>
 <div class="row">
     <div class="col-10"></div>
     <div class="col-2 text-end">
@@ -77,8 +77,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <template v-for="(v, k) in list_de_tai" >
-                                                <tr class="align-middle text-center">
+                                            <template v-for="(v, k) in list_de_tai" :key="k">
+                                                <tr class="align-middle">
                                                     <th class="text-center">{{ k+1 }}</th>
                                                     <td>{{ v.ten_de_tai }}</td>
                                                     <td>
@@ -87,12 +87,19 @@
                                                         </button>
                                                     </td>
                                                     <td>
-                                                        <button v-if="v.tinh_trang == 1" class="btn btn-success" style="margin-right: 10px;">Đã Duyệt</button>
-                                                        <button v-else-if="v.tinh_trang == 0" class="btn btn-warning" style="margin-right: 10px;">Đang Chờ Duyệt</button>
-                                                        <button v-else class="btn btn-danger">Đã Từ Chối</button>
-
+                                                        <template v-if="v.tinh_trang == 1">
+                                                            <button class="btn btn-success" style="margin-right: 10px;">Đã Duyệt</button>
+                                                            <button v-on:click="Object.assign(edit, v)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleDoDeTai">
+                                                                Cập Nhật
+                                                            </button>
+                                                        </template>
+                                                        <template v-else-if="v.tinh_trang == 0" >
+                                                            <button class="btn btn-warning" style="margin-right: 10px;">Đang Chờ Duyệt</button>
+                                                        </template>
+                                                        <template v-else >
+                                                            <button class="btn btn-danger">Đã Từ Chối</button>
+                                                        </template>
                                                     </td>
-
                                                 </tr>
                                             </template>
                                         </tbody>
@@ -127,8 +134,8 @@
                                                             <td>{{ v.ten_de_tai }}</td>
                                                             <td>
                                                                 <button v-on:click="mo_ta = v.mo_ta" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleMota">
-                                                            <i class="fa-solid fa-i"></i>
-                                                        </button>
+                                                                    <i class="fa-solid fa-i"></i>
+                                                                </button>
                                                             </td>
                                                         </tr>
                                                     </template>
@@ -159,6 +166,24 @@
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="exampleDoDeTai" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Mô tả</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <label for="" class="form-label">Tên Đề Tài</label>
+                            <input type="text" class="form-control" v-model="edit.ten_de_tai">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                            <button v-on:click="Edit()" type="button" class="btn btn-primary" data-bs-dismiss="modal">Cập Nhật</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -177,7 +202,7 @@ export default {
                 'tinh_trang': 0,
             },
             mo_ta: {},
-
+            edit : {},
         }
     },
     mounted() {
@@ -190,6 +215,8 @@ export default {
                     this.$router.push('/sinh-vien/login')
                 }
                 this.user_login = res.data.user;
+                console.log(this.user_login);
+
                 this.load();
             }).catch((res) =>  {
                 this.$router.push('/sinh-vien/login')
@@ -199,7 +226,7 @@ export default {
         them_moi() {
             this.de_tai_add.id_user = this.user_login.id;
             baseRequest
-                .post("admin/de-tai-sinh-vien/create", this.de_tai_add)
+                .post("sinh-vien/de-tai-sinh-vien/create", this.de_tai_add)
                 .then((res) => {
                     functionBasic.displaySuccess(res);
                     this.load();
@@ -213,7 +240,15 @@ export default {
                     this.list_de_tai = res.data.data;
                 });
         },
-
+        Edit() {
+            this.edit.id_user = this.user_login.id;
+            baseRequest
+                .post("sinh-vien/de-tai-sinh-vien/edit-de-tai", this.edit)
+                .then((res) => {
+                    functionBasic.displaySuccess(res);
+                    this.load();
+                });
+        }
     },
 }
 </script>

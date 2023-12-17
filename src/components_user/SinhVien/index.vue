@@ -31,9 +31,9 @@
                         <tbody class="align-middle">
                             <template v-for="(value, key) in list_nhom_do_an" :key="key">
                                 <tr>
-                                    <td>
+                                    <th>
                                         {{ key + 1 }}
-                                    </td>
+                                    </th>
                                     <td>{{ value.ma_nhom }}</td>
                                     <td>
                                         <ul>
@@ -47,7 +47,23 @@
         
                                     <td>{{ value.ten_giang_vien }}</td>
                                     <td>
-                                        {{ value.ten_de_tai }}
+                                        <template v-if="value.tinh_trang != null">
+                                            <template v-if="value.tinh_trang == 0">
+                                                <span class="text-warning">
+                                                    {{ value.ten_de_tai }}
+                                                </span>
+                                            </template>
+                                            <template v-else-if="value.tinh_trang == 1">
+                                                <span class="text-primary">
+                                                    {{ value.ten_de_tai }}
+                                                </span>
+                                            </template>
+                                            <template v-else>
+                                            <span class="text-danger">
+                                                {{ value.ten_de_tai }}
+                                            </span>
+                                        </template>
+                                        </template>
                                     </td>
                                     <td>{{ value.ten_hoi_dong }}</td>
                                     <td>

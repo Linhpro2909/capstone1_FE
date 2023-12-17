@@ -14,7 +14,7 @@
                     <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3">
                         <div class="col mx-auto">
                             <div class="mb-4 text-center">
-
+                                <h3>Đăng Nhập Admin</h3>
                             </div>
                             <div class="card">
                                 <div class="card-body">
@@ -25,15 +25,14 @@
                                                 <div class="col-12">
                                                     <label for="inputtext" class="form-label">Email</label>
                                                     <input type="text" class="form-control" v-model="email" id="inputtext"
-                                                        placeholder="Mã số sinh viên">
+                                                        placeholder="Nhập vào email...">
                                                 </div>
                                                 <div class="col-12">
-                                                    <label for="inputChoosePassword" class="form-label">Enter
-                                                        Password</label>
+                                                    <label for="inputChoosePassword" class="form-label">Mật Khẩu</label>
                                                     <div class="input-group" id="show_hide_password">
                                                         <input type="password" class="form-control border-end-0"
                                                             v-model="password" id="inputChoosePassword"
-                                                            placeholder="Enter Password">
+                                                            placeholder="Nhập vào mật khẩu...">
 
                                                     </div>
                                                 </div>
@@ -95,13 +94,21 @@ export default {
                 .then((res) => {
                     if (res.data.status == 1) {
                         toastr.success(res.data.message);
-						localStorage.setItem('token', res.data.token);
-						this.$router.push('/admin-tai-khoan')
+						localStorage.setItem('token-admin', res.data.token);
+						this.$router.push('/admin')
 					} else {
 						toastr.error(res.data.message);
 					}
 
                 });
+        },
+        checkLogin() {
+            baseRequest.post('check-login').then((res) => {
+                if (res.status == 200) {
+                    this.$router.push('/admin/login')
+                } else {
+                }
+            });
         }
     },
 }

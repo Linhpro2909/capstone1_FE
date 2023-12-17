@@ -169,8 +169,8 @@
                                                     <th class="text-center align-middle text-nowrap">{{ key + 1 }}</th>
                                                     <th class="align-middle text-nowrap">{{ value.ten_sinh_vien }}</th>
                                                     <th class="text-center align-middle text-nowrap">
-                                                        <select :name="'id_' + key" id="aioConceptName" @change="changeSinhVienNhom(value)" class="form-control">
-                                                            <option value="" selected>Mời bạn chọn</option>
+                                                        <select :name="'id_' + key" @change="changeSinhVienNhom(value)" v-model="id_moi" class="form-control">
+                                                            <option value="0">Mời bạn chọn</option>
                                                             <option v-for="(v_1, k_1) in list_sv_nhom" :key="v_1.id" :value="v_1.id">
                                                                 {{ v_1.ten_sinh_vien }}
                                                             </option>
@@ -258,6 +258,7 @@ export default {
             list_sv_nhom: [],
             key_arr: 0,
             nhomdelete: {},
+            id_moi : 0,
         }
     },
     mounted() {
@@ -286,7 +287,7 @@ export default {
                 .get("admin/sinh-vien/data")
                 .then((res) => {
                     this.list_sinh_vien = res.data.data;
-                    console.log(this.list_sinh_vien);
+                    // console.log(this.list_sinh_vien);
                 });
             baseRequest
                 .get("admin/giang-vien/data")
@@ -356,19 +357,20 @@ export default {
                 .get("admin/nhom/data-sinh-vien-nhom")
                 .then((res) => {
                     this.list_sv_nhom = res.data.data;
-
+                    // console.log(this.edit_tv);
                 });
         },
         changeSinhVienNhom(value) {
             var payload = {
                 'id_sinh_vien_doi': value.id_sinh_vien,
-                'id_sinh_moi': $('#aioConceptName').val(),
+                'id_sinh_moi': this.id_moi,
             };
             baseRequest
                 .post("admin/nhom/thay-doi-sinh-vien", payload)
                 .then((res) => {
                     if (res.data.status == 1) {
                         functionBasic.displaySuccess(res);
+                        this.id_moi = 0;
                         this.getNhom();
                         this.list_sv_nhom = res.data.data;
                         this.load();
