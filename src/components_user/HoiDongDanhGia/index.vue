@@ -20,7 +20,7 @@
                     </thead>
                     <tbody class="align-middle">
                         <template v-for="(value, key) in list" :key="key" >
-                            <tr v-if="value.list_ma_nhom != null">
+                            <tr>
                                 <th>
                                     {{ key + 1 }}
                                 </th>
@@ -37,7 +37,11 @@
     
                                 <td>{{ value.ten_giang_vien }}</td>
                                 <td>
-                                    {{ value.ten_de_tai }}
+                                    <template v-if="value.tinh_trang == 1">
+                                        <h6 class="text-primary">
+                                            {{ value.ten_de_tai }}
+                                        </h6>
+                                    </template>
                                 </td>
                                 <td>{{ value.ten_hoi_dong }}</td>
                                 <td>
@@ -67,7 +71,7 @@
                     <div class="modal-body">
                         <div class="card">
                             <template v-for="(value, key) in cho_diem.list" :key="key">
-                                <label for="">Thành Viên Thứ {{ key + 1 }}</label>
+                                <label for="">{{ value.ten_sinh_vien }}</label>
                                 <template v-if="cho_diem.vi_tri == 0">
                                     <input type="number" step="0.1" v-model="value.diem_chu_tich" class="form-control">
                                 </template>
@@ -137,12 +141,20 @@ export default {
                 });
         },
         choDiem() {
+            this.cho_diem.id_user = this.user_login.id;
             console.log(this.cho_diem);
             baseRequest
                 .post('giang-vien/nhom-do-an/cho-diem',this.cho_diem)
                 .then((res) => {
-                    functionBasic.displaySuccess(res);
-                    this.getNhomDoAn();
+                    if(res.data.status == 1) {
+                        functionBasic.displaySuccess(res);
+                        this.getNhomDoAn();
+                    } else {
+                        let vm = this;
+                        $.each(res.data.errors, function(k, v) {
+                            vm.$toast.error(v);
+                        });
+                    }
                 })
                 .catch((error) => {
                     console.log(error);

@@ -8,16 +8,7 @@
                     <div class="col-9">
                         <h5 style="margin-top:10px;">Nhóm đồ án</h5>
                     </div>
-                    <!-- <div class="col-3">
-                        <div class="text-end">
-
-                            <router-link to="/ngan-hang-de-tai">
-
-                                <button class="btn btn-outline-dark mt-1"> Đăng ký đề tài</button>
-
-                            </router-link>
-                        </div>
-                    </div> -->
+                   
                 </div>
             </div>
             <div class="card-body ">
@@ -74,12 +65,7 @@
                                     </template>
                                 </td>
                                 <td>{{ value.ten_hoi_dong }}</td>
-                                <!-- <td>
-                                        <i class="fa-solid fa-book fa-2xl" data-bs-toggle="modal" data-bs-target="#exampleModal" style="color: #5020d5;"></i>
-                                    </td>
-                                    <td>
-                                        <a href="">link</a>
-                                    </td> -->
+                             
                                 <td>
                                     <ul>
                                         <template v-for="(v_1, k_1) in value.list" :key="k_1">
@@ -93,7 +79,7 @@
                                     <template v-if="value.tinh_trang != null">
                                         <template v-if="value.tinh_trang != 2">
                                             <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModalChoDiem" style="margin-right:10px;" v-on:click="Object.assign(cho_diem, value)">Cho Điểm</button>
-                                            <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleChiTiet" v-on:click="Object.assign(cho_diem, value); getChiTiet()">Chi Tiết</button>
+                                            <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleChiTiet" v-on:click="Object.assign(chi_tiet_nhom, value);  loadChiTietNhom()">Chi Tiết</button>
                                         </template>
                                     </template>
                                 </td>
@@ -144,7 +130,7 @@
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody>
-                                                                    <template v-for="(value, key) in list_chi_tiet" :key="key">
+                                                                    <template v-for="(value, key) in  list_chi_tiet" :key="key">
                                                                         <tr>
                                                                             <th class="text-center align-middle text-nowrap">{{ key + 1 }}</th>
                                                                             <td class="align-middle text-nowrap">{{ value.ten_nhat_ky }}</td>
@@ -199,54 +185,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="modal fade" id="exampleModalSua" tabindex="-1" aria-labelledby="exampleModalSua" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalSua">Sửa điểm</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="row mt-2">
-                                    <div class="col-6">
-                                        <label for="">Lương Trọng Linh</label>
-                                    </div>
-                                    <div class="col-4">
-                                        <input type="float" style="width:100%;">
-                                    </div>
-                                </div>
-                                <div class="row mt-2">
-                                    <div class="col-6">
-                                        <label for="">Lương Trọng Linh</label>
-                                    </div>
-                                    <div class="col-4">
-                                        <input type="float" style="width:100%;">
-                                    </div>
-                                </div>
-                                <div class="row mt-2">
-                                    <div class="col-6">
-                                        <label for="">Lương Trọng Linh</label>
-                                    </div>
-                                    <div class="col-4">
-                                        <input type="float" style="width:100%;">
-                                    </div>
-                                </div>
-                                <div class="row mt-2">
-                                    <div class="col-6">
-                                        <label for="">Lương Trọng Linh</label>
-                                    </div>
-                                    <div class="col-4">
-                                        <input type="float" style="width:100%;">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Lưu</button>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
+               
             </div>
         </div>
     </div>
@@ -265,6 +204,8 @@ export default {
             list        : [],
             cho_diem    : {},
             list_chi_tiet : [],
+            list_nhat_ky: [],
+            chi_tiet_nhom:{},
         };
     },
     mounted() {
@@ -301,17 +242,31 @@ export default {
             baseRequest
                 .post('giang-vien/do-an/update-diem-mentor', this.cho_diem)
                 .then((res) => {
-                    functionBasic.displaySuccess(res);
-                    this.getNhomDoAn();
+                    if(res.data.status == 1) {
+                        functionBasic.displaySuccess(res);
+                        this.getNhomDoAn();
+                    } else {
+                        let vm = this;
+                        $.each(res.data.errors, function(k, v) {
+                            vm.$toast.error(v);
+                        });
+                    }
                 });
         },
-        getChiTiet() {
+      
+        loadChiTietNhom() {
             baseRequest
-                .post('giang-vien/do-an/get-data', this.cho_diem)
+                .post('admin/tien-do/chi-tiet-data', this.chi_tiet_nhom)
                 .then((res) => {
-                    this.list_chi_tiet = res.data.data
+                    this.list_chi_tiet = res.data.data;
+                })
+                .catch((res) => {
+                    $.each(res.response.data.errors, function(k, v) {
+                        toastr.error(v[0]);
+                    });
                 });
         },
+       
         downloadFile(filename) {
             const downloadUrl = `http://127.0.0.1:8000/api/giang-vien/do-an/download/${filename}`;
 

@@ -104,15 +104,15 @@
                         </td>
                         <td class="text-center text-nowrap align-middle">
                             <template v-if="value.tinh_trang == 0">
-                                <button style="width: 120px;" class="btn btn-danger">Chưa Được Tốt</button>
+                                <button  class="btn btn-danger">Chưa Được Tốt</button>
                             </template>
                             <template v-else-if="value.tinh_trang == 1">
-                                <button style="width: 120px;" class="btn btn-warning">
+                                <button  class="btn btn-warning">
                                 Tạm
                                 </button>
                             </template>
                             <template v-else>
-                                <button style="width: 120px;" class="btn btn-success">
+                                <button  class="btn btn-success">
                                 Tốt
                                 </button>
                             </template>

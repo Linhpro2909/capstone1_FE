@@ -28,10 +28,29 @@
                 </ul>
                 <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade" id="primary-pills-home" role="tabpanel">
-
                         <div class="row">
                             <div class="col-8">
-                                <table class="table table-bordered">
+                                <div class="row mb-2">
+                                    <div class="col">
+                                        <label class="fomr-lable">Niên Khóa</label>
+                                        <select class="form-select" v-on:change="getCasptone(); id_casptone = 0" v-model="ma_nien_khoa">
+                                            <option value="0" >Mời bạn chọn</option>
+                                            <template v-for="(value, key) in list_nien_khoa" :key="key">
+                                                <option :value="value.ma_nien_khoa">{{value.ten_nien_khoa}}</option>
+                                            </template>
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label class="fomr-lable">Capston</label>
+                                        <select class="form-select" v-on:change="show = true; load()" v-model="id_casptone">
+                                            <option value="0" selected>Mời bạn chọn</option>
+                                            <template v-for="(value, key) in list_caspton" :key="key">
+                                                <option :value="value.id">{{value.ten_casptone}}</option>
+                                            </template>
+                                        </select>
+                                    </div>
+                                </div>
+                                <table class="table table-bordered" v-if="show == true">
                                     <thead class="text-center">
                                         <tr>
                                             <th>Tên Sinh Viên</th>
@@ -48,7 +67,6 @@
                                     </thead>
                                     <tbody class="text-center">
                                         <template v-for="(v, k) in list_sinh_vien">
-                                            <template v-if="v.tinh_trang==0">
                                                 <tr>
                                                     <td>{{ v.ten_sinh_vien }}</td>
                                                     <td :style="{ backgroundColor: getMauTheoDiem(v.diem_gpa) }">
@@ -60,12 +78,11 @@
                                                         </button>
                                                     </td>
                                                 </tr>
-                                            </template>
                                         </template>
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="col-4">
+                            <div class="col-4 mt-4">
                                 <div class="card">
                                     <div class="card-body text-center">
                                         <table class="table table-bordered">
@@ -80,26 +97,26 @@
                                             </thead>
                                             <tbody>
                                                 <template v-for="(v, k) in list_tmp_nhom">
-                                                    <template v-if="v.tinh_trang==1">
-                                                        <tr>
-                                                            <td>{{ v.ten_sinh_vien }}</td>
-                                                            <td>
-                                                                {{ v.diem_gpa }}
-                                                            </td>
-                                                            <td>
-                                                                <button v-on:click="xoa(v)" class="btn btn-danger">
-                                                                    Xóa
-                                                                </button>
-                                                            </td>
-                                                        </tr>
-                                                    </template>
+                                                    <tr>
+                                                        <td>{{ v.ten_sinh_vien }}</td>
+                                                        <td>
+                                                            {{ v.diem_gpa }}
+                                                        </td>
+                                                        <td>
+                                                            <button v-on:click="xoa(v)" class="btn btn-danger">
+                                                                Xóa
+                                                            </button>
+                                                        </td>
+                                                    </tr>
                                                 </template>
                                             </tbody>
 
                                         </table>
                                     </div>
                                     <div class="card-footer text-end">
-                                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleTaoNhom">Tạo</button>
+                                        <template v-if="list_tmp_nhom.length > 0">
+                                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleTaoNhom">Tạo</button>
+                                        </template>
                                     </div>
                                 </div>
                             </div>
@@ -140,9 +157,14 @@
                                             {{value.ten_giang_vien}}
                                         </td>
                                         <td class="align-middle text-nowrap">
-                                            <!-- <button style="margin-right: 10px;" class="btn btn-secondary">Sửa</button> -->
-                                            <button style="margin-right: 10px;" @click="Object.assign(edit_tv,value); getDataSinhNhom();taoKey(key)" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#doiTVModal">Đổi Thành Viên</button>
-                                            <button @:click="nhomdelete= Object.assign({},value)" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleXoanhom">Xóa</button>
+                                            <template v-if="value.check == false">
+                                                <!-- <button style="margin-right: 10px;" class="btn btn-secondary">Sửa</button> -->
+                                                <button style="margin-right: 10px;" @click="edit_tv = Object.assign({},value); getDataSinhNhom(value);taoKey(key); ma_nhom  = value.ma_nhom" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#doiTVModal">Đổi Thành Viên</button>
+                                                <button @:click="nhomdelete= Object.assign({},value)" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleXoanhom">Xóa</button>
+                                            </template>
+                                            <template v-else>
+                                                <span><h5  class="text-primary">Đã vào hội đồng</h5></span>
+                                            </template>
                                         </td>
                                     </tr>
                                 </template>
@@ -169,7 +191,7 @@
                                                     <th class="text-center align-middle text-nowrap">{{ key + 1 }}</th>
                                                     <th class="align-middle text-nowrap">{{ value.ten_sinh_vien }}</th>
                                                     <th class="text-center align-middle text-nowrap">
-                                                        <select :name="'id_' + key" @change="changeSinhVienNhom(value)" v-model="id_moi" class="form-control">
+                                                        <select :id="'id_sv_moi' + key" @change="changeSinhVienNhom(value, key)" class="form-control">
                                                             <option value="0">Mời bạn chọn</option>
                                                             <option v-for="(v_1, k_1) in list_sv_nhom" :key="v_1.id" :value="v_1.id">
                                                                 {{ v_1.ten_sinh_vien }}
@@ -259,17 +281,41 @@ export default {
             key_arr: 0,
             nhomdelete: {},
             id_moi : 0,
+            ma_nhom: 0,
+            show : false,
+            list_nien_khoa : [],
+            list_caspton : [],
+            ma_nien_khoa : 0,
+            id_casptone  : 0
         }
     },
     mounted() {
         this.getNhom();
-        this.load();
-        this.getTmpNhom();
+        this.getNienKhoa();
     },
     methods: {
-        getTmpNhom() {
+        getCasptone() {
             baseRequest
-                .get("admin/tmp-nhom/data")
+                .get("admin/casptone/data")
+                .then((res) => {
+                    this.list_caspton = res.data.data;
+                });
+        },
+        getNienKhoa() {
+            baseRequest
+                .get("admin/nien-khoa/data")
+                .then((res) => {
+                    this.list_nien_khoa = res.data.data;
+                });
+        },
+        getTmpNhom() {
+            var payload = {
+                'id_casptone' : this.id_casptone,
+                'ma_nien_khoa' : this.ma_nien_khoa
+            }
+
+            baseRequest
+                .post("admin/tmp-nhom/data", payload)
                 .then((res) => {
                     this.list_tmp_nhom = res.data.data;
                 });
@@ -283,11 +329,16 @@ export default {
                 });
         },
         load() {
+            var payload = {
+                'ma_nien_khoa' : this.ma_nien_khoa,
+                'id_casptone'  : this.id_casptone,
+            }
+
             baseRequest
-                .get("admin/sinh-vien/data")
+                .post("admin/casptone/data-sinh-vien", payload)
                 .then((res) => {
                     this.list_sinh_vien = res.data.data;
-                    // console.log(this.list_sinh_vien);
+                    this.getTmpNhom();
                 });
             baseRequest
                 .get("admin/giang-vien/data")
@@ -315,12 +366,26 @@ export default {
                 })
             }
         },
+        getSortSinhVien() {
+            var payload = {
+                'ma_nien_khoa' : this.ma_nien_khoa,
+                'id_casptone'  : this.id_casptone,
+                'type'         : this.order_by,
+            }
+
+            baseRequest
+                .post("admin/casptone/data-sort-sinh-vien", payload)
+                .then((res) => {
+                    this.list_sinh_vien = res.data.data;
+                    this.getTmpNhom();
+                });
+        },
         add(v) {
             baseRequest
                 .post("admin/tmp-nhom/create", v)
                 .then((res) => {
                     functionBasic.displaySuccess(res);
-                    this.load();
+                    this.getSortSinhVien();
                     this.getTmpNhom();
                     this.getNhom();
                 });
@@ -331,7 +396,7 @@ export default {
                 .then((res) => {
                     if (res.data.status == 1) {
                         functionBasic.displaySuccess(res);
-                        this.load();
+                        this.getSortSinhVien();
                         this.getTmpNhom();
                     }
                 });
@@ -339,6 +404,7 @@ export default {
 
         taoNhom() {
             this.add_nhom.list = this.list_tmp_nhom;
+            this.add_nhom.id_casptone = this.id_casptone;
             baseRequest
                 .post("admin/nhom/create", this.add_nhom)
                 .then((res) => {
@@ -346,38 +412,51 @@ export default {
                         functionBasic.displaySuccess(res);
                         this.getTmpNhom();
                         this.load();
+                        this.getNhom();
+                        this.add_nhom = {};
                     }
                 });
         },
         taoKey(k) {
             this.key_arr = k;
         },
-        getDataSinhNhom() {
+        getDataSinhNhom(value) {
+            console.log(value);
             baseRequest
-                .get("admin/nhom/data-sinh-vien-nhom")
+                .post("admin/nhom/data-sinh-vien-nhom", value)
                 .then((res) => {
                     this.list_sv_nhom = res.data.data;
                     // console.log(this.edit_tv);
                 });
         },
-        changeSinhVienNhom(value) {
+        changeSinhVienNhom(value, key) {
+            console.log(this.value);
+            var id = "#id_sv_moi" + key; 
             var payload = {
-                'id_sinh_vien_doi': value.id_sinh_vien,
-                'id_sinh_moi': this.id_moi,
+                'id_sinh_vien_doi'  : value.id_diem,
+                'id_nhom'           : value.id_nhom,
+                'id_sinh_moi'       : $(id).val(),
+                'ma_nhom'           : this.ma_nhom,
+                'id_casptone'       : this.edit_tv.id_casptone,
             };
+            console.log(payload);
             baseRequest
                 .post("admin/nhom/thay-doi-sinh-vien", payload)
                 .then((res) => {
                     if (res.data.status == 1) {
                         functionBasic.displaySuccess(res);
-                        this.id_moi = 0;
+                        $(id).val(0);
                         this.getNhom();
                         this.list_sv_nhom = res.data.data;
                         this.load();
+                    } else {
+                        this.$toast.error(res.data.message);
+                        $(id).val(0);
                     }
                 });
         },
         nhom_delete() {
+            this.nhom_delete.id_casptone = this.id_casptone;
             console.log(this.nhomdelete);
             baseRequest
                 .post("admin/nhom/delete", this.nhomdelete)
@@ -391,13 +470,13 @@ export default {
         },
         getMauTheoDiem(diem) {
             if (2.5 <= diem && diem < 3.1) {
-                return "yellow";
+                return "#FFFFCC"; // Light Yellow
             } else if (3.1 <= diem && diem < 3.6) {
-                return "purple";
+                return "#CC99FF"; // Light Purple
             } else if (3.6 <= diem && diem <= 4) {
-                return "green";
+                return "#CCFFCC"; // Light Green
             } else {
-                return "black"; // Hoặc một màu khác tùy bạn chọn
+                return "#FF9999"; // Black (Màu mặc định)
             }
         },
     }
@@ -407,4 +486,4 @@ export default {
     
 <style lang="">
 
-    </style>
+</style>

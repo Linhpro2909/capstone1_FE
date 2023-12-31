@@ -71,9 +71,10 @@
                                             <tr class="text-center align-middle text-center">
                                                 <th>#</th>
                                                 <th>Tên Đề Tài</th>
+                                                <th>Tên Casptone</th>
+                                                <th>Nhóm</th>
                                                 <th>Mô tả</th>
                                                 <th>Trang thái</th>
-
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -81,12 +82,14 @@
                                                 <tr class="align-middle">
                                                     <th class="text-center">{{ k+1 }}</th>
                                                     <td>{{ v.ten_de_tai }}</td>
-                                                    <td>
+                                                    <td class="text-center">{{ v.ten_casptone }}</td>
+                                                    <td>{{ v.ten_nhom }}</td>
+                                                    <td class="text-center">
                                                         <button v-on:click="mo_ta = v.mo_ta" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleMota">
                                                             <i class="fa-solid fa-i"></i>
                                                         </button>
                                                     </td>
-                                                    <td>
+                                                    <td class="text-center">
                                                         <template v-if="v.tinh_trang == 1">
                                                             <button class="btn btn-success" style="margin-right: 10px;">Đã Duyệt</button>
                                                             <button v-on:click="Object.assign(edit, v)" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleDoDeTai">

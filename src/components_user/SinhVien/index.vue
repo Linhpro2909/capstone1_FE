@@ -34,7 +34,7 @@
                                     <th>
                                         {{ key + 1 }}
                                     </th>
-                                    <td>{{ value.ma_nhom }}</td>
+                                    <td>{{ value.ten_nhom }}</td>
                                     <td>
                                         <ul>
                                             <template v-for="(v, k) in value.list" :key="k">
@@ -47,13 +47,13 @@
         
                                     <td>{{ value.ten_giang_vien }}</td>
                                     <td>
-                                        <template v-if="value.tinh_trang != null">
-                                            <template v-if="value.tinh_trang == 0">
+                                        <template v-if="value.tinh_trang_de_tai != null">
+                                            <template v-if="value.tinh_trang_de_tai == 0">
                                                 <span class="text-warning">
                                                     {{ value.ten_de_tai }}
                                                 </span>
                                             </template>
-                                            <template v-else-if="value.tinh_trang == 1">
+                                            <template v-else-if="value.tinh_trang_de_tai == 1">
                                                 <span class="text-primary">
                                                     {{ value.ten_de_tai }}
                                                 </span>
@@ -98,7 +98,7 @@
                 <div class="tab-content pt-3">
                     <div class="tab-pane fade show active" id="primaryhome" role="tabpanel">
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-3">
                                 <div class="card">
                                     <div class="card-header">
                                         <h5>Tạo Nhật Ký</h5>
@@ -124,14 +124,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-8">
+                            <div class="col-9">
                                 <div class="card">
                                     <div class="card-body">
                                         <table class="table table-bordered">
                                             <thead>
                                                 <tr class="text-center align-middle text-center">
                                                     <th>#</th>
-                                                    <th>Tên nhật ký</th>
+                                                    <th>Tên Nhóm</th>
+                                                    <th>Tên Đề Tài</th>
+                                                    <th>Tên Nhật Ký</th>
+                                                    <th>Tên Casptone</th>
                                                     <th>Date</th>
                                                     <th>Mô tả</th>
                                                     <th>Tình Trạng</th>
@@ -144,7 +147,10 @@
                                                 <template v-for="(value, key) in list_nhat_ky" :key="key">
                                                     <tr>
                                                         <th class="text-center align-middle text-nowrap">{{ key + 1 }}</th>
+                                                        <td class="align-middle text-nowrap">{{ value.ten_nhom }}</td>
+                                                        <td class="align-middle text-nowrap">{{ value.ten_de_tai }}</td>
                                                         <td class="align-middle text-nowrap">{{ value.ten_nhat_ky }}</td>
+                                                        <td class="align-middle text-nowrap">{{ value.ten_casptone }}</td>
                                                         <td class="align-middle text-center">{{ value.thoi_gian }}</td>
                                                         <td class="align-middle text-nowrap">{{ value.mo_ta }}</td>
                                                         <td class="align-middle text-center">
@@ -163,6 +169,7 @@
                                                         </td>
                                                         <td class="text-center align-middle text-nowrap"><i class="fa-solid fa-file-arrow-down fa-2x text-primary" v-on:click="downloadFile(value.file)"></i></td>
                                                         <td class="text-center">
+                                                            <!-- {{ value.id_sinh_vien }} - {{ user_login.id }} -->
                                                             <template v-if = "value.id_sinh_vien == user_login.id">
                                                                 <button class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#uploadModal" v-on:click="Object.assign(upload, value)">
                                                                     Upload
@@ -197,7 +204,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary" v-on:click="uploadFile()">Upload file</button>
+                                                    <button type="button" class="btn btn-primary" v-on:click="uploadFile()" data-bs-dismiss="modal">Upload file</button>
                                                 </div>
                                                 </div>
                                             </div>
@@ -214,7 +221,7 @@
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary" v-on:click="deleteNhatKy()">Xóa</button>
+                                                    <button type="button" class="btn btn-primary" v-on:click="deleteNhatKy()" data-bs-dismiss="modal">Xóa</button>
                                                 </div>
                                                 </div>
                                             </div>
@@ -259,7 +266,6 @@ export default {
                 }
                 this.user_login = res.data.user;
                 this.loadDataNhom();
-                this.loadDataNhatKy();
             }).catch((res) =>  {
                 this.$router.push('/sinh-vien/login')
                 console.log(res);
@@ -267,6 +273,8 @@ export default {
         },
         themMoi() {
             this.create.id_user = this.user_login.id;
+            this.create.list = this.list_nhom_do_an;
+            console.log(this.create);
             baseRequest
                 .post('sinh-vien/nhat-ky/create', this.create)
                 .then((res) => {
@@ -284,10 +292,12 @@ export default {
             var payload = {
                 'id_user' : this.user_login.id
             };
-            baseRequest
+            await baseRequest
                 .post('sinh-vien/nhat-ky/get-data-nhom-do-an', payload)
                 .then((res) => {
                     this.list_nhom_do_an = res.data.data;
+                    this.loadDataNhatKy();
+                    console.table(this.list_nhom_do_an);
                 })
                 .catch((res) => {
                     $.each(res.response.data.errors, function(k, v) {
@@ -297,10 +307,11 @@ export default {
         },
         async loadDataNhatKy() {
             var payload = {
-                'id_user' : this.user_login.id
+                'id_user' : this.user_login.id,
+                'list'    : this.list_nhom_do_an,
             };
             console.log(payload);
-            baseRequest
+            await baseRequest
                 .post('sinh-vien/nhat-ky/get-data', payload)
                 .then((res) => {
                     this.list_nhat_ky = res.data.data;

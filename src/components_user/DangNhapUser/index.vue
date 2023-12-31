@@ -75,7 +75,7 @@
 						functionBasic.displaySuccess(res);
 						if(res.data.status) {
 							localStorage.setItem('token-giang-vien', res.data.token);
-							this.$router.push('/giang-vien-nhom-do-an');
+							this.$router.push('/trang-chu-gv');
 						} else {
 							toastr.error(res.data.message);
 							this.$router.push('/dang-nhap')

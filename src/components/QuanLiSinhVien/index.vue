@@ -1,4 +1,4 @@
-<template lang="" >
+<template lang="">
 <div class="row ">
     <div class="col-4">
         <h4 class="text-danger">Quản Lý Sinh Viên</h4>
@@ -66,32 +66,33 @@
                         <div class="input-group mb-3">
 
                             <input v-on:keyup.enter="timKiem()" v-model="search.ten_sinh_vien" type="text" class="form-control" placeholder="nhập tên sinh viên cần tìm" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <button  v-on:click="timKiem()" class="btn btn-outline-secondary" type="button" id="button-addon2">Tìm</button>
+                            <button v-on:click="timKiem()" class="btn btn-outline-secondary" type="button" id="button-addon2">Tìm</button>
                         </div>
                         <button class="btn btn-outline-danger" id="deleteAllSelectedRecord" data-bs-toggle="modal" data-bs-target="#exampleXoa">
                             <i class="fa-solid fa-trash-can"></i>Xoá
                         </button>
 
-                        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-left:5px;">Chia nhóm</button>
+                        <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" style="margin-left:5px;">Import excel</button>
                     </div>
                 </div>
                 <table class="table table-bordered">
                     <thead>
                         <tr class="text-center">
-                           <th>Thao Tác</th>
+                            <th>Thao Tác</th>
                             <th>#</th>
                             <th>Mã sinh viên</th>
                             <th>Tên sinh viên</th>
                             <th>Khoá</th>
-                          
-                            <th v-on:click="sort()" >
+
+                            <th v-on:click="sort()">
                                 Điểm GPA
-                                <i  v-if="order_by == 2" class="text-primary fa-solid fa-arrow-up"></i>
-                                <i  v-else-if="order_by == 1" class="text-danger fa-solid fa-arrow-down"></i>
-                                <i  v-else class="text-success fa-solid fa-spinner fa-pulse"></i>
+                                <i v-if="order_by == 2" class="text-primary fa-solid fa-arrow-up"></i>
+                                <i v-else-if="order_by == 1" class="text-danger fa-solid fa-arrow-down"></i>
+                                <i v-else class="text-success fa-solid fa-spinner fa-pulse"></i>
                             </th>
+                            <th>Gmail</th>
                             <th>
-                                <input v-on:click="handleSelectAll()"  type="checkbox" name="" id="select_all_ids">
+                                <input v-on:click="handleSelectAll()" type="checkbox" name="" id="select_all_ids">
                             </th>
                         </tr>
                     </thead>
@@ -111,6 +112,7 @@
                                 <td :style="{ backgroundColor: getMauTheoDiem(v.diem_gpa) }">
                                     {{ v.diem_gpa }}
                                 </td>
+                                <td>{{v.gmail}}</td>
                                 <td> <input v-model="v.check" type="checkbox" name="ids" class="checkbox_ids"></td>
                             </tr>
                         </template>
@@ -154,7 +156,7 @@
                                         <input v-model="sinh_vien_update.ma_sinh_vien" type="text" class="form-control">
                                         <label for="">Khóa</label>
                                         <select v-model="sinh_vien_update.id_nien_khoa" class="form-select">
-                                            <template v-for="(v, k) in list_nien_khoa" >
+                                            <template v-for="(v, k) in list_nien_khoa">
                                                 <option v-bind:value="v.id">{{v.ten_nien_khoa}}</option>
                                             </template>
                                         </select>
@@ -200,7 +202,7 @@
                                             <td>{{ sinh_vien_update.ten_sinh_vien }}</td>
                                             <td>{{ sinh_vien_update.so_dien_thoai }}</td>
                                             <td>{{ sinh_vien_update.diem_gpa }}</td>
-                                             <td>null</td>
+                                            <td>null</td>
                                         </tr>
 
                                     </tbody>
@@ -216,57 +218,22 @@
         </div>
     </div>
 </div>
-<div class="row text-end">
-    <div class="col-6">
-
-    </div>
-    <div class="col-4">
-
-    </div>
-    <div class="col-2 ">
-        <nav aria-label="Page navigation example ">
-            <ul class="pagination">
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</div>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Chia nhóm</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Import Excel</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <label for="">Tên nhóm</label>
-                <input type="text" class="form-control" placeholder="nhập mã sinh viên">
-                <label for=""> Tên giảng viên hướng dẫn</label>
-                <select name="" id="" style="padding: 8px 154px; margin:3px; border-radius:6px; ">
-                    <option value="1">
-                        -Chọn tên giảng viên-
-                    </option>
-                </select>
+                <form @submit.prevent="submitForm">
+                    <input type="file" @change="onFileChange" accept=".xls, .xlsx" />
+                    <button class="btn btn-primary" type="submit">Upload</button>
+                </form>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
-                <button type="button" class="btn btn-primary">Xác nhận chia nhóm</button>
-            </div>
+
         </div>
     </div>
 </div>
@@ -276,6 +243,7 @@
 import Toaster from '@meforma/vue-toaster';
 import baseRequest from '../../core/baseRequest';
 import functionBasic from '../../core/functionBasic';
+import axios from 'axios';
 
 export default {
     data() {
@@ -283,14 +251,15 @@ export default {
             list_sinh_vien: [],
             list_nien_khoa: [],
             sinh_vien_add: {
-                'tinh_trang':0,
+                'tinh_trang': 0,
             },
             sinh_vien_update: {},
             list_sinh_vien_detail: [],
             sinh_vien_delete: {},
             search: {},
             dem: 0,
-            order_by : 0,
+            order_by: 0,
+            excelFile: null,
         }
     },
     mounted() {
@@ -304,14 +273,19 @@ export default {
                 .then((res) => {
                     functionBasic.displaySuccess(res);
                     this.load();
-
+                    this.sinh_vien_add = {
+                        'tinh_trang': 0
+                    };
+                })
+                .catch((error) => {
+                    functionBasic.displayErrors(error)
                 });
         },
         getTenNienKhoa(idNienKhoa) {
             const nienKhoa = this.list_nien_khoa.find((nk) => nk.id === idNienKhoa);
             return nienKhoa ? nienKhoa.ten_nien_khoa : "";
         },
-        
+
         load() {
             baseRequest
                 .get("admin/sinh-vien/data")
@@ -337,6 +311,9 @@ export default {
                 .then((res) => {
                     functionBasic.displaySuccess(res);
                     this.load();
+                })
+                .catch((error) => {
+                    functionBasic.displayErrors(error)
                 });
         },
         xoa() {
@@ -348,6 +325,9 @@ export default {
                         this.load();
                         $('.checkbox_ids').prop('checked', false);
                     }
+                })
+                .catch((error) => {
+                    functionBasic.displayErrors(error)
                 });
         },
 
@@ -376,34 +356,58 @@ export default {
         },
         sort() {
             this.order_by = this.order_by + 1;
-            if(this.order_by > 2) {
+            if (this.order_by > 2) {
                 this.order_by = 0;
             }
             // Quy ước : 1 tăng dần theo giá, 2 giảm dần theo giá, 0: tăng dần theo id
-            if(this.order_by == 1) {
-                this.list_sinh_vien = this.list_sinh_vien.sort(function(a, b) {
+            if (this.order_by == 1) {
+                this.list_sinh_vien = this.list_sinh_vien.sort(function (a, b) {
                     return a.diem_gpa - b.diem_gpa;
                 })
-            } else if(this.order_by == 2) {
-                this.list_sinh_vien = this.list_sinh_vien.sort(function(a, b) {
+            } else if (this.order_by == 2) {
+                this.list_sinh_vien = this.list_sinh_vien.sort(function (a, b) {
                     return b.diem_gpa - a.diem_gpa;
                 })
             } else {
-                this.list_sinh_vien = this.list_sinh_vien.sort(function(a, b) {
+                this.list_sinh_vien = this.list_sinh_vien.sort(function (a, b) {
                     return a.id - b.id;
                 })
             }
         },
         getMauTheoDiem(diem) {
             if (2.5 <= diem && diem < 3.1) {
-                return "yellow";
+                return "#FFFFCC"; // Light Yellow
             } else if (3.1 <= diem && diem < 3.6) {
-                return "purple";
+                return "#CC99FF"; // Light Purple
             } else if (3.6 <= diem && diem <= 4) {
-                return "green";
+                return "#CCFFCC"; // Light Green
             } else {
-                return "black"; // Hoặc một màu khác tùy bạn chọn
+                return "#FF9999"; // Black (Màu mặc định)
             }
+        },
+        
+	   async submitForm() {
+            try {
+                if (!this.excelFile) {
+                    console.error('No file selected');
+                    // Handle the case when no file is selected
+                    return;
+                }
+
+                const formData = new FormData();
+                formData.append('excel_file', this.excelFile);
+
+                const response = await axios.post('http://127.0.0.1:8000/api/admin/sinh-vien/import', formData);
+
+                console.log(response.data);
+                // Handle success, e.g., show a success message
+            } catch (error) {
+                console.error(error.response.data);
+                // Handle error, e.g., show an error message
+            }
+        },
+        onFileChange(event) {
+            this.excelFile = event.target.files[0];
         },
     },
 

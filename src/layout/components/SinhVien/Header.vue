@@ -15,6 +15,9 @@
                 </div>
                 <div class="user-box dropdown">
                     <template v-if="checklogin == false">
+                        <router-link to="/dang-nhap">
+                            <button class="btn btn-dark me-3 radius-30 px-4" type="submit"><i class="bx bx-lock"></i> Đăng Nhập Giảng Viên</button>
+                        </router-link>
                         <router-link to="/sinh-vien/login">
                             <button class="btn btn-dark me-3 radius-30 px-4" type="submit"><i class="bx bx-lock"></i> Đăng Nhập</button>
                         </router-link>

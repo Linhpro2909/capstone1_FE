@@ -217,7 +217,7 @@ export default {
             formData.append('ngay', this.create_KHTN.ngay);
             formData.append('mo_ta', this.create_KHTN.mo_ta);
             formData.append('tinh_trang', this.create_KHTN.tinh_trang);
-            axios.post('http://127.0.0.1:8000/api/ke-hoach-tot-nghiep/create', formData, {
+            axios.post('http://127.0.0.1:8000/api/admin/ke-hoach-tot-nghiep/create', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -274,7 +274,7 @@ export default {
         },
         loadData() {
             axios
-                .get('http://127.0.0.1:8000/api/ke-hoach-tot-nghiep/data')
+                .get('http://127.0.0.1:8000/api/admin/ke-hoach-tot-nghiep/data')
                 .then((res) => {
                     this.list = res.data.data;
                 });

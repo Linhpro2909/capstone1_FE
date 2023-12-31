@@ -2,7 +2,7 @@
 	<div class="nav-container primary-menu">
 		<div class="mobile-topbar-header">
 			<div>
-				<img src="../../assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
+				<img src="../../../assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
 			</div>
 			<div>
 				<h4 class="logo-text">Rukada</h4>
@@ -106,6 +106,14 @@
 						<div class="menu-title">Phân Quyền</div>
 					</router-link>
 				</li> -->
+				<li class="nav-item">
+					<router-link to="/admin/gui-mail" class="nav-link">
+						<div class="parent-icon">
+							<i class="fa-solid fa-user-lock" style="color: #0b4ec1;"></i>
+						</div>
+						<div class="menu-title">Gửi Mail</div>
+					</router-link>
+				</li>
 			</ul>
 		</nav>
 	</div>

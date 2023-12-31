@@ -12,6 +12,11 @@ const routes = [
     beforeEnter:checkLogin
   },
   {
+    path: "/admin/gui-mail",
+    component: () => import("../components/GuiMail/index.vue"),
+    beforeEnter:checkLogin
+  },
+  {
     path: "/admin/quan-li-nk",
     component: () => import("../components/QuanLiNienKhoa/index.vue"),
     beforeEnter:checkLogin
@@ -96,6 +101,11 @@ const routes = [
 
   //giảng viên
 
+  {
+    path: "/trang-chu-gv",
+    meta: { layout: "giangvien",},
+    component: () => import("../components_user/TrangChuUser/index.vue"),
+  },
   {
     path: "/hoi-dong-danh-gia",
     meta: { layout: "giangvien" },

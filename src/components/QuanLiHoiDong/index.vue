@@ -1,4 +1,4 @@
-<template lang="">
+<template>
 <div class="row">
     <div class="col-10"></div>
     <div class="col-2 text-end">
@@ -19,21 +19,21 @@
                     <input v-model="hoi_dong_add.ten_hoi_dong" type="text" class="form-control" placeholder="nhập tên hội đồng">
                     <label for="">Tên Chủ Tịch</label>
                     <select v-model="hoi_dong_add.ten_chu_tich" name="" id="" class="form-control">
-                        <template v-for="(v ,k) in list_giang_vien">
+                        <template v-for="(v ,k) in list_giang_vien" :key="k">
                         <option v-bind:value="v.id">{{ v.ten_giang_vien }}</option>
                        
                     </template>
                     </select>
                     <label for="">Tên Thư Ký</label>
                     <select v-model="hoi_dong_add.ten_thu_ky" name="" id="" class="form-control">
-                        <template v-for="(v ,k) in list_giang_vien">
+                        <template v-for="(v ,k) in list_giang_vien" :key="k">
                         <option v-bind:value="v.id">{{ v.ten_giang_vien }}</option>
                        
                     </template>
                     </select>
                     <label for="">Tên Người Phản Biện</label>
                     <select v-model="hoi_dong_add.ten_uy_vien" name="" id="" class="form-control">
-                        <template v-for="(v,k) in list_giang_vien">
+                        <template v-for="(v,k) in list_giang_vien" :key="k">
                         <option v-bind:value="v.id">{{ v.ten_giang_vien }}</option>
                        
                     </template>
@@ -95,7 +95,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <template v-for="(v,k) in list_hoi_dong">
+                                            <template v-for="(v,k) in list_hoi_dong" :key="k">
                                                 <tr>
                                                     <td>{{k+1}}</td>
                                                     <td>{{v.ten_hoi_dong}}</td>
@@ -122,8 +122,8 @@
                                                 <div class="modal-body">
                                                     <div class="col-sm-6">
                                                         <div class="form-group">
-                                                            <template v-for="(value, key) in list_nhom">
-                                                                <div class="form-check">
+                                                            <template v-for="(value, key) in list_nhom" :key="key">
+                                                                <div class="form-check" v-if="value.check1 == false">
                                                                     <input v-model="value.check" class="form-check-input" type="checkbox">
                                                                     <label class="form-check-label">{{ value.ten_nhom }}</label>
                                                                 </div>
@@ -167,21 +167,21 @@
                                                     <input v-model="edit_hoi_dong.ten_hoi_dong" type="text" class="form-control" placeholder="nhập tên hội đồng">
                                                     <label for="">Tên Chủ Tịch</label>
                                                     <select v-model="edit_hoi_dong.id_chu_tich" name="" id="" class="form-control">
-                                                        <template v-for="(v ,k) in list_giang_vien">
+                                                        <template v-for="(v ,k) in list_giang_vien" :key="k">
                                                         <option v-bind:value="v.id">{{ v.ten_giang_vien }}</option>
                                                     
                                                     </template>
                                                     </select>
                                                     <label for="">Tên Thư Ký</label>
                                                     <select v-model="edit_hoi_dong.id_thu_ky" name="" id="" class="form-control">
-                                                        <template v-for="(v ,k) in list_giang_vien">
+                                                        <template v-for="(v ,k) in list_giang_vien" :key="k">
                                                         <option v-bind:value="v.id">{{ v.ten_giang_vien }}</option>
                                                     
                                                     </template>
                                                     </select>
                                                     <label for="">Tên Người Phản Biện</label>
                                                     <select v-model="edit_hoi_dong.id_uy_vien" name="" id="" class="form-control">
-                                                        <template v-for="(v,k) in list_giang_vien">
+                                                        <template v-for="(v,k) in list_giang_vien" :key="k">
                                                         <option v-bind:value="v.id">{{ v.ten_giang_vien }}</option>
                                                     
                                                     </template>
@@ -226,7 +226,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <template v-for="(value, key) in list">
+                                                <template v-for="(value, key) in list" :key="key">
                                                     <tr>
                                                         <th class="align-middle">{{key + 1}}</th>
                                                         <td class="align-middle">{{value.ten_hoi_dong}}</td>
@@ -237,7 +237,7 @@
                                                         <td class="align-middle">
                                                             <b>Tên Nhóm: <span class="text-danger text-center">{{value.ten_nhom}}</span></b>
                                                             <ul>
-                                                                <template v-for="(v_1, k1) in value.list_ma_nhom">
+                                                                <template v-for="(v_1, k1) in value.list_ma_nhom" :key="k1">
                                                                     <li class="text-start">
                                                                         {{v_1.ten_sinh_vien}}
                                                                     </li>
@@ -263,7 +263,7 @@
                                                     <div class="modal-body">
                                                         <div class="col-sm-6">
                                                             <div class="form-group">
-                                                                <template v-for="(value, key) in list_nhom" >
+                                                                <template v-for="(value, key) in list_nhom" :key="key">
                                                                     <div class="form-check" v-if="value.ma_nhom !== xoa_hoi_dong.ten_nhom">
                                                                         <input v-model="value.check" class="form-check-input" type="checkbox">
                                                                         <label class="form-check-label">{{ value.ten_nhom }}</label>

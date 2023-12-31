@@ -13,11 +13,11 @@ export default function(to, from, next) {
         if(res.status === 200) {
             next();
         } else {
-            toastr.warning("Thông bao<br> Bạn chưa đăng nhập!")
+            toastr.warning("Thông báo<br> Bạn chưa đăng nhập!")
             next("/admin/login");
         }
     }).catch((res) =>  {
-        toastr.warning("Thông bao<br> Bạn chưa đăng nhập!")
+        toastr.warning("Thông báo<br> Bạn chưa đăng nhập!")
         next("/admin/login");
     });
 }

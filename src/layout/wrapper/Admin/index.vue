@@ -35,13 +35,6 @@ export default {
         MenuVue
     },
     mounted() {
-        // baseRequest.post('check-login').then((res) => {
-        //     if(res.status != 200) {
-        //         this.$router.push('/admin/login')
-        //     }
-        // }).catch((res) =>  {
-        //     this.$router.push('/admin/login')
-        // });
     },  
 }
 </script>
