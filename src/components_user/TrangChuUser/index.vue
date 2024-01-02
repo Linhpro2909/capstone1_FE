@@ -143,7 +143,7 @@ export default {
                 });
         },
         downloadFile(filename) {
-            const downloadUrl = `http://127.0.0.1:8000/api/download/${filename}`;
+            const downloadUrl = `http://127.0.0.1:8000/api/admin/ke-hoach-tot-nghiep/download/${filename}`;
 
             axios
                 .get(downloadUrl, { responseType: 'blob' })
